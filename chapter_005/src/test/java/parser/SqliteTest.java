@@ -3,8 +3,8 @@ package parser;
 import org.junit.Before;
 import org.junit.Test;
 import parser.config.Config;
-import parser.database.DbPostgres;
 import parser.database.DbSore;
+import parser.database.DbSqlite;
 import parser.scheduler.SchedulerSql;
 import parser.vacancy.Vacancy;
 
@@ -19,8 +19,8 @@ import static org.junit.Assert.assertThat;
 import static parser.config.Config.init;
 
 
-public class PostgresTest {
-    private DbSore postgres;
+public class SqliteTest {
+    private DbSore sqlite;
     private SchedulerSql scheduler;
 
     private String getCommandLine() {
@@ -33,26 +33,26 @@ public class PostgresTest {
     public void setBefore() {
         final String[] args = this.getCommandLine().split(" ");
         Config.setParam(args);
-        Config.setConfig(new DbPostgres(init("p")), "java", "script");
+        Config.setConfig(new DbSqlite(init("l")), "java", "script");
         final ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setErr(new PrintStream(bos));
         this.scheduler = new SchedulerSql();
-        this.postgres = Config.getDatabase();
+        this.sqlite = Config.getDatabase();
         final var time = this.scheduler.getTimeScheduler();
         this.scheduler.getSchedulerStartDefault(time);
     }
 
-    public void someCodePostgresBefore() {
-        this.postgres.dropTable();
-        this.postgres.createTable();
+    public void someCodeSqliteBefore() {
+        this.sqlite.dropTable();
+        this.sqlite.createTable();
     }
 
     @Test
-    public void whenAddToPostgresAndGeFirstId() throws InterruptedException {
-        this.someCodePostgresBefore();
+    public void whenAddToSqliteAndGeFirstId() throws InterruptedException {
+        this.someCodeSqliteBefore();
         Thread.sleep(100000);
         final int id = 1;
-        Vacancy vacancy = this.postgres.findVacancyById(id);
+        Vacancy vacancy = this.sqlite.findVacancyById(id);
         assertThat(Objects.requireNonNull(vacancy).toString(),
                 is(new StringJoiner(System.lineSeparator())
                         .add("id='" + id + "'")
@@ -62,19 +62,19 @@ public class PostgresTest {
                         .add("link='https://www.sql.ru/forum/1307410/ishhem-java-razrabotchika?hl=java'")
                         .toString()));
         this.scheduler.getSchedulerShutDown();
-        this.postgres.closeDB();
+        this.sqlite.closeDB();
     }
 
     @Test
-    public void whenAddToPostgresAndGetCountRowInTable()
+    public void whenAddToSqliteAndGetCountRowInTable()
             throws InterruptedException {
-        this.someCodePostgresBefore();
+        this.someCodeSqliteBefore();
         Thread.sleep(80000);
-        var result = this.postgres.getCountRowOfVacancy();
+        var result = this.sqlite.getCountRowOfVacancy();
         Thread.sleep(80000);
-        var expected = this.postgres.getCountRowOfVacancy();
+        var expected = this.sqlite.getCountRowOfVacancy();
         assertEquals(result, expected);
         this.scheduler.getSchedulerShutDown();
-        this.postgres.closeDB();
+        this.sqlite.closeDB();
     }
 }

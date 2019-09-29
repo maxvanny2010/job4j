@@ -46,6 +46,12 @@
             <artifactId>quartz</artifactId>
             <version>2.3.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.28.0</version>
+        </dependency>
 
     </dependencies>
     <build>
@@ -87,7 +93,7 @@
                         <id>vacancy</id>
                         <phase>process-resources</phase>
                         <configuration>
-                            <changeLogFile>${project.basedir}/src/main/java/db/master.xml</changeLogFile>
+                            <changeLogFile>${project.basedir}/src/main/liquibase/master.xml</changeLogFile>
                             <url>jdbc:postgresql://localhost:5432/vacancy</url>
                             <driver>org.postgresql.Driver</driver>
                             <username>postgres</username>
@@ -101,7 +107,7 @@
                         <id>tracker</id>
                         <phase>process-resources</phase>
                         <configuration>
-                            <changeLogFile>${project.basedir}/src/main/java/db/master.xml</changeLogFile>
+                            <changeLogFile>${project.basedir}/src/main/liquibase/master.xml</changeLogFile>
                             <url>jdbc:postgresql://localhost:5432/tracker</url>
                             <driver>org.postgresql.Driver</driver>
                             <username>postgres</username>

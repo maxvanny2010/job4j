@@ -1,4 +1,4 @@
-package parser;
+package parser.scheduler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +7,9 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import parser.config.Config;
+import parser.quartz.QuartzSql;
+import parser.quartz.QuartzStore;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,63 +21,38 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
- * SchedulerParser.
+ * SchedulerSql.
  *
  * @author Maxim Vanny
  * @version 5.0
  * @since 7/16/2019
  */
-public class SchedulerParser {
+public class SchedulerSql implements SchedulerStore {
     /**
      * field logger.
      */
     private static final Logger LOG = LogManager
-            .getLogger(SchedulerParser.class.getName());
+            .getLogger(QuartzStore.class.getName());
     /**
      * field scheduler.
      */
     private Scheduler scheduler;
-    /**
-     * field argument.
-     */
-    private static String[] args;
-
-    /**
-     * Constructor.
-     *
-     * @param aArgs a array of arguments
-     */
-    public SchedulerParser(final String[] aArgs) {
-        args = aArgs;
-    }
-
-    /**
-     * Method to get argument command line.
-     *
-     * @return argument command line
-     */
-    public static String getParam() {
-        final int index = 3;
-        if (!args[index].equals("app.properties")) {
-            throw new IllegalArgumentException("Missing app.properties");
-        }
-        return args[index];
-    }
 
     /**
      * Method to get time for scheduler.
      *
      * @return atime for scheduler.
      */
+    @Override
     public final String getTimeScheduler() {
-        final String param = getParam();
-        try (final InputStream is = SchedulerParser.class.getClassLoader()
+        final String param = Config.getParam();
+        try (InputStream is = QuartzSql.class.getClassLoader()
                 .getResourceAsStream(param)) {
             final Properties props = new Properties();
             props.load(Objects.requireNonNull(is));
             return props.getProperty("cron.time");
         } catch (IOException e) {
-            throw new IllegalStateException("Invalid config file " + param);
+            throw new IllegalStateException("Invalid config file " + param, e);
         }
     }
 
@@ -83,10 +61,11 @@ public class SchedulerParser {
      *
      * @param time the time to start the scheduler
      */
+    @Override
     public final void getSchedulerStartDefault(final String time) {
         try {
-            final JobDetail job = newJob(CronTrigger.class)
-                    .withIdentity("CronTrigger")
+            final JobDetail job = newJob(QuartzSql.class)
+                    .withIdentity("Quartz")
                     .build();
             final Trigger trigger = newTrigger()
                     .withSchedule(cronSchedule(time))
@@ -103,6 +82,7 @@ public class SchedulerParser {
     /**
      * Method to shutdown the scheduler.
      */
+    @Override
     public final void getSchedulerShutDown() {
         try {
             this.scheduler.shutdown(true);

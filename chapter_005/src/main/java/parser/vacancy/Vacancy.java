@@ -1,4 +1,4 @@
-package parser;
+package parser.vacancy;
 
 import java.util.Objects;
 import java.util.StringJoiner;

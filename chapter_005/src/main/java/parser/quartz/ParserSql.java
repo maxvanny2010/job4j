@@ -1,4 +1,4 @@
-package parser;
+package parser.quartz;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import parser.config.Config;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,21 +17,19 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Properties;
 
-import static parser.SchedulerParser.getParam;
-
 /**
- * ParsersJSOUP.
+ * ParserSql.
  *
  * @author Maxim Vanny
  * @version 5.0
  * @since 7/1/2019
  */
-public class ParserJSOUP {
+public class ParserSql {
     /**
      * field logger.
      */
     private static final Logger LOG = LogManager
-            .getLogger(Postgres.class.getName());
+            .getLogger(ParserSql.class.getName());
     /**
      * fields the table.
      */
@@ -46,7 +45,7 @@ public class ParserJSOUP {
      * @return the link.
      */
     public final String getBaseLink() {
-        final String file = getParam();
+        final String file = Config.getParam();
         try (InputStream is = Thread.currentThread()
                 .getContextClassLoader()
                 .getResourceAsStream(file)) {
@@ -54,7 +53,7 @@ public class ParserJSOUP {
             prop.load(Objects.requireNonNull(is));
             return prop.getProperty("link");
         } catch (IOException e) {
-            throw new IllegalStateException("Invalid config file " + file);
+            throw new IllegalStateException("Invalid config file " + file, e);
         }
     }
 
@@ -121,11 +120,7 @@ public class ParserJSOUP {
         if (answer != code) {
             result = "Connect failed, status " + answer;
         } else {
-            final Elements tr = this.desc
-                    .body()
-                    .select("table")
-                    .get(1)
-                    .select("tbody tr");
+            final Elements tr = getElements();
             for (Element row : tr) {
                 if (row.select("td").size() == 2) {
                     result = row.select("td")
@@ -136,6 +131,19 @@ public class ParserJSOUP {
             }
         }
         return result;
+    }
+
+    /**
+     * Method to get Elements table.
+     *
+     * @return elements
+     */
+    private Elements getElements() {
+        return this.desc
+                .body()
+                .select("table")
+                .get(1)
+                .select("tbody tr");
     }
 
     /**
@@ -176,26 +184,59 @@ public class ParserJSOUP {
      */
     public final String getDate(final int event) {
         final int index = 4;
-        String date = this.table.get(event).select("td").get(index).text();
-        final int length = 16;
-        if (date.toCharArray().length < length) {
-            date = "0" + date;
-        }
-        String day;
-        final LocalDate today = LocalDate.now();
-        final LocalDate yesterday = today.minusDays(1);
+        String date = this.table.get(event)
+                .select("td")
+                .get(index).text();
+        date = pomadeDate(date);
         if (date.contains("вчера")) {
-            final var time = date.substring(7, 12);
-            day = yesterday.format(DateTimeFormatter.ofPattern(
-                    "dd MMM yy", new Locale("ru", "RU")));
-            date = day + "," + time;
+            date = yesterday(date);
         } else if (date.contains("сегодня")) {
-            final var time = date.substring(10, 15);
-            day = today.format(DateTimeFormatter.ofPattern(
-                    "dd MMM yy", new Locale("ru", "RU")));
-            date = day + "," + time;
+            date = today(date);
         }
-        return date;
+        return date.replace("т.", "");
+    }
+
+    /**
+     * Method to add "0" if line date less than 16 characters.
+     *
+     * @param date a date
+     * @return the parse date
+     */
+    private String pomadeDate(final String date) {
+        String checkDate = date;
+        final var length = 16;
+        if (date.toCharArray().length < length) {
+            checkDate = "0" + date;
+        }
+        return checkDate;
+    }
+
+    /**
+     * Method to collect the date.
+     *
+     * @param date a date
+     * @return a parse's date
+     */
+    private String today(final String date) {
+        final var time = date.substring(10, 15);
+        final LocalDate today = LocalDate.now();
+        final var ddMMMyy = today.format(DateTimeFormatter.ofPattern(
+                "dd MMM yy", new Locale("ru", "RU")));
+        return ddMMMyy + ", " + time;
+    }
+
+    /**
+     * Method to collect the date.
+     *
+     * @param date a date
+     * @return a parse's date
+     */
+    private String yesterday(final String date) {
+        final var time = date.substring(8, 13);
+        final LocalDate yesterday = LocalDate.now().minusDays(1);
+        final var ddMMMyy = yesterday.format(DateTimeFormatter.ofPattern(
+                "dd MMM yy", new Locale("ru", "RU")));
+        return ddMMMyy + ", " + time;
     }
 }
 
