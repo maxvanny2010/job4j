@@ -17,7 +17,7 @@ public interface Assembly {
      * @param socket socket
      * @throws IOException exception
      */
-    void setInputReader(final Socket socket) throws IOException;
+    void setInputReader(Socket socket) throws IOException;
 
     /**
      * Method set output writer.
@@ -25,7 +25,7 @@ public interface Assembly {
      * @param socket socket
      * @throws IOException exception
      */
-    void setOutWriter(final Socket socket) throws IOException;
+    void setOutWriter(Socket socket) throws IOException;
 
     /**
      * Method get line to reader.
@@ -41,6 +41,6 @@ public interface Assembly {
      *
      * @param key key lint
      */
-    void outLine(final String key);
+    void outLine(String key);
 
 }

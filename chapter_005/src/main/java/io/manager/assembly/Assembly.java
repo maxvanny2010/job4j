@@ -18,7 +18,7 @@ public interface Assembly {
      * @param socket socket
      * @throws IOException io exception
      */
-    void setOutputWriter(final Socket socket) throws IOException;
+    void setOutputWriter(Socket socket) throws IOException;
 
     /**
      * Method set input.
@@ -26,7 +26,7 @@ public interface Assembly {
      * @param socket socket
      * @throws IOException io exception
      */
-    void setInputReader(final Socket socket) throws IOException;
+    void setInputReader(Socket socket) throws IOException;
 
     /**
      * Method get out line.

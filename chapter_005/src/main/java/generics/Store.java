@@ -14,7 +14,7 @@ public interface Store<E extends Base> {
      *
      * @param model model
      */
-    void add(final E model);
+    void add(E model);
 
     /**
      * replace.
@@ -22,14 +22,14 @@ public interface Store<E extends Base> {
      * @param id    id
      * @param model model
      */
-    void replace(final String id, final E model);
+    void replace(String id, E model);
 
     /**
      * delete.
      *
      * @param id id
      */
-    void delete(final String id);
+    void delete(String id);
 
     /**
      * findById.
@@ -37,6 +37,6 @@ public interface Store<E extends Base> {
      * @param id id
      * @return T model
      */
-    E findById(final String id);
+    E findById(String id);
 }
 

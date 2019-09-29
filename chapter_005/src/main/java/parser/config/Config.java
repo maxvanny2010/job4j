@@ -142,7 +142,8 @@ public final class Config {
      * @return url
      */
     private static String[] getProps(final String key) {
-        String[] url = new String[3];
+        final int three = 3;
+        String[] url = new String[three];
         if (key.equals("p")) {
             url[0] = "url";
             url[1] = "username";

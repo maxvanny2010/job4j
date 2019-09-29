@@ -67,7 +67,7 @@ public class SocketClient {
      */
     public static void main(final String[] args) throws IOException {
         final var port = 2000;
-        try (final Socket socket = new Socket("127.0.0.1", port)) {
+        try (Socket socket = new Socket("127.0.0.1", port)) {
             new SocketClient(socket, new ValidateInput(
                     new ConsoleInput())).startClient();
         }

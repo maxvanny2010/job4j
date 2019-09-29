@@ -27,19 +27,19 @@ public interface Menu {
      * @param answer answer
      * @throws IOException ioException
      */
-    void out(final String answer) throws IOException;
+    void out(String answer) throws IOException;
 
     /**
      * Method print answer server or client.
      *
      * @param line answer
      */
-    void print(final String line);
+    void print(String line);
 
     /**
      * Method set connect with server.
      *
      * @param aSocket socket
      */
-    void connect(final Socket aSocket);
+    void connect(Socket aSocket);
 }

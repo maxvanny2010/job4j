@@ -15,6 +15,16 @@ import java.util.TreeSet;
  */
 public class Sorter {
     /**
+     * Method to get a length name.
+     *
+     * @param o o
+     * @return the length name
+     */
+    private static int applyAsInt(final User o) {
+        return o.getName().length();
+    }
+
+    /**
      * Method sort the list of users.
      *
      * @param list the list  of users
@@ -33,12 +43,8 @@ public class Sorter {
      */
     public final List<User> sortByNameLength(final List<User> list) {
         Objects.requireNonNull(list, "list must not be null");
-        Comparator<User> compByNameLength = new Comparator<User>() {
-            @Override
-            public final int compare(final User o1, final User o2) {
-                return o1.getName().length() - o2.getName().length();
-            }
-        };
+        Comparator<User> compByNameLength = Comparator
+                .comparingInt(Sorter::applyAsInt);
         list.sort(compByNameLength);
         return list;
     }
@@ -52,18 +58,8 @@ public class Sorter {
      */
     public final List<User> sortByNameAndAge(final List<User> list) {
         Objects.requireNonNull(list, "list must not be null");
-        Comparator<User> compByName = new Comparator<User>() {
-            @Override
-            public final int compare(final User o1, final User o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        };
-        Comparator<User> compByAge = new Comparator<User>() {
-            @Override
-            public final int compare(final User o1, final User o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        };
+        Comparator<User> compByName = Comparator.comparing(User::getName);
+        Comparator<User> compByAge = Comparator.comparingInt(User::getAge);
         list.sort(compByName.thenComparing(compByAge));
         return list;
     }

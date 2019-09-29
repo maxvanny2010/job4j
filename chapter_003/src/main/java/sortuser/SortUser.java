@@ -1,6 +1,5 @@
 package sortuser;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -12,6 +11,19 @@ import java.util.TreeSet;
  * @since 0.1
  */
 public class SortUser {
+    /**
+     * Method compare.
+     *
+     * @param o1 o1
+     * @param o2 o2
+     * @return the length
+     */
+    private static int compare(final User o1, final User o2) {
+        int name1 = o1.getName().toCharArray().length;
+        int name2 = o2.getName().toCharArray().length;
+        return name1 - name2;
+    }
+
     /**
      * Method sort users by age.
      *
@@ -29,14 +41,7 @@ public class SortUser {
      * @return the list of users sorts by the length of name
      */
     public final List<User> sortNameLength(final List<User> list) {
-        list.sort(new Comparator<User>() {
-            @Override
-            public final int compare(final User o1, final User o2) {
-                int name1 = o1.getName().toCharArray().length;
-                int name2 = o2.getName().toCharArray().length;
-                return name1 - name2;
-            }
-        });
+        list.sort(SortUser::compare);
         return list;
     }
 
@@ -47,21 +52,17 @@ public class SortUser {
      * @return the list of users sorts by name and age
      */
     public final List<User> sortByAllFields(final List<User> list) {
-        list.sort(new Comparator<User>() {
-            @Override
-            public final int compare(final User o1, final User o2) {
+        list.sort((o1, o2) -> {
+            String name1 = o1.getName();
+            String name2 = o2.getName();
+            int sComp = name1.compareTo(name2);
 
-                String name1 = o1.getName();
-                String name2 = o2.getName();
-                int sComp = name1.compareTo(name2);
-
-                if (sComp != 0) {
-                    return sComp;
-                } else {
-                    Integer age1 = o1.getAge();
-                    Integer age2 = o2.getAge();
-                    return age1.compareTo(age2);
-                }
+            if (sComp != 0) {
+                return sComp;
+            } else {
+                Integer age1 = o1.getAge();
+                Integer age2 = o2.getAge();
+                return age1.compareTo(age2);
             }
         });
         return list;
