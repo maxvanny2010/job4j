@@ -1,6 +1,7 @@
 package parser;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import parser.config.Config;
 import parser.database.DbPostgres;
@@ -29,6 +30,7 @@ public class PostgresTest {
                 .toString();
     }
 
+    @Ignore
     @Before
     public void setBefore() {
         final String[] args = this.getCommandLine().split(" ");
@@ -38,19 +40,22 @@ public class PostgresTest {
         System.setErr(new PrintStream(bos));
         this.scheduler = new SchedulerSql();
         this.postgres = Config.getDatabase();
-        final var time = this.scheduler.getTimeScheduler();
-        this.scheduler.getSchedulerStartDefault(time);
+        final var time = scheduler.getTimeScheduler();
+        scheduler.getSchedulerStartDefault(time);
     }
 
-    public void someCodePostgresBefore() {
+    @Ignore
+    private void someCodePostgresBefore() {
         this.postgres.dropTable();
         this.postgres.createTable();
     }
 
+    @Ignore
     @Test
     public void whenAddToPostgresAndGeFirstId() throws InterruptedException {
         this.someCodePostgresBefore();
-        Thread.sleep(100000);
+        final int millis = 100000;
+        Thread.sleep(millis);
         final int id = 1;
         Vacancy vacancy = this.postgres.findVacancyById(id);
         assertThat(Objects.requireNonNull(vacancy).toString(),
@@ -65,13 +70,15 @@ public class PostgresTest {
         this.postgres.closeDB();
     }
 
+    @Ignore
     @Test
     public void whenAddToPostgresAndGetCountRowInTable()
             throws InterruptedException {
         this.someCodePostgresBefore();
-        Thread.sleep(80000);
+        final int millis = 80000;
+        Thread.sleep(millis);
         var result = this.postgres.getCountRowOfVacancy();
-        Thread.sleep(80000);
+        Thread.sleep(millis);
         var expected = this.postgres.getCountRowOfVacancy();
         assertEquals(result, expected);
         this.scheduler.getSchedulerShutDown();

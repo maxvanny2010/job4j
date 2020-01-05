@@ -1,6 +1,7 @@
 package parser;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import parser.config.Config;
 import parser.database.DbSore;
@@ -29,6 +30,7 @@ public class SqliteTest {
                 .toString();
     }
 
+    @Ignore
     @Before
     public void setBefore() {
         final String[] args = this.getCommandLine().split(" ");
@@ -38,19 +40,22 @@ public class SqliteTest {
         System.setErr(new PrintStream(bos));
         this.scheduler = new SchedulerSql();
         this.sqlite = Config.getDatabase();
-        final var time = this.scheduler.getTimeScheduler();
-        this.scheduler.getSchedulerStartDefault(time);
+        final var time = scheduler.getTimeScheduler();
+        scheduler.getSchedulerStartDefault(time);
     }
 
-    public void someCodeSqliteBefore() {
+    @Ignore
+    private void someCodeSqliteBefore() {
         this.sqlite.dropTable();
         this.sqlite.createTable();
     }
 
+    @Ignore
     @Test
     public void whenAddToSqliteAndGeFirstId() throws InterruptedException {
         this.someCodeSqliteBefore();
-        Thread.sleep(100000);
+        final int millis = 100000;
+        Thread.sleep(millis);
         final int id = 1;
         Vacancy vacancy = this.sqlite.findVacancyById(id);
         assertThat(Objects.requireNonNull(vacancy).toString(),
@@ -65,13 +70,15 @@ public class SqliteTest {
         this.sqlite.closeDB();
     }
 
+    @Ignore
     @Test
     public void whenAddToSqliteAndGetCountRowInTable()
             throws InterruptedException {
         this.someCodeSqliteBefore();
-        Thread.sleep(80000);
+        final int millis = 80000;
+        Thread.sleep(millis);
         var result = this.sqlite.getCountRowOfVacancy();
-        Thread.sleep(80000);
+        Thread.sleep(millis);
         var expected = this.sqlite.getCountRowOfVacancy();
         assertEquals(result, expected);
         this.scheduler.getSchedulerShutDown();
