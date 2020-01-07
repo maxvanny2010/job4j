@@ -2,14 +2,12 @@ package blockqueue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -39,33 +37,6 @@ public class SimpleBlockingQueueTest {
         this.consumer = null;
         this.producer = null;
         System.setOut(System.out);
-    }
-
-    @Test
-    public void whenCapacityIsOneAndOfferToOutOK() throws Exception {
-        this.queue = new SimpleBlockingQueue<>(1);
-        this.consumer = new Consumer(this.queue);
-        this.producer = new Producer(this.queue, this.consumer);
-        final Thread prod = new Thread(this.producer, "Producer");
-        prod.start();
-        prod.join();
-        prod.interrupt();
-        TimeUnit.MILLISECONDS.sleep(10);
-        assertThat(this.bos.toString(), is(new StringBuilder()
-                .append("sent:0")
-                .append(ln)
-                .append("get:0")
-                .append(ln)
-                .append("sent:1")
-                .append(ln)
-                .append("get:1")
-                .append(ln)
-                .append("sent:2")
-                .append(ln)
-                .append("get:2")
-                .append(ln)
-                .toString()
-        ));
     }
 
     @Test

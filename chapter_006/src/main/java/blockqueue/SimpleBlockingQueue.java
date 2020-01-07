@@ -48,7 +48,6 @@ class SimpleBlockingQueue<T> {
             }
             this.queue.offer(value);
             this.queue.notify();
-            System.out.println("sent:" + value.toString());
         }
     }
 
@@ -66,7 +65,6 @@ class SimpleBlockingQueue<T> {
             }
             final T poll = this.queue.poll();
             this.queue.notify();
-            System.out.println("get:" + poll);
             return poll;
         }
     }
