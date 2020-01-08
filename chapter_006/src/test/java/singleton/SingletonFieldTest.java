@@ -15,7 +15,7 @@ public class SingletonFieldTest {
     public void testGetInstance() {
         final SingletonField result1 = SingletonField.getInstance();
         final SingletonField result2 = SingletonField.getInstance();
-        Assert.assertEquals(result1,result2);
+        Assert.assertEquals(result1, result2);
     }
 }
 

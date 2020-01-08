@@ -16,7 +16,7 @@ public class SingletonClassTest {
     public void testGetInstance() {
         final SingletonClass result1 = SingletonClass.getInstance();
         final SingletonClass result2 = SingletonClass.getInstance();
-        Assert.assertEquals(result1,result2);
+        Assert.assertEquals(result1, result2);
     }
 }
 
