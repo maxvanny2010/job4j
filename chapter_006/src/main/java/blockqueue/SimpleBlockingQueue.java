@@ -70,14 +70,14 @@ class SimpleBlockingQueue<T> {
     }
 
     /**
-     * Method to check.
+     * Method to get size.
      *
-     * @return empty queue or not
+     * @return the size of queue
      */
 
-    public final boolean isEmpty() {
+    final int size() {
         synchronized (this.queue) {
-            return !this.queue.isEmpty();
+            return this.queue.size();
         }
     }
 }

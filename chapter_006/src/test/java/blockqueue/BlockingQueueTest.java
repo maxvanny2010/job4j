@@ -38,7 +38,7 @@ public class BlockingQueueTest {
     @Test
     public void whenProducerConsumerOk() throws InterruptedException {
         final Thread consumer = new Thread(() -> {
-            while (this.queue.isEmpty() || !Thread.currentThread().isInterrupted()) {
+            while (this.queue.size() != 0 || !Thread.currentThread().isInterrupted()) {
                 try {
                     this.buffer.add(this.queue.poll());
                 } catch (InterruptedException e) {

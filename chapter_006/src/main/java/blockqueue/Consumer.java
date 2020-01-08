@@ -32,7 +32,7 @@ class Consumer implements Runnable {
 
     @Override
     public final void run() {
-        while (this.queue.isEmpty()
+        while (this.queue.size() != 0
                 || !Thread.currentThread().isInterrupted()) {
             try {
                 this.buffer.add(this.queue.poll());

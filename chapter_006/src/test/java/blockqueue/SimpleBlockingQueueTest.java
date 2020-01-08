@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -24,7 +25,6 @@ public class SimpleBlockingQueueTest {
     private Producer producer;
     private SimpleBlockingQueue<Integer> queue;
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
-    private final String ln = System.lineSeparator();
 
     @Before
     public void setBefore() {
@@ -49,7 +49,8 @@ public class SimpleBlockingQueueTest {
         prod.join();
         prod.interrupt();
         final List<Integer> buffer = this.consumer.getBuffer();
-        assertThat(buffer, is(Arrays.asList(0, 1, 2)));
+        TimeUnit.MILLISECONDS.sleep(100);
+        assertThat(buffer.toString(), is(Arrays.asList(0, 1, 2).toString()));
 
     }
 }
