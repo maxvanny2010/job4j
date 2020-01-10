@@ -43,8 +43,9 @@ class SimpleBlockingQueue<T> {
      */
     final void offer(final T value) throws InterruptedException {
         synchronized (this.queue) {
-            while (this.queue.size() >= this.capacity) {
-                this.queue.wait();
+            while (this.queue.size() > this.capacity) {
+                final int millis = 5;
+                this.queue.wait(millis);
             }
             this.queue.offer(value);
             this.queue.notify();

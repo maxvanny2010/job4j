@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
@@ -21,12 +22,15 @@ import static org.junit.Assert.assertThat;
  * @since 12/30/2019
  */
 public class BlockingQueueTest {
-    private final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
-    private final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(2);
+    private CopyOnWriteArrayList<Integer> buffer;
+    private SimpleBlockingQueue<Integer> queue;
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
     @Before
     public void setBefore() {
+        final int capacity = new Random().nextInt(1) + 1;
+        this.queue = new SimpleBlockingQueue<>(capacity);
+        this.buffer = new CopyOnWriteArrayList<>();
         System.setOut(new PrintStream(this.bos));
     }
 
