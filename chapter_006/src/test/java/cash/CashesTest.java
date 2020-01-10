@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -126,29 +127,28 @@ public class CashesTest {
     @Test
     public void whenUpdateFall() throws InterruptedException {
         final Base tmp1 = this.cache.get(this.base.getId());
-        final Base tmp2 = new Base(0, 0, "fall");
+        final Base tmp2 = new Base(0, 0, "fall_1");
+        final Base tmp3 = new Base(1, 1, "fall_2");
+        List<Base> list = List.of(tmp1, tmp2, tmp3);
         AtomicReference<Exception> ref = new AtomicReference<>();
-        final Runnable runnable1 = () -> {
-            tmp1.setName("one");
+        for (int i = 0; i < 3; i++) {
+            final Thread thread = new Thread(getRunnable(list.get(i), ref, String.valueOf(i)));
+            thread.start();
+            thread.join();
+        }
+        Assert.assertThat(ref.get().getMessage(), is("OptimisticException"));
+    }
+
+    private Runnable getRunnable(final Base tmp1,
+                                 final AtomicReference<Exception> ref,
+                                 final String name) {
+        return () -> {
+            tmp1.setName(name);
             try {
                 this.cache.update(tmp1);
             } catch (Exception e) {
                 ref.set(e);
             }
         };
-        final Runnable runnable2 = () -> {
-            try {
-                this.cache.update(tmp2);
-            } catch (Exception e) {
-                ref.set(e);
-            }
-        };
-        final Thread thread1 = new Thread(runnable1);
-        final Thread thread2 = new Thread(runnable2);
-        thread1.start();
-        thread2.start();
-        thread1.join();
-        thread2.join();
-        Assert.assertThat(ref.get().getMessage(), is("OptimisticException"));
     }
 }
