@@ -22,8 +22,8 @@ import static org.junit.Assert.assertThat;
  * @since 1/1/2020
  */
 public class CashesTest {
-    private Cashes cache;
     private final Base base = new Base("base");
+    private Cashes cache;
 
     @Before
     public void setBefore() {
@@ -106,16 +106,9 @@ public class CashesTest {
     public void whenUpdateOK() throws InterruptedException {
         final Base tmp1 = this.cache.get(this.base.getId());
         final Base tmp2 = this.cache.get(this.base.getId());
-        final Runnable runnable1 = () -> {
-            tmp1.setName("one");
-            this.cache.update(tmp1);
-        };
-        final Runnable runnable2 = () -> {
-            tmp2.setName("two");
-            this.cache.update(tmp2);
-        };
-        final Thread thread1 = new Thread(runnable1);
-        final Thread thread2 = new Thread(runnable2);
+        AtomicReference<Exception> ref = new AtomicReference<>();
+        final Thread thread1 = new Thread(new Thread(getRunnable(tmp1, ref, "one")));
+        final Thread thread2 = new Thread(new Thread(getRunnable(tmp2, ref, "two")));
         thread1.start();
         thread2.start();
         thread1.join();

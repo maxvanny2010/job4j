@@ -11,13 +11,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 final class Atomic {
     /**
+     * field autoincrement.
+     */
+    static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger();
+
+    /**
      * Constructor.
      */
     private Atomic() {
     }
-
-    /**
-     * field autoincrement.
-     */
-    static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger();
 }

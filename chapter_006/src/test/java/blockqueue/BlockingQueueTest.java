@@ -22,9 +22,9 @@ import static org.junit.Assert.assertThat;
  * @since 12/30/2019
  */
 public class BlockingQueueTest {
+    private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
     private CopyOnWriteArrayList<Integer> buffer;
     private SimpleBlockingQueue<Integer> queue;
-    private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
     @Before
     public void setBefore() {
@@ -46,7 +46,6 @@ public class BlockingQueueTest {
                 try {
                     this.buffer.add(this.queue.poll());
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
                     Thread.currentThread().interrupt();
                 }
             }

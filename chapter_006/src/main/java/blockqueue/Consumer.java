@@ -37,7 +37,6 @@ class Consumer implements Runnable {
             try {
                 this.buffer.add(this.queue.poll());
             } catch (InterruptedException e) {
-                e.printStackTrace();
                 Thread.currentThread().interrupt();
             }
         }

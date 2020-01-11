@@ -13,6 +13,18 @@ import static org.junit.Assert.assertThat;
  * @since 12/26/2019
  */
 public class CountTest {
+    @Test
+    public void whenExecute2ThreadThen2() throws InterruptedException {
+        final Count count = new Count();
+        final Thread first = new ThreadCount(count);
+        final Thread second = new ThreadCount(count);
+        first.start();
+        second.start();
+        first.join();
+        second.join();
+        assertThat(count.get(), is(2));
+    }
+
     private static class ThreadCount extends Thread {
         private final Count count;
 
@@ -24,19 +36,6 @@ public class CountTest {
         public void run() {
             this.count.increment();
         }
-    }
-
-    @Test
-    public void whenExecute2ThreadThen2() throws InterruptedException {
-        final Count count = new Count();
-        final Thread first = new ThreadCount(count);
-        final Thread second = new ThreadCount(count);
-        first.start();
-        second.start();
-        first.join();
-        second.join();
-        assertThat(count.get(), is(2));
-
     }
 }
 

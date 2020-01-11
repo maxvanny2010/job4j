@@ -11,13 +11,13 @@ import java.util.Objects;
  */
 class Parameters {
     /**
-     * field default size.
-     */
-    private static final int MAX_VOLUME = 1024;
-    /**
      * field limit nano time for download a one block of the file to a buffer.
      */
     static final double LIMIT_NANO = 200000;
+    /**
+     * field default size.
+     */
+    private static final int MAX_VOLUME = 1024;
     /**
      * field url.
      */

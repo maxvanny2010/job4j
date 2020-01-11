@@ -12,15 +12,15 @@ import java.util.Map;
  */
 final class Receiver {
     /**
+     * field a map.
+     */
+    private static final Map<String, Email> MAILBOX = new HashMap<>();
+
+    /**
      * Constructor.
      */
     private Receiver() {
     }
-
-    /**
-     * field a map.
-     */
-    private static final Map<String, Email> MAILBOX = new HashMap<>();
 
     /**
      * Method to get.

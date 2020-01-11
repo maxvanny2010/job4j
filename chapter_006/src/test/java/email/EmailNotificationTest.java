@@ -21,8 +21,8 @@ import static org.junit.Assert.assertTrue;
  * @since 1/9/2020
  */
 public class EmailNotificationTest {
-    final EmailNotification sender = new EmailNotification();
-    List<User> users;
+    private final EmailNotification sender = new EmailNotification();
+    private List<User> users;
 
     @Before
     public void setUp() {

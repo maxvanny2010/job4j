@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.core.Is.is;
@@ -21,10 +22,10 @@ import static org.junit.Assert.assertThat;
  * @since 12/29/2019
  */
 public class SimpleBlockingQueueTest {
+    private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    private SimpleBlockingQueue<Integer> queue;
     private Consumer consumer;
     private Producer producer;
-    private SimpleBlockingQueue<Integer> queue;
-    private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
     @Before
     public void setBefore() {
@@ -41,7 +42,8 @@ public class SimpleBlockingQueueTest {
 
     @Test
     public void whenCapacityIsOneAndOfferToListOK() throws Exception {
-        this.queue = new SimpleBlockingQueue<>(2);
+        final int capacity = new Random().nextInt(1) + 1;
+        this.queue = new SimpleBlockingQueue<>(capacity);
         this.consumer = new Consumer(this.queue);
         this.producer = new Producer(this.queue, this.consumer);
         final Thread prod = new Thread(this.producer, "Producer");
@@ -49,7 +51,8 @@ public class SimpleBlockingQueueTest {
         prod.join();
         prod.interrupt();
         final List<Integer> buffer = this.consumer.getBuffer();
-        TimeUnit.MILLISECONDS.sleep(100);
+        final int timeout = 100;
+        TimeUnit.MILLISECONDS.sleep(timeout);
         assertThat(buffer.toString(), is(Arrays.asList(0, 1, 2).toString()));
 
     }

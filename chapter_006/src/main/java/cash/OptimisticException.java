@@ -10,7 +10,6 @@ package cash;
 class OptimisticException extends RuntimeException {
     /**
      * Constructor.
-     *
      */
     OptimisticException() {
         super("OptimisticException");
