@@ -32,6 +32,7 @@ public class RepoIter implements Iterator {
     public final boolean hasNext() {
         return this.index < this.list.size();
     }
+
     @Override
     public final Object next() {
         if (!this.hasNext()) {

@@ -9,15 +9,6 @@ package ru.job4j.pseudo;
  */
 public class Paint {
     /**
-     * Method prints a picture of shape.
-     *
-     * @param shape reference to interface Shape.
-     */
-    public final void draw(final Shape shape) {
-        System.out.println(shape.draw());
-    }
-
-    /**
      * main.
      *
      * @param args strings
@@ -27,5 +18,14 @@ public class Paint {
         paint.draw(new Square());
         System.out.println();
         paint.draw(new Triangle());
+    }
+
+    /**
+     * Method prints a picture of shape.
+     *
+     * @param shape reference to interface Shape.
+     */
+    public final void draw(final Shape shape) {
+        System.out.println(shape.draw());
     }
 }

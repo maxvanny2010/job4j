@@ -33,6 +33,7 @@ public class MaxTest {
         int result = maxim.max(1, 2, 3);
         assertThat(result, is(3));
     }
+
     @Test
     public void whenFirstBetterSecondThird() {
         Max maxim = new Max();

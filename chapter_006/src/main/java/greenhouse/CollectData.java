@@ -14,19 +14,19 @@ import java.util.Random;
  * @since 1/13/2020
  */
 class CollectData extends GreenHouseScheduler implements Runnable {
-/**
- * field a temp value.
- */
+    /**
+     * field a temp value.
+     */
     public static final float TEMP = 65.0f;
+    /**
+     * field a data list.
+     */
+    static final List<DataPoint> DATA =
+            Collections.synchronizedList(new ArrayList<>());
     /**
      * field a interval time.
      */
     private final int min = 30;
-    /**
-     * field a data list.
-     */
-    static final  List<DataPoint> DATA =
-            Collections.synchronizedList(new ArrayList<>());
     /**
      * field a random.
      */

@@ -16,20 +16,23 @@ public enum TrackerSingletonEnum {
     INSTANCE;
 
     /**
+     * Start program.
+     *
+     * @param args string.
+     */
+    public static void main(final String[] args) {
+        @SuppressWarnings("unused")
+        var tracker = TrackerSingletonEnum.INSTANCE;
+    }
+
+    /**
      * Example method.
+     *
      * @param model model.
      * @return model.
      */
     @SuppressWarnings("unused")
     public Item add(final Item model) {
         return model;
-    }
-
-    /**
-     * Start program.
-     * @param args string.
-     */
-    public static void main(final String[] args) {
-        var tracker = TrackerSingletonEnum.INSTANCE;
     }
 }

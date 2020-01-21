@@ -16,7 +16,6 @@ import java.util.stream.IntStream;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class Tracker {
     /**
      * Динамический массив для хранение заявок.
@@ -29,6 +28,7 @@ public class Tracker {
      * @param item новая заявка.
      * @return возвращает добавленную заявку
      */
+    @SuppressWarnings("UnusedReturnValue")
     public final Item add(final Item item) {
         Objects.requireNonNull(item, "must be not null");
         item.setId(this.generateId());

@@ -14,13 +14,13 @@ import java.util.StringJoiner;
  */
 public class Account {
     /**
-     * the amount in account.
-     */
-    private double value;
-    /**
      * the requisite of account.
      */
     private final String requisites;
+    /**
+     * the amount in account.
+     */
+    private double value;
 
     /**
      * Constructor.

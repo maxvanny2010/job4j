@@ -39,6 +39,21 @@ public class SeekFile {
     }
 
     /**
+     * Point enter to program.
+     *
+     * @param args array command
+     * @throws IOException exception
+     */
+    public static void main(final String[] args) throws IOException {
+        SeekFile seek = new SeekFile(args);
+        seek.announce();
+        seek.writeSeekDataToFile();
+        String result;
+        result = seek.getResultFromTmpFile();
+        out.println("Program find file(s): " + result);
+    }
+
+    /**
      * Method gets and processes input parameter for right key command.
      *
      * @param key key command
@@ -314,20 +329,5 @@ public class SeekFile {
         out.print("java -jar SeekFile.jar -d config -n .*.txt -r -o SeekFile");
         out.println();
         out.println();
-    }
-
-    /**
-     * Point enter to program.
-     *
-     * @param args array command
-     * @throws IOException exception
-     */
-    public static void main(final String[] args) throws IOException {
-        SeekFile seek = new SeekFile(args);
-        seek.announce();
-        seek.writeSeekDataToFile();
-        String result;
-        result = seek.getResultFromTmpFile();
-        out.println("Program find file(s): " + result);
     }
 }

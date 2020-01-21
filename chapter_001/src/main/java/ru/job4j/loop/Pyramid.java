@@ -40,7 +40,7 @@ public class Pyramid {
     }
 
     /**
-     * bild Pyramid.
+     * Method to build Pyramid.
      *
      * @param height height
      * @return pyramid
@@ -55,7 +55,7 @@ public class Pyramid {
     }
 
     /**
-     * loopBy.
+     * Method a loopBy.
      *
      * @param height  height
      * @param weight  weight

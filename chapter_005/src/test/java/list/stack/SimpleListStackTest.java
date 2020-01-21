@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  * @since 2/26/2019
  */
 public class SimpleListStackTest {
-    SimpleListStack<Integer> stack = new SimpleListStack<>();
+    final SimpleListStack<Integer> stack = new SimpleListStack<>();
 
     @Before
     public void setUpBefore() {
@@ -57,6 +57,7 @@ public class SimpleListStackTest {
     @Test(expected = UnsupportedOperationException.class)
     public void whenGetOutIndexSize() {
         var result = this.stack.get(10);
+        System.out.println(result);
     }
 
     @Test

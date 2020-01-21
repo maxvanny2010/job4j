@@ -10,10 +10,15 @@ import static org.junit.Assert.assertThat;
 public class ProfileTest {
     private final Profiles profiles = new Profiles();
     private final List<Profile> catalog;
+    @SuppressWarnings("FieldCanBeLocal")
     private final Profile first;
+    @SuppressWarnings("FieldCanBeLocal")
     private final Profile second;
+    @SuppressWarnings("FieldCanBeLocal")
     private final Profile third;
+    @SuppressWarnings("FieldCanBeLocal")
     private final Profile four;
+    @SuppressWarnings("FieldCanBeLocal")
     private final Profile fifth;
 
     {

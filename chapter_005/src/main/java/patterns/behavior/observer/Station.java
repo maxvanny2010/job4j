@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class Station implements Observable {
     /**
+     * field station.
+     */
+    private final List<Observer> station = new ArrayList<>();
+    /**
      * field temperature.
      */
     private int temperature;
@@ -29,11 +33,6 @@ public class Station implements Observable {
     final List<Observer> getStation() {
         return this.station;
     }
-
-    /**
-     * field station.
-     */
-    private final List<Observer> station = new ArrayList<>();
 
     /**
      * Method to set.

@@ -44,6 +44,7 @@ public class Email {
 
     /**
      * Method to print data from the Map.
+     *
      * @param maps maps
      */
     final void infoMap(
@@ -53,7 +54,6 @@ public class Email {
 
     /**
      * Method to get a clear result emails and users from the Map.
-     *
      */
     final void clearEmails() {
         Iterator<Map.Entry<String, Set<String>>> outIter;

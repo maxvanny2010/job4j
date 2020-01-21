@@ -17,6 +17,7 @@ public class StringsCompare implements Comparator<String> {
      * @param right second string
      * @return result
      */
+    @SuppressWarnings("unused")
     public final int compareT(final String left, final String right) {
         char[] one = left.toCharArray();
         char[] two = right.toCharArray();

@@ -47,12 +47,14 @@ public class DynamicArrayTest {
 
     @Test(expected = NoSuchElementException.class)
     public void whenGetOutIndexDown() {
-        this.dynamic.get(-1);
+        final Integer integer = this.dynamic.get(-1);
+        System.out.println(integer);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenGetOutIndexUp() {
-        this.dynamic.get(10);
+        final Integer integer = this.dynamic.get(10);
+        System.out.println(integer);
     }
 
     @Test

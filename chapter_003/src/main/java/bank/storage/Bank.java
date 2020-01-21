@@ -162,6 +162,7 @@ public class Bank {
      * @param passport  the user's passport
      * @param requisite the user's requisite
      * @return the index in storage
+     *
      * @throws NotExistAccountException account is't storage
      */
     protected final Account getUserAccount(final String passport,

@@ -10,10 +10,6 @@ package storage.models;
  */
 public class Item {
     /**
-     * уникальный ключ заявки.
-     */
-    private String id;
-    /**
      * имя заявки.
      */
     private final String name;
@@ -21,6 +17,10 @@ public class Item {
      * описание заявки.
      */
     private final String description;
+    /**
+     * уникальный ключ заявки.
+     */
+    private String id;
     /**
      * создание заявки.
      */
@@ -73,6 +73,7 @@ public class Item {
      *
      * @return возращает создание заявки.
      */
+    @SuppressWarnings("unused")
     public final long getCreate() {
         return this.create;
     }
@@ -82,17 +83,9 @@ public class Item {
      *
      * @param aCreate создание заявки.
      */
+    @SuppressWarnings("unused")
     public final void setCreate(final long aCreate) {
         this.create = aCreate;
-    }
-
-    /**
-     * устанавливает уникальный ключ для заявки.
-     *
-     * @param aId уникальный ключ заявки.
-     */
-    public final void setId(final String aId) {
-        this.id = aId;
     }
 
     /**
@@ -102,6 +95,15 @@ public class Item {
      */
     public final String getId() {
         return id;
+    }
+
+    /**
+     * устанавливает уникальный ключ для заявки.
+     *
+     * @param aId уникальный ключ заявки.
+     */
+    public final void setId(final String aId) {
+        this.id = aId;
     }
 
     /**

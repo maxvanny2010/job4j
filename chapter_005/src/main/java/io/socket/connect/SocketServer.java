@@ -27,10 +27,24 @@ public class SocketServer {
     }
 
     /**
+     * Method point to program.
+     *
+     * @param args args
+     * @throws IOException exception
+     */
+    public static void main(final String[] args) throws IOException {
+        final var port = 2000;
+        final Socket socket = new ServerSocket(port).accept();
+        new SocketServer(socket).startServer();
+
+    }
+
+    /**
      * Method startServer.
      *
      * @throws IOException exception
      */
+    @SuppressWarnings("DuplicatedCode")
     public final void startServer() throws IOException {
         SocketMenu menu = new SocketMenu();
         menu.fillStorage();
@@ -50,18 +64,5 @@ public class SocketServer {
         } while (!"exit".equals(client));
         menu.print("");
         this.socket.close();
-    }
-
-    /**
-     * Method point to program.
-     *
-     * @param args args
-     * @throws IOException exception
-     */
-    public static void main(final String[] args) throws IOException {
-        final var port = 2000;
-        final Socket socket = new ServerSocket(port).accept();
-        new SocketServer(socket).startServer();
-
     }
 }

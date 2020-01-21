@@ -20,15 +20,6 @@ public class User implements Comparable<User> {
     private final int age;
 
     /**
-     * Method get the age of user.
-     *
-     * @return the age of user
-     */
-    public final int getAge() {
-        return this.age;
-    }
-
-    /**
      * Constructor.
      *
      * @param aName the name of user
@@ -37,6 +28,15 @@ public class User implements Comparable<User> {
     public User(final String aName, final int aAge) {
         this.name = aName;
         this.age = aAge;
+    }
+
+    /**
+     * Method get the age of user.
+     *
+     * @return the age of user
+     */
+    public final int getAge() {
+        return this.age;
     }
 
     /**

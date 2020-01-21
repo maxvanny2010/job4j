@@ -37,6 +37,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     /**
      * field the path prop file.
      */
+    @SuppressWarnings("unused")
     private static final String SCHEMA = "schema.sql";
     /**
      * field connection to db.
@@ -58,6 +59,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
      *
      * @return status connection
      */
+    @SuppressWarnings("unused")
     public final Connection init() {
         try (InputStream is = TrackerSQL.class.getClassLoader()
                 .getResourceAsStream(PROPS)) {
@@ -73,7 +75,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             throw new IllegalStateException("Invalid config file " + PROPS);
         }
     }
-
 
     @Override
     public final Item add(final Item item) {

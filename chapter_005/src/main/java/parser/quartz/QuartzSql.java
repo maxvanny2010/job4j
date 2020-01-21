@@ -101,6 +101,7 @@ public class QuartzSql implements QuartzStore, Job {
      *
      * @return trigger check
      */
+    @SuppressWarnings("SameReturnValue")
     private boolean isCheckSameData() {
         final var inPage = 50;
         final String[] date = {""};

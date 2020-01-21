@@ -22,8 +22,8 @@ import static org.junit.Assert.assertThat;
 public class ValidateInputTest {
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
-    private Input input;
     private final String ls = System.lineSeparator();
+    private Input input;
 
     @Before
     public void setBos() {

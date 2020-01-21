@@ -9,7 +9,7 @@ package patterns.net.businessdelegate;
  */
 interface BusinessService {
     /**
-    * Method to processing.
-    */
+     * Method to processing.
+     */
     void doProcessing();
 }

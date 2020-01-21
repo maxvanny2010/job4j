@@ -24,6 +24,7 @@ public class PropertySocketTest {
         final PropertySocket prop = new PropertySocket("config/manager.falls.properties");
         assertThat(prop.port(), is("Refuse.Missing field port."));
     }
+
     @Test
     public void whenPortFallAbuseDataByIp() {
         final PropertySocket prop = new PropertySocket("config/manager.falls.properties");

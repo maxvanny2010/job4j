@@ -46,24 +46,6 @@ public class Chat {
     }
 
     /**
-     * Method run bot with chat.
-     *
-     * @throws IOException exception
-     */
-    public final void chat() throws IOException {
-        Log aOut = new Log(this.logTxt);
-        MenuChat menu = new MenuChat(aOut);
-        menu.getBotFile(this.botTxt);
-        menu.openLogFile();
-        menu.fillAction();
-        String key;
-        do {
-            key = input.fromUser();
-            menu.select(key);
-        } while (!"end".equals(key));
-    }
-
-    /**
      * Point entry to program.
      *
      * @param args args
@@ -72,5 +54,23 @@ public class Chat {
     public static void main(final String[] args) throws IOException {
         new Chat(new ValidateInput(new ConsoleInput()),
                 getPathBot(), getPathLog()).chat();
+    }
+
+    /**
+     * Method run bot with chat.
+     *
+     * @throws IOException exception
+     */
+    public final void chat() throws IOException {
+        final Log aOut = new Log(this.logTxt);
+        final MenuChat menu = new MenuChat(aOut);
+        menu.getBotFile(this.botTxt);
+        menu.openLogFile();
+        menu.fillAction();
+        String key;
+        do {
+            key = this.input.fromUser();
+            menu.select(key);
+        } while (!key.equals("end"));
     }
 }

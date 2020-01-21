@@ -12,7 +12,7 @@ import java.util.Objects;
  * @version 5.0
  * @since 2/23/2019
  */
-public class SimpleStack implements Iterable {
+public class SimpleStack implements Iterable<Object> {
     /**
      * Container.
      */

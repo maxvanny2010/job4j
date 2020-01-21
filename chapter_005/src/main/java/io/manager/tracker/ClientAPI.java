@@ -112,6 +112,17 @@ public class ClientAPI {
     }
 
     /**
+     * Method out line "refuse" to server.
+     */
+    private void outRefuse() {
+        try {
+            menu.out("refuse" + System.lineSeparator());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Inner class Ext.
      * Check and sent command "exit" to server.
      * Exit server.
@@ -203,17 +214,6 @@ public class ClientAPI {
 
         }
 
-    }
-
-    /**
-     * Method out line "refuse" to server.
-     */
-    private void outRefuse() {
-        try {
-            menu.out("refuse" + System.lineSeparator());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

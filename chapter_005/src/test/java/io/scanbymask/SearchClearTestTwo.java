@@ -21,6 +21,7 @@ public class SearchClearTestTwo {
     private final File fileName = new File("config");
     private final List<String> reqList = new ArrayList<>(Arrays.asList("txt", "jpg"));
 
+    @SuppressWarnings("unused")
     @Test
     public void whenFilesOk() throws IOException {
         Files.deleteIfExists(Paths.get("config/tmpdir/black.txt"));

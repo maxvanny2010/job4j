@@ -19,7 +19,7 @@ import static org.junit.Assert.assertThat;
  */
 public class EntityTest {
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
-    private Client client = new Client();
+    private final Client client = new Client();
 
     @Before
     public void setBefore() {

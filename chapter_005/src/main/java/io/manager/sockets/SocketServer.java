@@ -31,6 +31,19 @@ public class SocketServer {
     }
 
     /**
+     * Method point enter to program.
+     *
+     * @param args args
+     * @throws IOException io exception
+     */
+    public static void main(final String[] args) throws IOException {
+        final Properties prop = new PropertySocket("config/manager.properties");
+        final Socket socket = new ServerSocket(
+                Integer.parseInt(prop.port())).accept();
+        new SocketServer(socket).startServer();
+    }
+
+    /**
      * Method start server.
      *
      * @throws IOException io exception
@@ -51,18 +64,5 @@ public class SocketServer {
             server.print(answer);
         } while (!answer.equals("exit"));
         this.socket.close();
-    }
-
-    /**
-     * Method point enter to program.
-     *
-     * @param args args
-     * @throws IOException io exception
-     */
-    public static void main(final String[] args) throws IOException {
-        final Properties prop = new PropertySocket("config/manager.properties");
-        final Socket socket = new ServerSocket(
-                Integer.valueOf(prop.port())).accept();
-        new SocketServer(socket).startServer();
     }
 }

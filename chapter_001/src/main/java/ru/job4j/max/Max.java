@@ -15,6 +15,7 @@ public class Max {
      * @param second Второе число.
      * @return Максимальное число.
      */
+    @SuppressWarnings("ManualMinMaxCalculation")
     public final int max(final int first, final int second) {
         int result;
         if (first >= second) {

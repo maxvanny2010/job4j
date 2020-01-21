@@ -34,6 +34,7 @@ public class DynamicLinkList<T> implements Iterable<T> {
         this.first = newNode;
         this.cursor++;
     }
+
     /**
      * Method return and delete first element in stack.
      *
@@ -47,6 +48,7 @@ public class DynamicLinkList<T> implements Iterable<T> {
         this.first = this.first.next;
         return data;
     }
+
     /**
      * Method Get.
      *
@@ -97,13 +99,13 @@ public class DynamicLinkList<T> implements Iterable<T> {
      */
     private static class Node<T> {
         /**
-         * field Node.
-         */
-        private Node<T> next;
-        /**
          * field data.
          */
         private final T data;
+        /**
+         * field Node.
+         */
+        private Node<T> next;
 
         /**
          * Constructor.

@@ -21,6 +21,22 @@ public final class XmlUsage {
     }
 
     /**
+     * Method point to program.
+     *
+     * @param args args
+     * @throws Exception exception
+     */
+    public static void main(final String[] args) throws Exception {
+        JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxbMarshaller.marshal(
+                new User(Arrays.asList(new Field(1), new Field(2))),
+                System.out
+        );
+    }
+
+    /**
      * inner class User.
      */
     @XmlRootElement
@@ -112,21 +128,5 @@ public final class XmlUsage {
         public final void setValueField(final int aValue) {
             this.valueField = aValue;
         }
-    }
-
-    /**
-     * Method point to program.
-     *
-     * @param args args
-     * @throws Exception exception
-     */
-    public static void main(final String[] args) throws Exception {
-        JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
-        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        jaxbMarshaller.marshal(
-                new User(Arrays.asList(new Field(1), new Field(2))),
-                System.out
-        );
     }
 }

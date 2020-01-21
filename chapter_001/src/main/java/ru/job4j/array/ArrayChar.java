@@ -17,6 +17,7 @@ public class ArrayChar {
 
     /**
      * Constructor.
+     *
      * @param line string
      */
     public ArrayChar(final String line) {

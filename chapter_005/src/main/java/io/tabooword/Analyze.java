@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Analyze.
@@ -20,30 +22,36 @@ public class Analyze {
      * Method unavailable.
      *
      * @param source source file
-     * @param goal goal file
+     * @param goal   goal file
+     * @throws IOException           io exception
+     * @throws FileNotFoundException no file exception
      */
-    public final void unavailable(final String source, final String goal) {
+    public final void unavailable(final String source, final String goal)
+            throws IOException {
+        if (!Files.exists(Path.of(source)) || !Files.exists(Path.of(goal))) {
+            throw new FileNotFoundException();
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              BufferedWriter writer = new BufferedWriter(new FileWriter(goal))) {
             var line = "";
-            var check = true;
+            var base = "";
             String[] result;
+            final int bound = 3;
             while ((line = reader.readLine()) != null) {
-                if (check && (line.startsWith("400")
-                        || line.startsWith("500"))) {
-                    result = line.split(" ");
-                    writer.write(result[1].trim() + ";");
-                    check = false;
-                } else if (!check && (line.startsWith("200"))) {
-                    result = line.split(" ");
-                    writer.write(result[1].trim() + "\n");
-                    check = true;
+                result = line.split(" ");
+                base = result[0] + " " + result[1].trim() + "; ";
+                switch (result[0].substring(0, bound)) {
+                    case "500":
+                    case "400":
+                        writer.write(base);
+                        break;
+                    case "200":
+                        writer.write("\n" + base);
+                        break;
+                    default:
+                        break;
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("Missing file...");
-        } catch (IOException e) {
-            System.err.println("Mistake in-out");
         }
     }
 }

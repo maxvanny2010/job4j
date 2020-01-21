@@ -14,7 +14,7 @@ public class ConsoleInput implements Input {
     /**
      * получение данных от пользователя с консоли.
      */
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     /**
      * получение ответа на запрос.

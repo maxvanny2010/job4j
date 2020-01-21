@@ -127,16 +127,16 @@ public class StreamUsageTest {
     public void whenReduce() {
         //0+1+2+3=6
         OptionalInt reduced =
-                IntStream.range(1, 4).reduce((a, b) -> a + b);
+                IntStream.range(1, 4).reduce(Integer::sum);
         reduced.ifPresent(System.out::println);
 
         //10+1+2+3=16
         int reducedTwoParams =
-                IntStream.range(1, 4).reduce(10, (a, b) -> a + b);
+                IntStream.range(1, 4).reduce(10, Integer::sum);
         System.out.println(reducedTwoParams);
         //
         int reducedParams = Stream.of(1, 2, 3)
-                .reduce(10, (a, b) -> a + b, (a, b) -> {
+                .reduce(10, Integer::sum, (a, b) -> {
                     System.out.println("combiner was called");
                     return a + b;
                 });
@@ -145,7 +145,7 @@ public class StreamUsageTest {
         //(10 + 1 = 11; 10 + 2 = 12; 10 + 3 = 13
         //11+12+13=36
         int reducedParallel = List.of(1, 2, 3).parallelStream()
-                .reduce(10, (a, b) -> a + b, (a, b) -> {
+                .reduce(10, Integer::sum, (a, b) -> {
                     System.out.println("combiner was called");
                     return a + b;
                 });
@@ -278,7 +278,7 @@ public class StreamUsageTest {
         //Reducing by Collect ifPresent
         final Optional<Integer> reduce = productList.stream()
                 .map(Product::getPrice)
-                .reduce((a, b) -> a + b);
+                .reduce(Integer::sum);
         reduce.ifPresent(System.out::println);
         //average
         double averagePrice = productList.stream()
@@ -299,6 +299,7 @@ public class StreamUsageTest {
     @Test
     public void whenMapToFlat() {
         class Student {
+            @SuppressWarnings({"FieldCanBeLocal", "unused"})
             private String name;
             private Set<String> book;
 
@@ -309,13 +310,13 @@ public class StreamUsageTest {
                 this.book.add(book);
             }
 
-            public void setName(final String aName) {
+            public Set<String> getBook() {
+                return book;
+            }            public void setName(final String aName) {
                 this.name = aName;
             }
 
-            public Set<String> getBook() {
-                return book;
-            }
+
         }
         Student obj1 = new Student();
         obj1.setName("mkyong");
@@ -344,7 +345,7 @@ public class StreamUsageTest {
 
     @Test
     public void whenArrayStream() {
-        int[] array = {1, 2, 3, 4, 5};
+        final int[] array = {1, 2, 3, 4, 5};
         //1. Stream<int[]>
         Stream<int[]> streamArray = Stream.of(array);
         //2. Stream<int[]> -> flatMap -> IntStream
@@ -356,8 +357,8 @@ public class StreamUsageTest {
     @Test
     public void whenCountAndFilter() {
         class Customer {
-            private String name;
-            private int points;
+            private final String name;
+            private final int points;
 
             public Customer(final String name, final int points) {
                 this.name = name;
@@ -372,26 +373,30 @@ public class StreamUsageTest {
                 return this.points;
             }
         }
-        Customer john = new Customer("John P.", 15);
-        Customer sarah = new Customer("Sarah M.", 200);
-        Customer charles = new Customer("Charles B.", 150);
+        final int points = 15;
+        Customer john = new Customer("John P.", points);
+        final int points1 = 200;
+        Customer sarah = new Customer("Sarah M.", points1);
+        final int points2 = 150;
+        Customer charles = new Customer("Charles B.", points2);
         Customer mary = new Customer("Mary T.", 1);
         List<Customer> customers = List.of(john, sarah, charles, mary);
-        long count = (long) customers.size();
+        long count = customers.size();
         // long count = customers.stream().count();
-        assertThat(count, is(4L));
-        long countBigCustomers = customers
-                .stream()
+        final long value = 4L;
+        assertThat(count, is(value));
+        long countBigCustomers = customers.stream()
                 .filter(c -> c.getPoints() > 100)
                 .count();
         assertThat(countBigCustomers, is(2L));
-        count = customers
-                .stream()
-                .filter(c -> c.getPoints() > 500)
+        count = customers.stream()
+                .filter(c -> {
+                    final int i = 500;
+                    return c.getPoints() > i;
+                })
                 .count();
         assertThat(count, is(0L));
-        count = customers
-                .stream()
+        count = customers.stream()
                 .filter(c -> c.getPoints() > 10 && c.getName().startsWith("Charles"))
                 .count();
         assertThat(count, is(1L));

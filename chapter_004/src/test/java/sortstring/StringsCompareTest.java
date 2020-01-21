@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+@SuppressWarnings("ALL")
 public class StringsCompareTest {
     @Test
     public void whenStringsAreEqualThenZero() {
@@ -27,6 +28,7 @@ public class StringsCompareTest {
         );
         assertThat(rst, lessThan(0));
     }
+
     @Test
     public void whenLeftGreaterThanRightResultBePositive() {
         StringsCompare compare = new StringsCompare();

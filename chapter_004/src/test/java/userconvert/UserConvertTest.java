@@ -26,4 +26,19 @@ public class UserConvertTest {
         Map<Integer, User> result = user.process(list);
         assertThat(result.toString(), is(expected.toString()));
     }
+
+    @Test
+    public void whenListProcessToMapOk() {
+        UserConvert user = new UserConvert();
+        User one = new User("Doyle", "London", 1);
+        User two = new User("Holmes", "London", 2);
+        User three = new User("Moriarty", "London", 3);
+        List<User> list = new ArrayList<>(List.of(one, two, three));
+        HashMap<Integer, User> expected = new HashMap<>(Map.of(
+                one.getId(), new User(one.getName(), one.getCity(), one.getId()),
+                two.getId(), new User(two.getName(), two.getCity(), two.getId()),
+                three.getId(), new User(three.getName(), three.getCity(), three.getId())));
+        Map<Integer, User> result = user.processToMap(list);
+        assertThat(result.toString(), is(expected.toString()));
+    }
 }

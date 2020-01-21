@@ -73,6 +73,7 @@ public class Vacancy {
      *
      * @return id vacancy
      */
+    @SuppressWarnings("unused")
     public final String getId() {
         return this.id;
     }

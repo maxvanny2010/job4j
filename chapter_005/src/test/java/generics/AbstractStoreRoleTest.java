@@ -11,7 +11,9 @@ import static org.junit.Assert.assertThat;
 public class AbstractStoreRoleTest {
     private AbstractStore<Role> abstractStore = new RoleStore(4);
     private Role one;
+    @SuppressWarnings("FieldCanBeLocal")
     private Role two;
+    @SuppressWarnings("FieldCanBeLocal")
     private Role three;
     private Role four;
 

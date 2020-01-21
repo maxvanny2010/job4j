@@ -36,6 +36,20 @@ public class SocketClient {
     }
 
     /**
+     * Method point to program.
+     *
+     * @param args args
+     * @throws IOException exception
+     */
+    public static void main(final String[] args) throws IOException {
+        final var port = 2000;
+        try (Socket socket = new Socket("127.0.0.1", port)) {
+            new SocketClient(socket, new ValidateInput(
+                    new ConsoleInput())).startClient();
+        }
+    }
+
+    /**
      * Method start Client.
      *
      * @throws IOException exception
@@ -57,19 +71,5 @@ public class SocketClient {
             }
         } while (!"exit".equals(client));
         menu.print("");
-    }
-
-    /**
-     * Method point to program.
-     *
-     * @param args args
-     * @throws IOException exception
-     */
-    public static void main(final String[] args) throws IOException {
-        final var port = 2000;
-        try (Socket socket = new Socket("127.0.0.1", port)) {
-            new SocketClient(socket, new ValidateInput(
-                    new ConsoleInput())).startClient();
-        }
     }
 }

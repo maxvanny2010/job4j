@@ -22,6 +22,7 @@ import java.util.stream.IntStream;
  * @version 5.0
  * @since 4/20/2019
  */
+@SuppressWarnings("ALL")
 public class ServerAPI {
     /**
      * field path root.
@@ -32,14 +33,14 @@ public class ServerAPI {
      */
     private final Menu menu = new MenuServer();
     /**
-     * field keeper names command from client to server.
-     */
-    private Map<String, BaseAction> catalog = new HashMap<>();
-    /**
      * field stores components server path.
      * and helps build the current server path.
      */
     private final ComponentsAPI components = new ComponentsAPI();
+    /**
+     * field keeper names command from client to server.
+     */
+    private Map<String, BaseAction> catalog = new HashMap<>();
 
     /**
      * Method get query.

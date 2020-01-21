@@ -15,10 +15,11 @@ public class User {
     /**
      * field email.
      */
-    private Set<String> emails = new HashSet<>();
+    private final Set<String> emails = new HashSet<>();
 
     /**
      * Method to set a Set of mails.
+     *
      * @param email a email
      */
     public final void setEmail(final String email) {
@@ -27,6 +28,7 @@ public class User {
 
     /**
      * Method to get a Set of mails.
+     *
      * @return the Set
      */
     public final Set<String> getEmails() {

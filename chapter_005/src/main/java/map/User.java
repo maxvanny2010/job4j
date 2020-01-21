@@ -37,6 +37,7 @@ public class User {
         this.children = aChildren;
         this.birthday = aBirthday;
     }
+
     //
     @Override
     public final int hashCode() {

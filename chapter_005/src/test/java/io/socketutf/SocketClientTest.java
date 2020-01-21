@@ -26,17 +26,16 @@ import static org.mockito.Mockito.when;
 public class SocketClientTest {
     public static final String LN = System.getProperty("line.separator");
     final Socket socket = mock(Socket.class);
-    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
     @Before
-    public void before() {
-        System.setOut(new PrintStream(os));
+    public void setBefore() {
+        System.setOut(new PrintStream(this.bos));
     }
 
     @After
-    public void after() throws IOException {
-        os.close();
-        socket.close();
+    public void setAfter() throws IOException {
+        this.socket.close();
         System.setOut(System.out);
     }
 

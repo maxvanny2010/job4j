@@ -26,7 +26,7 @@ public class ValidateInputTest {
     private final PrintStream out = System.out;
     private final String ls = System.lineSeparator();
     private final Consumer<String> output = new Consumer<>() {
-        PrintStream stdout = new PrintStream(bos);
+        final PrintStream stdout = new PrintStream(bos);
 
         @Override
         public void accept(final String s) {
@@ -50,11 +50,6 @@ public class ValidateInputTest {
         System.setOut(this.out);
     }
 
-    /**
-     * метод отображения меню.
-     *
-     * @return возвращает отображение меню.
-     */
     public String showCarte() {
         StringBuilder all = new StringBuilder()
                 .append("-----------------------------------------------")

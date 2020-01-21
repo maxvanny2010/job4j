@@ -1,6 +1,11 @@
 package patterns.generate.singleton;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -13,18 +18,18 @@ import static org.junit.Assert.assertThat;
  * @since 10/26/2019
  */
 public class SingletonTest {
-    /*  private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-      @Before
-      public void setBefore() {
-          System.setOut(new PrintStream(this.bos));
-      }
+    @Before
+    public void setBefore() {
+        System.setOut(new PrintStream(this.bos));
+    }
 
-      @After
-      public void whenAfter() {
-          System.setOut(System.out);
-      }
-  */
+    @After
+    public void whenAfter() {
+        System.setOut(System.out);
+    }
+
     @Test
     public void whenSingletonGet25() throws InterruptedException {
         final Thread firstSingleton = new Thread(new FirstSingletonThread());
@@ -37,7 +42,7 @@ public class SingletonTest {
         assertThat("another text", is("another text"));
     }
 
-    private class FirstSingletonThread implements Runnable {
+    private static class FirstSingletonThread implements Runnable {
         @Override
         public void run() {
             Singleton singleton = Singleton.getInstance("Some text");
@@ -45,7 +50,7 @@ public class SingletonTest {
         }
     }
 
-    private class SecondSingletonThread implements Runnable {
+    private static class SecondSingletonThread implements Runnable {
         @Override
         public void run() {
             Singleton singleton = Singleton.getInstance("another text");

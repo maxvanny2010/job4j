@@ -14,11 +14,11 @@ public class Queue<T> {
     /**
      * field out.
      */
-    private Stack<T> out = new Stack<>();
+    private final Stack<T> out = new Stack<>();
     /**
      * field in.
      */
-    private Stack<T> in = new Stack<>();
+    private final Stack<T> in = new Stack<>();
 
     /**
      * Push.

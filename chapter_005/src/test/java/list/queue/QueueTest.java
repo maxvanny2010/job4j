@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
  * @since 3/3/2019
  */
 public class QueueTest {
-    Queue<Integer> queue = new Queue<>();
+    final Queue<Integer> queue = new Queue<>();
 
     @Test
     public void whenPushOk() {
@@ -21,11 +21,13 @@ public class QueueTest {
         this.queue.push(2);
         assertThat(this.queue.poll(), is(2));
     }
+
     @Test
     public void whenPollOk() {
         this.queue.push(1);
         assertThat(this.queue.poll(), is(1));
     }
+
     @Test(expected = UnsupportedOperationException.class)
     public void whenPollFallUOE() {
         this.queue.push(1);

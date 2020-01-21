@@ -15,7 +15,9 @@ import static org.junit.Assert.assertTrue;
 public class SimpleArrayTest {
     private SimpleArray<String> storage;
     private String one;
+    @SuppressWarnings("FieldCanBeLocal")
     private String two;
+    @SuppressWarnings("FieldCanBeLocal")
     private String three;
     private String four;
 

@@ -40,6 +40,20 @@ public class SocketClient {
     }
 
     /**
+     * Method point enter to program.
+     *
+     * @param args args
+     * @throws IOException io exception
+     */
+    public static void main(final String[] args) throws IOException {
+        final Properties prop = new PropertySocket("config/manager.properties");
+        final Socket socket = new Socket(prop.ip(),
+                Integer.parseInt(prop.port()));
+        new SocketClient(socket, new InputValidate(new InputConsole()))
+                .startClient();
+    }
+
+    /**
      * Method start client.
      *
      * @throws IOException io exception
@@ -79,20 +93,6 @@ public class SocketClient {
                 .append(System.lineSeparator())
                 .toString();
         System.out.print(command);
-    }
-
-    /**
-     * Method point enter to program.
-     *
-     * @param args args
-     * @throws IOException io exception
-     */
-    public static void main(final String[] args) throws IOException {
-        final Properties prop = new PropertySocket("config/manager.properties");
-        final Socket socket = new Socket(prop.ip(),
-                Integer.valueOf(prop.port()));
-        new SocketClient(socket, new InputValidate(new InputConsole()))
-                .startClient();
     }
 }
 

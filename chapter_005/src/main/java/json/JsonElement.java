@@ -29,6 +29,7 @@ public class JsonElement {
 
     /**
      * Method create json object.
+     *
      * @return json object
      */
     public final JSONObject createJsonObject() {

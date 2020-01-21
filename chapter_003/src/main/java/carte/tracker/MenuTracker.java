@@ -14,20 +14,8 @@ import java.util.List;
  * @version 2.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
+@SuppressWarnings("ALL")
 public class MenuTracker {
-    /**
-     * Ссылка на объект ввода.
-     */
-    private final Input input;
-    /**
-     * Сылка на объект хранилища.
-     */
-    private final Tracker tracker;
-    /**
-     * Сылка на список типа UserAction.
-     */
-    private List<UserAction> actions = new ArrayList<>();
     /**
      * ADD.
      */
@@ -56,6 +44,18 @@ public class MenuTracker {
      * EXIT.
      */
     public static final int EXIT = 6;
+    /**
+     * Ссылка на объект ввода.
+     */
+    private final Input input;
+    /**
+     * Сылка на объект хранилища.
+     */
+    private final Tracker tracker;
+    /**
+     * Сылка на список типа UserAction.
+     */
+    private List<UserAction> actions = new ArrayList<>();
 
     /**
      * Конструктор.
@@ -134,7 +134,6 @@ public class MenuTracker {
     /**
      * Inner class AddItem.
      */
-
     public class AddItem extends BaseAction {
         /**
          * Constructor.

@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  * @version 2.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class ConvertMatrix2List {
     /**
      * Method get list from array.
@@ -20,7 +19,6 @@ public class ConvertMatrix2List {
      * @return list from array.
      */
     public final List<Integer> arrayToList(final int[][] array) {
-
         return Arrays.stream(array)
                 .flatMapToInt(Arrays::stream)
                 .boxed()

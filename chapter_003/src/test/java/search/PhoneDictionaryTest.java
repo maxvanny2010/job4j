@@ -20,10 +20,10 @@ public class PhoneDictionaryTest {
     public void whenFindByName() {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(
-                new Person("Petr", "Arsentev", "534872", "Bryansk")
+                new Person("James", "Bond", "534872", "London")
         );
-        List<Person> persons = phones.find("Petr");
-        assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
+        List<Person> persons = phones.find("James");
+        assertThat(persons.iterator().next().getSurname(), is("Bond"));
     }
 
     @Test

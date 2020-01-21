@@ -7,6 +7,7 @@ package parser.scheduler;
  * @version 5.0
  * @since 9/16/2019
  */
+@SuppressWarnings("unused")
 public interface SchedulerStore {
     /**
      * Method to get time for scheduler.

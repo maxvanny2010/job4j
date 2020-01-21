@@ -1,9 +1,9 @@
 package ru.job4j.start;
 
 
+import ru.job4j.tracker.ITracker;
 import ru.job4j.tracker.Input;
 import ru.job4j.tracker.MenuTracker;
-import ru.job4j.tracker.ITracker;
 
 /**
  * StartUI.

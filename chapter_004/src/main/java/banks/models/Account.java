@@ -12,16 +12,15 @@ import java.util.StringJoiner;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class Account {
-    /**
-     * the amount in account.
-     */
-    private double value;
     /**
      * the requisite of account.
      */
     private final String requisites;
+    /**
+     * the amount in account.
+     */
+    private double value;
 
     /**
      * Constructor.

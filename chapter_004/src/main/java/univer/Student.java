@@ -21,10 +21,22 @@ public class Student implements Comparable<Student> {
     private final int scope;
 
     /**
+     * Constructor.
+     *
+     * @param aName  name
+     * @param aScope scope
+     */
+    public Student(final String aName, final int aScope) {
+        this.name = aName;
+        this.scope = aScope;
+    }
+
+    /**
      * getter name.
      *
      * @return name
      */
+    @SuppressWarnings("unused")
     public final String getName() {
         return this.name;
     }
@@ -38,18 +50,6 @@ public class Student implements Comparable<Student> {
         return this.scope;
     }
 
-    /**
-     * Constructor.
-     *
-     * @param aName  name
-     * @param aScope scope
-     */
-    public Student(final String aName, final int aScope) {
-        this.name = aName;
-        this.scope = aScope;
-    }
-
-
     @Override
     public final boolean equals(final Object o) {
         if (this == o) {
@@ -59,20 +59,21 @@ public class Student implements Comparable<Student> {
             return false;
         }
         final Student student = (Student) o;
-        return scope == student.scope && Objects.equals(name, student.name);
+        return this.scope == student.scope
+                && Objects.equals(this.name, student.name);
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(name, scope);
+        return Objects.hash(this.name, this.scope);
     }
 
     @Override
     public final String toString() {
         return new StringJoiner(", ",
                 Student.class.getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
-                .add("scope=" + scope)
+                .add("name='" + this.name + "'")
+                .add("scope=" + this.scope)
                 .toString();
     }
 

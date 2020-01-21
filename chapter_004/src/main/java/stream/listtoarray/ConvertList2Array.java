@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
  * @version 2.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class ConvertList2Array {
     /**
      * Method convert list to array.

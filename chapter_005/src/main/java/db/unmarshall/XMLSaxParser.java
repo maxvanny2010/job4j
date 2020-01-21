@@ -15,6 +15,10 @@ import java.util.ArrayList;
  */
 public class XMLSaxParser extends DefaultHandler {
     /**
+     * field the list of account.
+     */
+    private final ArrayList<Account> accounts = new ArrayList<>();
+    /**
      * field account.
      */
     private Account account;
@@ -22,10 +26,6 @@ public class XMLSaxParser extends DefaultHandler {
      * field temp string.
      */
     private String temp;
-    /**
-     * field the list of account.
-     */
-    private final ArrayList<Account> accounts = new ArrayList<>();
 
     /**
      * Getter list.

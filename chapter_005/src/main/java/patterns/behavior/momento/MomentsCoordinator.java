@@ -24,6 +24,7 @@ public class MomentsCoordinator {
 
     /**
      * Method to set.
+     *
      * @param aState state
      */
     public final void setState(final String aState) {

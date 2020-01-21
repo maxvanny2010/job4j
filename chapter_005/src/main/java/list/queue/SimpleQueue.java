@@ -59,13 +59,13 @@ public class SimpleQueue<T> {
      */
     private static class Node<T> {
         /**
-         * field Node.
-         */
-        private Node<T> next;
-        /**
          * field data.
          */
         private final T data;
+        /**
+         * field Node.
+         */
+        private Node<T> next;
 
         /**
          * Constructor.

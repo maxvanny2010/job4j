@@ -10,6 +10,7 @@ import java.util.Scanner;
  * @version 2.0
  * @since 0.1
  */
+@SuppressWarnings("unused")
 public class ConsoleInput implements Input {
     /**
      * получение данных от пользователя с консоли.
@@ -22,6 +23,7 @@ public class ConsoleInput implements Input {
      * @param question запрос для пользователя.
      * @return возвращает ответ пользователя на запрос.
      */
+    @SuppressWarnings("unused")
     @Override
     public final String ask(final String question) {
         System.out.println(question);

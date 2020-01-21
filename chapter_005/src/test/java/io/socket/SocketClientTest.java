@@ -26,13 +26,13 @@ public class SocketClientTest {
         final Input input;
         final Socket socket = mock(Socket.class);
         input = new ValidateInput(new StubInput(request));
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
-        ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
         when(socket.getInputStream()).thenReturn(in);
         when(socket.getOutputStream()).thenReturn(out);
-        SocketClient client = new SocketClient(socket, input);
+        final SocketClient client = new SocketClient(socket, input);
         client.startClient();
         assertThat(out.toString(), is(result));
         System.setOut(System.out);

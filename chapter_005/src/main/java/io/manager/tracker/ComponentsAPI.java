@@ -59,6 +59,7 @@ public class ComponentsAPI {
      * @param offset offset
      * @return current server path
      */
+    @SuppressWarnings("IfStatementWithIdenticalBranches")
     public final String collectByOffset(final int offset) {
         Root root = new Root();
         var path = "";

@@ -7,7 +7,6 @@ package color;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("ALL")
 public final class Color {
  /*   public class ConsoleColors {
         // Reset
@@ -90,16 +89,19 @@ public final class Color {
         public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";
         // WHITE
     }*/
+
     /**
      * Constructor.
      */
     private Color() {
     }
+
     /**
      * point to program.
      *
      * @param args args
      */
+    @SuppressWarnings({"unused", "EmptyMethod"})
     public static void main(final String[] args) {
         //System.out.println(ConsoleColors.RED + "This text is red!");
         //System.out.println(

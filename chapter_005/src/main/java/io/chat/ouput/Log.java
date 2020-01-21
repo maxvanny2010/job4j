@@ -13,13 +13,13 @@ import java.io.IOException;
  */
 public class Log extends Out {
     /**
-     * field output data to log file.
-     */
-    private BufferedWriter writerLog;
-    /**
      * field path log file.
      */
     private final String pathLog;
+    /**
+     * field output data to log file.
+     */
+    private BufferedWriter writerLog;
 
     /**
      * Constructor.

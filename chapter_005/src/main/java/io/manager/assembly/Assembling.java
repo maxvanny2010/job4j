@@ -41,6 +41,7 @@ public class Assembling implements Assembly {
         this.writer.flush();
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public final String inInputReader() throws IOException {
         final String ln = System.lineSeparator();

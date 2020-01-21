@@ -16,6 +16,24 @@ import java.util.function.Function;
 public class Calculator {
 
     /**
+     * Enter to program.
+     *
+     * @param args string array args
+     */
+    public static void main(final String[] args) {
+        final Calculator calc = new Calculator();
+        final int start = 0;
+        final int finish = 4;
+        final int amount = 2;
+        calc.multiple(start, finish, amount,
+                MathUtil::add,
+                System.out::println
+        );
+        calc.diapason(start, finish,
+                MathUtil::addLinear);
+    }
+
+    /**
      * Multiply.
      *
      * @param start  the start border of diapason
@@ -49,24 +67,5 @@ public class Calculator {
             result.add(func.apply(index));
         }
         return result;
-    }
-
-
-    /**
-     * Enter to program.
-     *
-     * @param args string array args
-     */
-    public static void main(final String[] args) {
-        final Calculator calc = new Calculator();
-        final int start = 0;
-        final int finish = 4;
-        final int amount = 2;
-        calc.multiple(start, finish, amount,
-                MathUtil::add,
-                System.out::println
-        );
-        calc.diapason(start, finish,
-                MathUtil::addLinear);
     }
 }

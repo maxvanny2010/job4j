@@ -22,30 +22,29 @@ import static org.mockito.Mockito.when;
 
 public class SocketServerTest {
     public static final String LN = System.getProperty("line.separator");
-    Socket socket = mock(Socket.class);
-    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    final Socket socket = mock(Socket.class);
+    final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
     @Before
-    public void before() {
-        System.setOut(new PrintStream(bos));
+    public void setBefore() {
+        System.setOut(new PrintStream(this.bos));
     }
 
     @After
-    public void close() throws IOException {
-        bos.close();
+    public void setAfter() throws IOException {
+        this.socket.close();
         System.setOut(System.out);
-        socket.close();
     }
 
     public void testServer(final String request, final String expected) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ByteArrayInputStream in = new ByteArrayInputStream(request.getBytes(StandardCharsets.UTF_8));
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ByteArrayInputStream in = new ByteArrayInputStream(request.getBytes(StandardCharsets.UTF_8));
         when(socket.getOutputStream()).thenReturn(out);
         when(socket.getInputStream()).thenReturn(in);
-        SocketServer server = new SocketServer(socket);
+        final SocketServer server = new SocketServer(socket);
         server.startServer();
         final DataInputStream dis = new DataInputStream(new ByteArrayInputStream(out.toByteArray()));
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         while (dis.available() > 0) {
             sb.append(dis.readUTF());
         }

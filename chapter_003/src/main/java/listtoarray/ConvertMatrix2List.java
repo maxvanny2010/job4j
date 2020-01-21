@@ -10,7 +10,6 @@ import java.util.List;
  * @version 2.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class ConvertMatrix2List {
     /**
      * Method get list from array.

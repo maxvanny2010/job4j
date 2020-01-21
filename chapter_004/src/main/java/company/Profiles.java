@@ -24,6 +24,7 @@ public class Profiles {
                 .map(Profile::getAddress)
                 .collect(Collectors.toList());
     }
+
     /**
      * Method return distinct address.
      *

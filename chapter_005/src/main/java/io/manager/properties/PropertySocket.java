@@ -62,6 +62,7 @@ public class PropertySocket implements Properties {
      * @param key key data in file
      * @return property for key
      */
+    @SuppressWarnings("IfStatementWithIdenticalBranches")
     public final String getPropertyFromFile(final String key) {
         final var file = this.getPropertyCatalog();
         String data = "";

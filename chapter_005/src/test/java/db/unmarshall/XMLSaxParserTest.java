@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
 
 
 public class XMLSaxParserTest {
-    SAXParserFactory factory = SAXParserFactory.newInstance();
+    final SAXParserFactory factory = SAXParserFactory.newInstance();
 
     @Test
     public void whenSAXParserXMLFile() throws ParserConfigurationException, SAXException, IOException {

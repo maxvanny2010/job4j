@@ -1,4 +1,5 @@
 package ru.job4j.array;
+
 /**
  * Checker for array.
  *
@@ -9,6 +10,7 @@ package ru.job4j.array;
 public class Check {
     /**
      * Mono.
+     *
      * @param data data
      * @return result
      */

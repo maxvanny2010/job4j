@@ -2,7 +2,6 @@ package iterators.eveniterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.OptionalInt;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
@@ -34,22 +33,11 @@ public class EvenIterator implements Iterator<Integer> {
 
     @Override
     public final boolean hasNext() {
-        int count = this.index;
-        boolean is = false;
-
-        OptionalInt result = IntStream.range(count, values.length)
-                .filter(z -> this.values[z] % 2 == 0)
-                .filter(z -> this.values[z] != 0)
-                .findAny();
-
-        if (result.isPresent()) {
-            is = true;
-            this.index = result.getAsInt();
-        }
-        return is;
-
+        IntStream.range(this.index, this.values.length)
+                .takeWhile(i -> this.values[i] == 0 || this.values[i] % 2 != 0)
+                .forEach(i -> this.index++);
+        return this.index < this.values.length;
     }
-
 
     @Override
     public final Integer next() {

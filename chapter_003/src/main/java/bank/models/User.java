@@ -22,10 +22,22 @@ public class User implements Comparable<User> {
     private final String passport;
 
     /**
+     * Constructor.
+     *
+     * @param aName     the name of user
+     * @param aPassport the passport of user
+     */
+    public User(final String aName, final String aPassport) {
+        this.name = aName;
+        this.passport = aPassport;
+    }
+
+    /**
      * Method get the name of user.
      *
      * @return the name of user
      */
+    @SuppressWarnings("unused")
     public final String getName() {
         return this.name;
     }
@@ -39,17 +51,6 @@ public class User implements Comparable<User> {
         return this.passport;
     }
 
-    /**
-     * Constructor.
-     *
-     * @param aName     the name of user
-     * @param aPassport the passport of user
-     */
-    public User(final String aName, final String aPassport) {
-        this.name = aName;
-        this.passport = aPassport;
-    }
-
     @Override
     public final boolean equals(final Object o) {
         if (this == o) {
@@ -59,8 +60,8 @@ public class User implements Comparable<User> {
             return false;
         }
         User user = (User) o;
-        return name.equals(user.name)
-                && passport.equals(user.passport);
+        return this.name.equals(user.name)
+                && this.passport.equals(user.passport);
     }
 
     @Override
@@ -75,9 +76,10 @@ public class User implements Comparable<User> {
 
     @Override
     public final String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
-                .add("passport='" + passport + "'")
+        return new StringJoiner(", ",
+                User.class.getSimpleName() + "[", "]")
+                .add("name='" + this.name + "'")
+                .add("passport='" + this.passport + "'")
                 .toString();
     }
 }

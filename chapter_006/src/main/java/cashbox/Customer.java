@@ -18,7 +18,7 @@ class Customer {
      *
      * @param aServiceTime a service time
      */
-    Customer(final int  aServiceTime) {
+    Customer(final int aServiceTime) {
         this.serviceTime = aServiceTime;
     }
 

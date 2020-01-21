@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public interface Input {
     /**
      * получение ответа на запрос.
@@ -34,7 +33,7 @@ public interface Input {
      * @return возвращает введёный пользователем пункт меню.
      */
     default int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
+        int key = Integer.parseInt(this.ask(question));
         final boolean exist = IntStream
                 .range(0, range.length)
                 .anyMatch(z -> z == key);

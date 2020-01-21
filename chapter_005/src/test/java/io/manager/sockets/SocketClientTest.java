@@ -26,17 +26,17 @@ public class SocketClientTest {
 
     public void setPropertiesTest(final String demand, final String expected) throws IOException {
         final Socket socket = mock(Socket.class);
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        final ByteArrayOutputStream os = new ByteArrayOutputStream();
         System.setOut(new PrintStream(os));
         final Input input = new InputValidate(new InputStub(demand.split(LN)));
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        DataOutputStream dos = new DataOutputStream(bos);
+        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        final DataOutputStream dos = new DataOutputStream(bos);
         dos.writeUTF(demand);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
         when(socket.getInputStream()).thenReturn(in);
         when(socket.getOutputStream()).thenReturn(out);
-        SocketClient client = new SocketClient(socket, input);
+        final SocketClient client = new SocketClient(socket, input);
         client.startClient();
         final DataInputStream dis = new DataInputStream(new ByteArrayInputStream(out.toByteArray()));
         StringBuilder sb = new StringBuilder();
@@ -128,15 +128,15 @@ public class SocketClientTest {
 
     @Test
     public void whenAnnounce() throws IOException {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
-        Socket socket = mock(Socket.class);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
+        final Socket socket = mock(Socket.class);
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ByteArrayInputStream in = new ByteArrayInputStream(bos.toByteArray());
         when(socket.getOutputStream()).thenReturn(out);
         when(socket.getInputStream()).thenReturn(in);
         final var aInput = new InputValidate(new InputStub(new String[]{"exit"}));
-        SocketClient client = new SocketClient(socket, aInput);
+        final SocketClient client = new SocketClient(socket, aInput);
         client.startClient();
         final var ln = System.lineSeparator();
         assertThat(bos.toString(), is(new StringBuilder()

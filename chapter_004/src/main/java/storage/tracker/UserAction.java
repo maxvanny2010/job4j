@@ -14,6 +14,7 @@ public interface UserAction {
      *
      * @return ключ
      */
+    @SuppressWarnings("unused")
     int key();
 
     /**

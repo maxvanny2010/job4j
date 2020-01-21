@@ -76,6 +76,7 @@ public class ConverterTest {
         assertThat(it.next(), is(9));
     }
 
+    @SuppressWarnings({"RedundantOperationOnEmptyContainer", "RedundantCollectionOperation"})
     @Test
     public void hasNextShouldReturnFalseInCaseOfEmptyIterators() {
         Iterator<Integer> it1 = (new ArrayList<Integer>()).iterator();

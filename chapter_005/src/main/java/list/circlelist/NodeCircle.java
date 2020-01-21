@@ -12,42 +12,6 @@ import java.util.Objects;
  */
 public class NodeCircle<T> {
     /**
-     * class Node<T>.
-     *
-     * @param <T> any T
-     */
-    public static class Node<T> {
-        /**
-         * field Node.
-         */
-        private Node<T> next;
-
-        /**
-         * field data.
-         */
-        private final T data;
-
-        /**
-         * Setter.
-         *
-         * @param aNext next node
-         */
-        public final void setNext(final Node<T> aNext) {
-            this.next = aNext;
-        }
-
-        /**
-         * Constructor.
-         *
-         * @param aData data
-         */
-        Node(final T aData) {
-            this.data = aData;
-        }
-
-    }
-
-    /**
      * Method circle end.
      *
      * @param node any node
@@ -66,5 +30,41 @@ public class NodeCircle<T> {
             }
         }
         return false;
+    }
+
+    /**
+     * class Node<T>.
+     *
+     * @param <T> any T
+     */
+    public static class Node<T> {
+        /**
+         * field data.
+         */
+        @SuppressWarnings({"FieldCanBeLocal", "unused"})
+        private final T data;
+        /**
+         * field Node.
+         */
+        private Node<T> next;
+
+        /**
+         * Constructor.
+         *
+         * @param aData data
+         */
+        Node(final T aData) {
+            this.data = aData;
+        }
+
+        /**
+         * Setter.
+         *
+         * @param aNext next node
+         */
+        public final void setNext(final Node<T> aNext) {
+            this.next = aNext;
+        }
+
     }
 }

@@ -73,6 +73,7 @@ public class Bank {
      * @param user    user
      * @param account actual account
      * @return the list of user's account in storage
+     *
      * @throws NotExistStorageException the user is't in storage
      */
     public final Account getUserAccount(final User user, final Account account)
@@ -111,6 +112,7 @@ public class Bank {
      *
      * @param user user
      * @return all user's account from storage
+     *
      * @throws NotExistStorageException the user is't in storage
      */
     public final List<Account> getAccounts(final User user)

@@ -32,6 +32,16 @@ public class Zip {
     }
 
     /**
+     * Method main.
+     *
+     * @param args args
+     * @throws IOException exception
+     */
+    public static void main(final String[] args) throws IOException {
+        new Zip(args).archive();
+    }
+
+    /**
      * Method check args.
      *
      * @return result
@@ -161,16 +171,6 @@ public class Zip {
         this.zipFile(parent, parent.getName(), zipOut, exclude);
         zipOut.close();
         fos.close();
-    }
-
-    /**
-     * Method main.
-     *
-     * @param args args
-     * @throws IOException exception
-     */
-    public static void main(final String[] args) throws IOException {
-        new Zip(args).archive();
     }
 }
 

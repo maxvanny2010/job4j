@@ -15,10 +15,10 @@ import static org.junit.Assert.assertTrue;
 
 public class SchoolTest {
     private final School school = new School();
-    private List<Student> students = new ArrayList<>();
     private final Predicate<Student> ss10A;
     private final Predicate<Student> ss10B;
     private final Predicate<Student> ss10C;
+    private List<Student> students = new ArrayList<>();
 
     {
         ss10A = student -> student.getScore() >= 70 && student.getScore() <= 100;

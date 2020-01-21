@@ -53,6 +53,7 @@ public class SportCarTest {
                 .toString()
         ));
     }
+
     @Test
     public void whenMercedesBuilder() {
         final int aMaxSpeed = 400;

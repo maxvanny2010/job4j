@@ -8,6 +8,7 @@ package generics;
  * @version 5.0
  * @since 0.1
  */
+@SuppressWarnings("unused")
 public interface Store<E extends Base> {
     /**
      * add.

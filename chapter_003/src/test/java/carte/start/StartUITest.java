@@ -32,8 +32,8 @@ public class StartUITest {
     private final Tracker tracker = new Tracker();
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private Input input;
     private final String ls = System.lineSeparator();
+    private Input input;
 
     /**
      * метод запуска программы.

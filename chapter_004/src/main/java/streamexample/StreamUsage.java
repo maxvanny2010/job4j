@@ -23,84 +23,6 @@ public class StreamUsage {
     }
 
     /**
-     * Inner class.
-     */
-    public static class Task {
-        /**
-         * name.
-         */
-        private final String name;
-        /**
-         * spent.
-         */
-        private final long spent;
-
-        /**
-         * Constructor.
-         *
-         * @param aName  name
-         * @param aSpent spent
-         */
-        public Task(final String aName, final long aSpent) {
-            this.name = aName;
-            this.spent = aSpent;
-        }
-
-        @Override
-        public final String toString() {
-            return "Task{"
-                    + "name='"
-                    + name
-                    + '\''
-                    + ", spent="
-                    + spent
-                    + '}';
-        }
-    }
-
-    /**
-     * Index in array.
-     *
-     * @param names array
-     * @return collect
-     */
-
-    public final List<String> getEvenIndexedStrings(final String[] names) {
-        return IntStream
-                .range(0, names.length)
-                .filter(i -> i % 2 == 0)
-                .mapToObj(i -> names[i])
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * map stream.
-     *
-     * @param nestedList source list
-     * @return result list
-     */
-    public final List<String> flattenListOfListsImperatively(
-            final List<List<String>> nestedList) {
-        List<String> ls = new ArrayList<>();
-        nestedList.forEach(ls::addAll);
-        return ls;
-    }
-
-    /**
-     * flatMap stream.
-     *
-     * @param list list
-     * @param <T>  T
-     * @return list
-     */
-    public final <T> List<T> flattenListOfListsStream(
-            final List<List<T>> list) {
-        return list.stream()
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
-    }
-
-    /**
      * point to program.
      *
      * @param args args
@@ -153,6 +75,84 @@ public class StreamUsage {
                 .filter(s -> s.name.contains("Bug #1"))
                 .forEach(System.out::println);
 
+    }
+
+    /**
+     * Index in array.
+     *
+     * @param names array
+     * @return collect
+     */
+
+    public final List<String> getEvenIndexedStrings(final String[] names) {
+        return IntStream
+                .range(0, names.length)
+                .filter(i -> i % 2 == 0)
+                .mapToObj(i -> names[i])
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * map stream.
+     *
+     * @param nestedList source list
+     * @return result list
+     */
+    public final List<String> flattenListOfListsImperatively(
+            final List<List<String>> nestedList) {
+        List<String> ls = new ArrayList<>();
+        nestedList.forEach(ls::addAll);
+        return ls;
+    }
+
+    /**
+     * flatMap stream.
+     *
+     * @param list list
+     * @param <T>  T
+     * @return list
+     */
+    public final <T> List<T> flattenListOfListsStream(
+            final List<List<T>> list) {
+        return list.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Inner class.
+     */
+    public static class Task {
+        /**
+         * name.
+         */
+        private final String name;
+        /**
+         * spent.
+         */
+        private final long spent;
+
+        /**
+         * Constructor.
+         *
+         * @param aName  name
+         * @param aSpent spent
+         */
+        public Task(final String aName, final long aSpent) {
+            this.name = aName;
+            this.spent = aSpent;
+        }
+
+        @Override
+        public final String toString() {
+            return "Task{"
+                    + "name='"
+                    + name
+                    + '\''
+                    + ", spent="
+                    + spent
+                    + '}';
+        }
     }
 }
           /*

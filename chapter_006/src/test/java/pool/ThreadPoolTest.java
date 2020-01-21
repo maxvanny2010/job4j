@@ -40,19 +40,14 @@ public class ThreadPoolTest {
 
     @Test
     public void whenAddRunnableToPollIsOk() throws InterruptedException {
-        Thread one = new Thread(() ->
-                IntStream.range(0, 3).forEach(i -> {
-                            try {
-                                TimeUnit.MILLISECONDS.sleep(1);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                            }
-                            this.pool.work(() -> this.result.add(i));
-                        }
-                )
-        );
-        one.start();
-        one.join();
+        IntStream.range(0, 3).forEach(i -> {
+            try {
+                TimeUnit.MILLISECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            this.pool.work(() -> this.result.add(i));
+        });
         this.pool.shutdown();
         waitWhenPollIsAlive();
         assertThat(this.result.toString(), is(List.of(0, 1, 2).toString()));
@@ -60,19 +55,14 @@ public class ThreadPoolTest {
 
     @Test
     public void testShutdown() throws InterruptedException {
-        Thread one = new Thread(() ->
-                IntStream.range(0, 3).forEach(i -> {
-                            try {
-                                TimeUnit.MILLISECONDS.sleep(1);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                            }
-                            this.pool.work(() -> this.result.add(i));
-                        }
-                )
-        );
-        one.start();
-        one.join();
+        IntStream.range(0, 3).forEach(i -> {
+            try {
+                TimeUnit.MILLISECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            this.pool.work(() -> this.result.add(i));
+        });
         this.pool.shutdown();
         waitWhenPollIsAlive();
         Assert.assertFalse(false);

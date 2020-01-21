@@ -73,7 +73,7 @@ public class Address {
             return false;
         }
         final Address address = (Address) o;
-        return  this.city.equals(address.city);
+        return this.city.equals(address.city);
     }
 
     @Override

@@ -10,10 +10,6 @@ package carte.models;
  */
 public class Item {
     /**
-     * уникальный ключ заявки.
-     */
-    private String id;
-    /**
      * имя заявки.
      */
     private final String name;
@@ -22,6 +18,10 @@ public class Item {
      */
     private final String description;
     /**
+     * уникальный ключ заявки.
+     */
+    private String id;
+    /**
      * создание заявки.
      */
     private long create;
@@ -29,9 +29,9 @@ public class Item {
     /**
      * констуртор заявки.
      *
-     * @param aName        название заявки.
-     * @param aDesc описание заявки.
-     * @param aCreate      создание заявки.
+     * @param aName   название заявки.
+     * @param aDesc   описание заявки.
+     * @param aCreate создание заявки.
      */
     public Item(final String aName, final String aDesc, final long aCreate) {
         this.name = aName;
@@ -73,6 +73,7 @@ public class Item {
      *
      * @return возращает создание заявки.
      */
+    @SuppressWarnings("unused")
     public final long getCreate() {
         return this.create;
     }
@@ -82,17 +83,9 @@ public class Item {
      *
      * @param aCreate создание заявки.
      */
+    @SuppressWarnings("unused")
     public final void setCreate(final long aCreate) {
         this.create = aCreate;
-    }
-
-    /**
-     * устанавливает уникальный ключ для заявки.
-     *
-     * @param aId уникальный ключ заявки.
-     */
-    public final void setId(final String aId) {
-        this.id = aId;
     }
 
     /**
@@ -105,7 +98,17 @@ public class Item {
     }
 
     /**
+     * устанавливает уникальный ключ для заявки.
+     *
+     * @param aId уникальный ключ заявки.
+     */
+    public final void setId(final String aId) {
+        this.id = aId;
+    }
+
+    /**
      * Method toString.
+     *
      * @return string mapping object
      */
     @Override

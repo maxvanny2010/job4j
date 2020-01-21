@@ -10,7 +10,6 @@ import storage.exception.MenuOutException;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class ValidateInput implements Input {
     /**
      * Интерфейс ввода.

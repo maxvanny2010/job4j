@@ -9,10 +9,6 @@ package ru.job4j.models;
  */
 public class Item {
     /**
-     * уникальный ключ заявки.
-     */
-    private String id;
-    /**
      * имя заявки.
      */
     private final String name;
@@ -20,6 +16,10 @@ public class Item {
      * описание заявки.
      */
     private final String description;
+    /**
+     * уникальный ключ заявки.
+     */
+    private String id;
     /**
      * создание заявки.
      */
@@ -56,13 +56,14 @@ public class Item {
      *
      * @param aName название заявки.
      */
+    @SuppressWarnings("unused")
     public Item(final String aName) {
         this.name = aName;
         this.description = null;
     }
 
     /**
-     * Construrtor.
+     * Constructor.
      *
      * @param aId          id
      * @param aName        name
@@ -114,21 +115,21 @@ public class Item {
     }
 
     /**
-     * устанавливает уникальный ключ для заявки.
-     *
-     * @param aId уникальный ключ заявки.
-     */
-    public final void setId(final String aId) {
-        this.id = aId;
-    }
-
-    /**
      * получение уникального ключа заявки.
      *
      * @return уникальный ключ заявки.
      */
     public final String getId() {
         return this.id;
+    }
+
+    /**
+     * устанавливает уникальный ключ для заявки.
+     *
+     * @param aId уникальный ключ заявки.
+     */
+    public final void setId(final String aId) {
+        this.id = aId;
     }
 
     @Override

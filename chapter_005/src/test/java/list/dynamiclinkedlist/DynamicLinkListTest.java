@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  * @since 2/22/2019
  */
 public class DynamicLinkListTest {
-    DynamicLinkList<Integer> dynamic = new DynamicLinkList<>();
+    final DynamicLinkList<Integer> dynamic = new DynamicLinkList<>();
 
     @Before
     public void setUpBefore() {
@@ -59,6 +59,7 @@ public class DynamicLinkListTest {
     @Test(expected = UnsupportedOperationException.class)
     public void whenGetOutIndexSize() {
         var result = this.dynamic.get(10);
+        System.out.println(result);
     }
 
     @Test

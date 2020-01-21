@@ -66,29 +66,33 @@ values ('1', '3', 'clutch'),
        ('3', '3', 'clutch ');
 --old query
 --1. Вывести список всех машин и все привязанные к ним детали.
-EXPLAIN with tmp(brand_auto, name_detail) as
-                 (select a.brand_auto,
-                         d.name_detail
-                  from detail d,
-                       auto a
-                           join detail ad using (id_auto)
-                  where ad.id_detail = d.id_detail)
-        select * from tmp ORDER BY brand_auto;
+EXPLAIN
+with tmp(brand_auto, name_detail) as
+         (select a.brand_auto,
+                 d.name_detail
+          from detail d,
+               auto a
+                   join detail ad using (id_auto)
+          where ad.id_detail = d.id_detail)
+select *
+from tmp
+ORDER BY brand_auto;
 --new query
 --1. Вывести список всех машин и все привязанные к ним детали.
-EXPLAIN select
-            a.brand_auto,
-            d.name_detail
-        from auto a
-                 inner join detail ad on a.id_auto = ad.id_auto
-                 inner join detail d on ad.id_detail = d.id_detail
-        order by a.brand_auto;
+EXPLAIN
+select a.brand_auto,
+       d.name_detail
+from auto a
+         inner join detail ad on a.id_auto = ad.id_auto
+         inner join detail d on ad.id_detail = d.id_detail
+order by a.brand_auto;
 --2. Вывести отдельно детали, которые не используются в машине, кузова, двигатели, коробки передач.
-EXPLAIN select d.name_detail
-        from detail d
-                 natural join auto a
-        where name_detail = (
-            select d.name_detail
-            from detail d
-                     left join auto a on d.id_auto = a.id_auto
-            where d.id_detail is null);
+EXPLAIN
+select d.name_detail
+from detail d
+         natural join auto a
+where name_detail = (
+    select d.name_detail
+    from detail d
+             left join auto a on d.id_auto = a.id_auto
+    where d.id_detail is null);

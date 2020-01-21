@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class Bank {
 
     /**
@@ -143,6 +142,7 @@ public class Bank {
      *
      * @param passport the passport of user
      * @return all user account
+     *
      * @throws NotExistAccountException account is in storage
      */
     public final List<Account> getUserAccounts(final String passport)
@@ -163,6 +163,7 @@ public class Bank {
      * @param passe the user's passport
      * @param req   the user's requisite
      * @return the index in storage
+     *
      * @throws NotExistAccountException account is't storage
      */
     protected final Account getUserAccount(final String passe, final String req)
@@ -185,6 +186,7 @@ public class Bank {
      * @param passport passport
      * @param account  account
      * @return boolean is contain accounts
+     *
      * @throws NotExistAccountException not exist account in storage
      */
     private boolean checkAccounts(final String passport, final Account account)
@@ -203,9 +205,10 @@ public class Bank {
      * @param user user
      * @return boolean is contain users
      */
+    @SuppressWarnings("unused")
     private boolean checkUsers(final User user) {
-        return this.map.entrySet().stream()
-                .map(e -> e.getKey().getPassport())
+        return this.map.keySet().stream()
+                .map(User::getPassport)
                 .anyMatch(z -> z.contains(user.getPassport()));
 
     }

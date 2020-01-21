@@ -33,6 +33,7 @@ public class VacancyList {
      * @param vacancy vacancy
      * @return the list of vacancy
      */
+    @SuppressWarnings("UnusedReturnValue")
     public final boolean add(final Vacancy vacancy) {
         return this.list.add(vacancy);
     }

@@ -31,7 +31,7 @@ public interface Input {
      * @return возвращает введёный пользователем пункт меню.
      */
     default int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
+        int key = Integer.parseInt(this.ask(question));
         boolean exist = false;
         for (int value : range) {
             if (value == key) {

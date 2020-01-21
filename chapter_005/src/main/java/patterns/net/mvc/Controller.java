@@ -29,15 +29,6 @@ class Controller {
     }
 
     /**
-     * Method set name.
-     *
-     * @param name name
-     */
-    final void setStudentName(final String name) {
-        this.model.setName(name);
-    }
-
-    /**
      * Method get name.
      *
      * @return name
@@ -48,12 +39,12 @@ class Controller {
     }
 
     /**
-     * Method to set id.
+     * Method set name.
      *
-     * @param id id
+     * @param name name
      */
-    final void setStudentId(final String id) {
-        this.model.setId(id);
+    final void setStudentName(final String name) {
+        this.model.setName(name);
     }
 
     /**
@@ -64,6 +55,15 @@ class Controller {
     @SuppressWarnings("unused")
     final String getStudentId() {
         return this.model.getId();
+    }
+
+    /**
+     * Method to set id.
+     *
+     * @param id id
+     */
+    final void setStudentId(final String id) {
+        this.model.setId(id);
     }
 
     /**

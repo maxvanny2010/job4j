@@ -12,18 +12,29 @@ import ru.job4j.models.Item;
  */
 public final class TrackerSingletonInner {
     /**
+     * Constructor.
+     */
+    private TrackerSingletonInner() {
+    }
+
+    /**
      * Method get static final link to object TSI.
      *
      * @return static link.
      */
+    @SuppressWarnings("SameReturnValue")
     public static TrackerSingletonInner getInstance() {
         return Holder.INSTANCE;
     }
 
     /**
-     * Constructor.
+     * Start program.
+     *
+     * @param args string.
      */
-    private TrackerSingletonInner() {
+    public static void main(final String[] args) {
+        @SuppressWarnings("unused")
+        var tracker = TrackerSingletonInner.getInstance();
     }
 
     /**
@@ -51,14 +62,5 @@ public final class TrackerSingletonInner {
          */
         public static final TrackerSingletonInner INSTANCE =
                 new TrackerSingletonInner();
-    }
-
-    /**
-     * Start program.
-     *
-     * @param args string.
-     */
-    public static void main(final String[] args) {
-        var tracker = TrackerSingletonInner.getInstance();
     }
 }

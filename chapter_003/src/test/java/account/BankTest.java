@@ -13,13 +13,13 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class BankTest {
-    private final Bank bank = new Bank();
     private static final Account A_DONALD = new Account(100D, "01");
     private static final Account A_BARRACK = new Account(100D, "02");
     private static final Account A_DICKENS = new Account(100D, "03");
     private static final User U_DONALD = new User("Donald", 70);
     private static final User U_BARRACK = new User("Barrack", 60);
     private static final User U_DICKENS = new User("Dickens", 80);
+    private final Bank bank = new Bank();
 
     @Before
     public void addUserBefore() throws Exception {

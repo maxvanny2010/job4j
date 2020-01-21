@@ -16,6 +16,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 
+@SuppressWarnings("rawtypes")
 public class JsonElementTest {
     final JsonElement json = new JsonElement();
     JSONObject object = this.json.createJsonObject();

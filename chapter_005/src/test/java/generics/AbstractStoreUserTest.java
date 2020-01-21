@@ -6,12 +6,14 @@ import org.junit.Test;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class AbstractStoreUserTest {
     private AbstractStore<User> abstractStore = new UserStore(4);
     private User one;
+    @SuppressWarnings("FieldCanBeLocal")
     private User two;
+    @SuppressWarnings("FieldCanBeLocal")
     private User three;
     private User four;
 

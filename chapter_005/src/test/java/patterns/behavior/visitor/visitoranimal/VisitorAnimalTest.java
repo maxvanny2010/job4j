@@ -18,8 +18,8 @@ import static org.junit.Assert.assertThat;
  * @since 10/30/2019
  */
 public class VisitorAnimalTest {
-    private  IAnimal animal;
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    private IAnimal animal;
 
     @Before
     public void setBefore() {
@@ -40,6 +40,7 @@ public class VisitorAnimalTest {
                 .append(System.lineSeparator())
                 .toString()));
     }
+
     @Test
     public void whenVisitorCat() {
         this.animal = new Cat();

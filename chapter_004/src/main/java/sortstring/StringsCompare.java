@@ -19,7 +19,6 @@ public class StringsCompare implements Comparator<String> {
      * @return result
      */
     @Override
-    @SuppressWarnings("Duplicates")
     public final int compare(final String left, final String right) {
         int min = Math.min(left.length(), right.length());
         return IntStream.range(0, min)

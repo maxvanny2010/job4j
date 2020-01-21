@@ -17,9 +17,9 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class ChatTest {
-    private Input input;
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
+    private Input input;
     private String bot;
     private String log;
 
@@ -83,6 +83,7 @@ public class ChatTest {
                         .toString()));
 
     }
+
     @Test
     public void whenUserStopContinue() throws IOException {
         this.input = new ValidateInput(
@@ -104,6 +105,7 @@ public class ChatTest {
                         .toString()));
 
     }
+
     @Test
     public void whenUserEnd() throws IOException {
         this.input = new ValidateInput(

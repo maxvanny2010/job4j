@@ -1,5 +1,6 @@
 package account;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 
 /**
@@ -55,7 +56,7 @@ public class User implements Comparable<User> {
      * @return result compare
      */
     @Override
-    public final int compareTo(final User another) {
+    public final int compareTo(@Nonnull final User another) {
         Objects.requireNonNull(another, "another must not be null");
         return this.name.compareTo(another.name);
     }

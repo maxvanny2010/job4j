@@ -17,24 +17,8 @@ import java.util.stream.IntStream;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
+@SuppressWarnings("ALL")
 public class MenuTracker {
-    /**
-     * Ссылка на объект ввода.
-     */
-    private final Input input;
-    /**
-     * Сылка на объект хранилища.
-     */
-    private final Tracker tracker;
-    /**
-     * Consumer вывод данных.
-     */
-    private final Consumer<String> output;
-    /**
-     * Сылка на список типа UserAction.
-     */
-    private List<UserAction> actions = new ArrayList<>();
     /**
      * ADD.
      */
@@ -63,6 +47,22 @@ public class MenuTracker {
      * EXIT.
      */
     public static final int EXIT = 6;
+    /**
+     * Ссылка на объект ввода.
+     */
+    private final Input input;
+    /**
+     * Сылка на объект хранилища.
+     */
+    private final Tracker tracker;
+    /**
+     * Consumer вывод данных.
+     */
+    private final Consumer<String> output;
+    /**
+     * Сылка на список типа UserAction.
+     */
+    private List<UserAction> actions = new ArrayList<>();
 
 
     /**

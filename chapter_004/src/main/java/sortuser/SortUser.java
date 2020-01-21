@@ -42,7 +42,6 @@ public class SortUser {
      * @param list the list of users
      * @return the list of users sorts by name and age
      */
-    @SuppressWarnings("Duplicates")
     public final List<User> sortByAllFields(final List<User> list) {
         list.sort((o1, o2) -> {
             String name1 = o1.getName();

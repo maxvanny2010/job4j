@@ -48,9 +48,9 @@ public class TrackerSQLTest {
             assertThat(Arrays.toString(result), is(new StringBuilder()
                     .append("[")
                     .append("\n")
-                    .append("Заявка: id =\'")
+                    .append("Заявка: id ='")
                     .append(Objects.requireNonNull(result)[0].getId())
-                    .append("\', name='TEST', description='Test'")
+                    .append("', name='TEST', description='Test'")
                     .append("]")
                     .toString()));
         }

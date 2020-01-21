@@ -16,6 +16,12 @@ public final class TrackerSingletonLazy {
     private static TrackerSingletonLazy instance;
 
     /**
+     * Constructor.
+     */
+    private TrackerSingletonLazy() {
+    }
+
+    /**
      * Method get static link to object TSL.
      *
      * @return static link.
@@ -28,9 +34,13 @@ public final class TrackerSingletonLazy {
     }
 
     /**
-     * Constructor.
+     * Start program.
+     *
+     * @param args string.
      */
-    private TrackerSingletonLazy() {
+    public static void main(final String[] args) {
+        @SuppressWarnings("unused")
+        var tracker = TrackerSingletonLazy.getInstance();
     }
 
     /**
@@ -42,15 +52,5 @@ public final class TrackerSingletonLazy {
     @SuppressWarnings("unused")
     public Item add(final Item model) {
         return model;
-    }
-
-    /**
-     * Start program.
-     *
-     * @param args string.
-     */
-    public static void main(final String[] args) {
-        @SuppressWarnings("unused")
-        var tracker = TrackerSingletonLazy.getInstance();
     }
 }

@@ -39,6 +39,7 @@ public class Convert {
      * @param rows set rows of array
      * @return array
      */
+    @SuppressWarnings("DuplicatedCode")
     public final int[][] listToArray(final List<Integer> list, final int rows) {
         Objects.requireNonNull(list, "list must not be null");
         Iterator<Integer> iterator = list.iterator();

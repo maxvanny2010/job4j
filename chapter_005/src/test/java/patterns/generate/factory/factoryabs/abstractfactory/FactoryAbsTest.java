@@ -57,6 +57,7 @@ public class FactoryAbsTest {
         System.out.print(adidas_wear.toString());
         assertThat(this.bos.toString(), is("AdidasOutWear"));
     }
+
     @Test
     public void whenFactoryGetFactoryAdidasProductCaps() {
         this.adidas = FactoryGenerator.getFactory("adidas");
@@ -81,6 +82,7 @@ public class FactoryAbsTest {
         System.out.print(nike_caps.toString());
         assertThat(this.bos.toString(), is("NikeNull"));
     }
+
     @Test
     public void whenFactoryGetFactoryNikeProductShoes() {
         this.nike = FactoryGenerator.getFactory("nike");

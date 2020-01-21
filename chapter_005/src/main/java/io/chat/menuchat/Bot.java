@@ -18,7 +18,7 @@ final class Bot {
     /**
      * field list get data from chat file.
      */
-    private static List<String> botList = new ArrayList<>();
+    private static final List<String> BOT_LIST = new ArrayList<>();
 
     /**
      * Constructor util class.
@@ -32,7 +32,8 @@ final class Bot {
      * @return path chat file
      */
     public static String getPathBot() {
-        return "C:/projects/job4j/chapter_005/src/main/java/io/chat/source/"
+        return System.getProperty("user.dir")
+                + "/chapter_005/src/main/java/io/chat/source/"
                 + "bot.txt";
     }
 
@@ -43,7 +44,7 @@ final class Bot {
      */
     public static String getBotAnswer() {
         Random any = new Random();
-        return botList.get(any.nextInt(botList.size()));
+        return BOT_LIST.get(any.nextInt(BOT_LIST.size()));
     }
 
     /**
@@ -54,11 +55,11 @@ final class Bot {
      */
     public static void getDataBotFile(final String pathBotFile)
             throws IOException {
-        BufferedReader readerBot = new BufferedReader(
+        final BufferedReader readerBot = new BufferedReader(
                 new FileReader(pathBotFile));
         String tmp;
         while ((tmp = readerBot.readLine()) != null) {
-            botList.add(tmp);
+            BOT_LIST.add(tmp);
         }
         readerBot.close();
     }

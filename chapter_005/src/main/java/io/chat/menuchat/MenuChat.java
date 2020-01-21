@@ -81,62 +81,64 @@ public class MenuChat {
                 .getOrDefault(key, this.action.get("any"));
         userAction.execute(this.out, key);
     }
-        /**
-         * Inner class Stop.
-         */
-        public class Stop extends BaseAction {
-            @Override
-            public final void execute(final Output pOut, final String pUserKey)
-                    throws IOException {
-                isStop = true;
-                pOut.writeData("." + pUserKey);
-            }
-        }
 
-        /**
-         * Inner class Continue.
-         */
-        public class Continue extends BaseAction {
-            @Override
-            public final void execute(final Output pOut, final String pUserKey)
-                    throws IOException {
-                isStop = false;
-                pOut.writeData("." + pUserKey);
-                String botAnswer = Bot.getBotAnswer();
-                System.out.println(botAnswer);
-                pOut.writeData("." + botAnswer);
-            }
-        }
-
-        /**
-         * Inner class End.
-         */
-        public class End extends BaseAction {
-            @Override
-            public final void execute(final Output pOut, final String pUserKey)
-                    throws IOException {
-                pOut.writeData("." + pUserKey);
-                pOut.closeFile();
-            }
-        }
-
-        /**
-         * Inner class Any.
-         */
-        public class Any extends BaseAction {
-            @Override
-            public final void execute(final Output pOut, final String pUserKey)
-                    throws IOException {
-                if (isStop) {
-                    pOut.writeData("." + pUserKey);
-                } else {
-                    pOut.writeData("." + pUserKey);
-                    String botAnswer = Bot.getBotAnswer();
-                    System.out.println(botAnswer);
-                    pOut.writeData("." + botAnswer);
-
-                }
-            }
-
+    /**
+     * Inner class Stop.
+     */
+    public class Stop extends BaseAction {
+        @Override
+        public final void execute(final Output pOut, final String pUserKey)
+                throws IOException {
+            isStop = true;
+            pOut.writeData("." + pUserKey);
         }
     }
+
+    /**
+     * Inner class Continue.
+     */
+    public class Continue extends BaseAction {
+        @Override
+        public final void execute(final Output pOut, final String pUserKey)
+                throws IOException {
+            isStop = false;
+            pOut.writeData("." + pUserKey);
+            final String botAnswer = Bot.getBotAnswer();
+            System.out.println(botAnswer);
+            pOut.writeData("." + botAnswer);
+        }
+    }
+
+    /**
+     * Inner class End.
+     */
+    @SuppressWarnings("InnerClassMayBeStatic")
+    public class End extends BaseAction {
+        @Override
+        public final void execute(final Output pOut, final String pUserKey)
+                throws IOException {
+            pOut.writeData("." + pUserKey);
+            pOut.closeFile();
+        }
+    }
+
+    /**
+     * Inner class Any.
+     */
+    public class Any extends BaseAction {
+        @Override
+        public final void execute(final Output pOut, final String pUserKey)
+                throws IOException {
+            if (isStop) {
+                pOut.writeData("." + pUserKey);
+            } else {
+                pOut.writeData("." + pUserKey);
+                final String botAnswer = Bot.getBotAnswer();
+                System.out.println(botAnswer);
+                pOut.writeData("." + botAnswer);
+
+            }
+        }
+
+    }
+}

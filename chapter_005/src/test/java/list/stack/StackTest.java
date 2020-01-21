@@ -7,7 +7,7 @@ import static org.junit.Assert.assertThat;
 
 
 public class StackTest {
-    Stack<Integer> stack = new Stack<>();
+    final Stack<Integer> stack = new Stack<>();
 
     @Test
     public void whenPushOk() {

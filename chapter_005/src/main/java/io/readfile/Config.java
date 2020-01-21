@@ -33,6 +33,15 @@ public class Config {
     }
 
     /**
+     * Method main.
+     *
+     * @param args args
+     */
+    public static void main(final String[] args) {
+        System.out.println(new Config("config/app.properties"));
+    }
+
+    /**
      * Method load.
      */
     public final void load() {
@@ -65,7 +74,7 @@ public class Config {
         if (this.values.containsKey(key)) {
             return this.values.get(key);
         } else {
-            throw new UnsupportedOperationException("Missing key...");
+            throw new UnsupportedOperationException();
         }
     }
 
@@ -79,14 +88,5 @@ public class Config {
             e.printStackTrace();
         }
         return out.toString();
-    }
-
-    /**
-     * Method main.
-     *
-     * @param args args
-     */
-    public static void main(final String[] args) {
-        System.out.println(new Config("config/app.properties"));
     }
 }

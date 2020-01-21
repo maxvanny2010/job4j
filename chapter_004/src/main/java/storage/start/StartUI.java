@@ -16,7 +16,6 @@ import java.util.function.Consumer;
  * @version 4.0
  * @since 0.1
  */
-@SuppressWarnings("Duplicates")
 public class StartUI {
     /**
      * Интерфейс для получение данных от пользователя.
@@ -51,6 +50,16 @@ public class StartUI {
     }
 
     /**
+     * Точка входа в программу.
+     *
+     * @param args массив аргументов.
+     */
+    public static void main(final String[] args) {
+        new StartUI(new ValidateInput(
+                new ConsoleInput()), new Tracker(), System.out::println).init();
+    }
+
+    /**
      * метод устанавливающий флаг выхода.
      */
     public final void stop() {
@@ -70,16 +79,6 @@ public class StartUI {
             menu.select(input.ask("Введите пункт Carte: ", range));
 
         } while (!exit);
-    }
-
-    /**
-     * Точка входа в программу.
-     *
-     * @param args массив аргументов.
-     */
-    public static void main(final String[] args) {
-        new StartUI(new ValidateInput(
-                new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }
 

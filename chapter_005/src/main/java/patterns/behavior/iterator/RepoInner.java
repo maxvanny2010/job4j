@@ -12,6 +12,7 @@ public class RepoInner implements Container {
      * field array the repo.
      */
     private final String[] names = {"A", "B", "C", "D"};
+
     @SuppressWarnings("unused")
     @Override
     public final Iterator getIterator() {

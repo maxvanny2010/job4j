@@ -23,14 +23,14 @@ public class SocketServerTest {
     private final Root root = new Root();
 
     public void setPropertiesServer(final String demand, final String expected) throws IOException {
-        Socket socket = mock(Socket.class);
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        final Socket socket = mock(Socket.class);
+        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
-        ByteArrayInputStream in = new ByteArrayInputStream(demand.getBytes(StandardCharsets.UTF_8));
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ByteArrayInputStream in = new ByteArrayInputStream(demand.getBytes(StandardCharsets.UTF_8));
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
         when(socket.getOutputStream()).thenReturn(out);
         when(socket.getInputStream()).thenReturn(in);
-        SocketServer server = new SocketServer(socket);
+        final SocketServer server = new SocketServer(socket);
         server.startServer();
         final DataInputStream dis = new DataInputStream(new ByteArrayInputStream(out.toByteArray()));
         StringBuilder sb = new StringBuilder();

@@ -37,6 +37,7 @@ public class Assembling implements Assembly {
         this.reader = new DataInputStream(socket.getInputStream());
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public final String inputLine() throws IOException {
         final String ln = System.lineSeparator();

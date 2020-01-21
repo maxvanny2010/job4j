@@ -16,25 +16,6 @@ class GreenHouseScheduler {
      */
     private static final ScheduledThreadPoolExecutor SCHEDULER =
             new ScheduledThreadPoolExecutor(4);
-
-    /**
-     * Method to set.
-     *
-     * @param aLight a light
-     **/
-    final void setLight(final boolean aLight) {
-        this.light = aLight;
-    }
-
-    /**
-     * Method to set.
-     *
-     * @param aWater a water
-     **/
-    final void setWater(final boolean aWater) {
-        this.water = aWater;
-    }
-
     /**
      * field a light.
      */
@@ -59,6 +40,15 @@ class GreenHouseScheduler {
     }
 
     /**
+     * Method to set.
+     *
+     * @param aLight a light
+     **/
+    final void setLight(final boolean aLight) {
+        this.light = aLight;
+    }
+
+    /**
      * Method to get.
      *
      * @return a water
@@ -66,6 +56,15 @@ class GreenHouseScheduler {
     @SuppressWarnings("unused")
     final synchronized boolean getWater() {
         return this.water;
+    }
+
+    /**
+     * Method to set.
+     *
+     * @param aWater a water
+     **/
+    final void setWater(final boolean aWater) {
+        this.water = aWater;
     }
 
     /**

@@ -31,12 +31,10 @@ import static org.junit.Assert.assertThat;
  */
 public class StartUITest {
     private final Tracker tracker = new Tracker();
-    private Input input;
     private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
-
     private final Consumer<String> output = new Consumer<>() {
-        PrintStream stdout = new PrintStream(bos);
+        final PrintStream stdout = new PrintStream(bos);
 
         @Override
         public void accept(final String s) {
@@ -49,6 +47,7 @@ public class StartUITest {
         }
     };
     private final String ls = System.lineSeparator();
+    private Input input;
 
     /**
      * метод запуска программы.

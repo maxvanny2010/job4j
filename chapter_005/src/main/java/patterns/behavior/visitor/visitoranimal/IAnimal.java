@@ -10,6 +10,7 @@ package patterns.behavior.visitor.visitoranimal;
 public interface IAnimal {
     /**
      * Method to job.
+     *
      * @param visitor visitor.
      */
     void doJob(IVisitor visitor);

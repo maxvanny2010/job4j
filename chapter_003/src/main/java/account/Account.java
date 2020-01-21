@@ -11,13 +11,13 @@ import java.util.Objects;
  */
 public class Account {
     /**
-     * the sum of money in account.
-     */
-    private double values;
-    /**
      * the requisite of account.
      */
     private final String reqs;
+    /**
+     * the sum of money in account.
+     */
+    private double values;
 
     /**
      * Constructor.
@@ -45,6 +45,7 @@ public class Account {
      * @return the requisite
      */
 
+    @SuppressWarnings("unused")
     public final String getReqs() {
         return this.reqs;
     }

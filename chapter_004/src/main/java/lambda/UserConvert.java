@@ -15,30 +15,38 @@ import java.util.function.Function;
  */
 public class UserConvert {
     /**
-     * Inner static class User.
+     * BadMethod.
      */
-    public static class User {
-        /**
-         * name.
-         */
-        private final String name;
+    public static void badMethod() {
+        System.out.println("Bad method");
+    }
 
-        /**
-         * Constructor.
-         *
-         * @param aName name
-         */
-        public User(final String aName) {
-            this.name = aName;
+    /**
+     * Point enter to program.
+     *
+     * @param args strings array args
+     * @throws Exception exception
+     */
+    @SuppressWarnings("ConstantConditions")
+    public static void main(final String[] args) throws Exception {
+        List<String> names = Arrays.asList("Petr", "Nick", "Ban");
+        UserConvert users = new UserConvert();
+        List<User> data = users.convert(names, User::new);
+        data.forEach(System.out::println);
+        Wrapper<Exception> ex = null;
+        names.forEach(
+                n -> {
+                    try {
+                        badMethod();
+                    } catch (Exception e) {
+                        ex.set(e);
+                    }
+                }
+        );
+        if (!ex.isEmpty()) {
+            throw ex.get();
         }
 
-        @Override
-        public final String toString() {
-            return new StringJoiner(", ",
-                    User.class.getSimpleName() + "[", "]")
-                    .add("name='" + name + "'")
-                    .toString();
-        }
     }
 
     /**
@@ -55,14 +63,6 @@ public class UserConvert {
                 n -> users.add(op.apply(n))
         );
         return users;
-    }
-
-    /**
-     * BadMethod.
-     *
-     * @throws Exception Exception
-     */
-    public static void badMethod() throws Exception {
     }
 
     /**
@@ -94,29 +94,29 @@ public class UserConvert {
     }
 
     /**
-     * Point enter to program.
-     *
-     * @param args strings array args
-     * @throws Exception exception
+     * Inner static class User.
      */
-    public static void main(final String[] args) throws Exception {
-        List<String> names = Arrays.asList("Petr", "Nick", "Ban");
-        UserConvert users = new UserConvert();
-        List<User> data = users.convert(names, User::new);
-        data.forEach(System.out::println);
-        Wrapper<Exception> ex = null;
-        names.forEach(
-                n -> {
-                    try {
-                        badMethod();
-                    } catch (Exception e) {
-                        ex.set(e);
-                    }
-                }
-        );
-        if (!ex.isEmpty()) {
-            throw ex.get();
+    public static class User {
+        /**
+         * name.
+         */
+        private final String name;
+
+        /**
+         * Constructor.
+         *
+         * @param aName name
+         */
+        public User(final String aName) {
+            this.name = aName;
         }
 
+        @Override
+        public final String toString() {
+            return new StringJoiner(", ",
+                    User.class.getSimpleName() + "[", "]")
+                    .add("name='" + name + "'")
+                    .toString();
+        }
     }
 }

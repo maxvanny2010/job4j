@@ -43,6 +43,7 @@ public class ConvertMatrix2ListTest {
         );
         assertThat(result, is(expected));
     }
+
     @Test
     public void whenStringArrayToListString() {
         String[][] source = {

@@ -1,7 +1,7 @@
 package patterns.behavior.momento;
 
 /**
- * Mements.
+ * Moments.
  *
  * @author Maxim Vanny
  * @version 5.0
