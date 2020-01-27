@@ -9,7 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>chapter_007</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
+    <modules>
+        <module>echo</module>
+    </modules>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
