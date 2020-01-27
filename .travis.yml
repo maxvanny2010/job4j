@@ -1,4 +1,4 @@
-# используем язык java. Travis CI поддерживает другие языки тоже.
+# используем язык java.
 language: java
 jdk: openjdk11
 
@@ -12,12 +12,12 @@ before_install:
   - psql -c 'create database tracker;' -U postgres
   - psql -c 'create database vacancy;' -U postgres
 
-# после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
-# Здесь используется сторонний сервис https://codecov.io/
+# Статистика по JaCoCo
+# Используется сервис https://codecov.io/
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-# Отправлять уведомление на почту youremail@smtp.ru(Изменить на свою) если сборка упала
+# Отправлять уведомление на почту если сборка упала.
 notifications:
   email:
     recipients:
