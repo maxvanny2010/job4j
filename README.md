@@ -6,5 +6,5 @@
 
  
 Цель: Java Core до конца 2019 года.
-Цель: Spring, Hibernate, Angular, React до конца 2020 года
+Цель: Spring, Hibernate, Angular or React до конца 2020 года
 Цель: Scala
