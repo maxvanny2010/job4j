@@ -5,11 +5,16 @@
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
     <servlet>
-        <servlet-name>EchoServlet</servlet-name>
-        <servlet-class>servlets.EchoServlet</servlet-class>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>web.present.UserServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EchoServlet</servlet-name>
-        <url-pattern>/echo</url-pattern>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
 </web-app>
