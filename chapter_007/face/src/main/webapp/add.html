@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="css/style.css" rel="stylesheet">
+    <title>ADD</title>
+</head>
+<body>
+<hr>
+<div class="table-top">
+    <div class="table-top-row">
+        <div class="table-top-cell"><img alt="arms" src="img/arms.png"></div>
+        <div class="table-top-cell-center">
+            <p class="b"> TOP SECRET.</p>
+            <p>Headquarters the Microsoft.</p>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="table-top">
+    <div class="table-top-row">
+        <div class="center">
+            <p class="font600">Добавление в список программистов перешедших на сторону Java.</p>
+        </div>
+    </div>
+    <div class="table-top-row">
+        <div class="right">
+            <a class="link" href="/index">Назад к списку</a>
+        </div>
+    </div>
+    <div class="table-top-row">
+        <form action="/add" enctype="application/x-www-form-urlencoded" method="POST">
+            <div class="input-container">
+                <i class="icon"><img alt="name" src="img/name.png" title="name"> </i>
+                <label>
+                    <input class="input-field" name="name" placeholder="Name" required type="text">
+                </label>
+            </div>
+            <div class="input-container">
+                <i class="icon"><img alt="login" src="img/login.png" title="login"></i>
+                <label>
+                    <input class="input-field" name="login" placeholder="Login" required type="text">
+                </label>
+            </div>
+            <div class="input-container">
+                <i class="icon"><img alt="email" src="img/email.png" title="email"></i>
+                <label>
+                    <input class="input-field" name="email" placeholder="Email" required="" type="text">
+                </label>
+            </div>
+            <div class="input-container">
+                <i class="icon"></i>
+                <button class="btn" type="submit"><b>Сохранить</b></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+
+
