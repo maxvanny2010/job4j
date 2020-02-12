@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+}
+
+.input-container {
+    display: flex;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.icon {
+    background: white;
+    color: black;
+    min-width: 20%;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid red;
+}
+
+.btn {
+    background-color: red;
+    color: black;
+    padding: 7px 20px;
+    border: none;
+    cursor: pointer;
+    width: 82%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+hr {
+    border: none;
+    background-color: red;
+    color: red; /* Цвет линии для IE6-7 */
+    height: 2px;
+    width: 750px;
+    align-content: center;
+}
+
+.table-top {
+    display: table;
+    width: 750px;
+    margin: 5px auto 0;
+}
+
+.table-top-row {
+    display: table-row;
+}
+
+.table-top-cell {
+    display: table-cell;
+    padding: 3px;
+}
+
+.table-top-cell-color {
+    display: table-cell;
+    padding: 3px;
+    background: crimson;
+}
+
+.table-top-cell-center {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.font600 {
+    font-weight: 600;
+}
+
+.footer {
+    display: flex;
+    width: 750px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-direction: row;
+}
+
+.footer > div {
+    margin: 10px;
+    text-align: center;
+}
+
+.del {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: 4px;
+    outline: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+    height: 28px;
+    font-size: 13px;
+}
+
+input[type="submit"].btn:hover {
+    cursor: grab;
+}
+
+.link {
+    border: 1px solid #ccc;
+    background: #fffeff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: .2em .75em;
+    text-decoration: none;
+    color: #000000;
+}
+
+.link:hover {
+    color: #9e0006;
+}
