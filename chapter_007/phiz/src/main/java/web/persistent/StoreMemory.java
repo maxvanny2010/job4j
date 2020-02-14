@@ -17,7 +17,7 @@ import static web.model.Atomic.ATOMIC_INTEGER;
  * @version 5.0
  * @since 1/29/2020
  */
-public final class StoreMemory implements Store {
+public final class StoreMemory implements Store<User> {
     /**
      * field a instance of StoreMemory.
      */
@@ -39,6 +39,7 @@ public final class StoreMemory implements Store {
      *
      * @return the instance of StoreMemory
      */
+    @SuppressWarnings("unused")
     public static StoreMemory getInstance() {
         return STORE_MEMORY;
     }

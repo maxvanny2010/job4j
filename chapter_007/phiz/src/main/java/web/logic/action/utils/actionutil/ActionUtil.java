@@ -1,4 +1,4 @@
-package web.logic.action.utils;
+package web.logic.action.utils.actionutil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -11,11 +11,11 @@ import java.util.List;
  * @version 5.0
  * @since 2/3/2020
  */
-public final class Utils {
+public final class ActionUtil {
     /**
      * Constructor.
      */
-    private Utils() {
+    private ActionUtil() {
     }
 
     /**

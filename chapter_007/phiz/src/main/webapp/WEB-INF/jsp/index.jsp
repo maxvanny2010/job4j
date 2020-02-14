@@ -38,53 +38,53 @@
                 </div>
             </c:forEach>
         </div>
-        <div class="table-top-row">
-            <jsp:useBean id="store" type="java.util.List" scope="request"/>
-            <c:forEach var="user" items="${store}">
+        <jsp:useBean id="store" type="java.util.List" scope="request"/>
+        <c:forEach var="user" items="${store}">
             <jsp:useBean id="user" type="web.model.User"/>
-            <div class="table-top-cell">
-                <div class="center">
-                    <c:out value="${user.id}"/>
+            <div class="table-top-row">
+                <div class="table-top-cell">
+                    <div class="center">
+                        <c:out value="${user.id}"/>
+                    </div>
+                </div>
+                <div class="table-top-cell">
+                    <div class="center">
+                        <c:out value="${user.createTime}"/>
+                    </div>
+                </div>
+                <div class="table-top-cell">
+                    <div class="center">
+                        <a href="<c:url value="/view?id=${user.id}"/>" title="Просмотреть запись">
+                            <c:out value="${user.name}"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="table-top-cell">
+                    <div class="center">
+                        <c:out value="${user.login}"/>
+                    </div>
+                </div>
+                <div class="table-top-cell">
+                    <div class="center">
+                        <c:out value=" ${user.email}"/>
+                    </div>
+                </div>
+                <div class="table-top-cell">
+                    <div class="center">
+                        <a href="<c:url value="/edit?id=${user.id}"/>" title="Редактировать запись">
+                            <img src="img/edit.png" alt="edit">
+                        </a>
+                    </div>
+                </div>
+                <div class="table-top-cell">
+                    <div class="center">
+                        <form action="<c:url value="/delete"/>" method="POST" title="Удалить запись">
+                            <input name="id" type="hidden" value="${user.id}"/>
+                            <input class="del" type="submit" value="delete">
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="table-top-cell">
-                <div class="center">
-                    <c:out value="${user.createTime}"/>
-                </div>
-            </div>
-            <div class="table-top-cell">
-                <div class="center">
-                    <a href="<c:url value="/view?id=${user.id}"/>" title="Просмотреть запись">
-                        <c:out value="${user.name}"/>
-                    </a>
-                </div>
-            </div>
-            <div class="table-top-cell">
-                <div class="center">
-                    <c:out value="${user.login}"/>
-                </div>
-            </div>
-            <div class="table-top-cell">
-                <div class="center">
-                    <c:out value=" ${user.email}"/>
-                </div>
-            </div>
-            <div class="table-top-cell">
-                <div class="center">
-                    <a href="<c:url value="/edit?id=${user.id}"/>" title="Редактировать запись">
-                        <img src="img/edit.png" alt="edit">
-                    </a>
-                </div>
-            </div>
-            <div class="table-top-cell">
-                <div class="center">
-                    <form action="<c:url value="/delete"/>" method="POST" title="Удалить запись">
-                        <input name="id" type="hidden" value="${user.id}"/>
-                        <input class="del" type="submit" value="delete">
-                    </form>
-                </div>
-            </div>
-        </div>
         </c:forEach>
     </div>
     <div class="footer">

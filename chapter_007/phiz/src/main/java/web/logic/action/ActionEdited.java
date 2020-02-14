@@ -1,6 +1,6 @@
 package web.logic.action;
 
-import web.logic.action.utils.Utils;
+import web.logic.action.utils.actionutil.ActionUtil;
 import web.model.User;
 
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class ActionEdited extends ActionAbs {
             throws ServletException, IOException {
         final String id = req.getParameter("id");
         final User user = this.getStore().findById(Integer.parseInt(id));
-        final boolean check = Utils.isParameters(req);
+        final boolean check = ActionUtil.isParameters(req);
         if (!check) {
             req.setAttribute("fall", "ok");
             req.setAttribute("user", user);

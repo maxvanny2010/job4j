@@ -117,6 +117,7 @@ hr {
 input[type="submit"].btn:hover {
     cursor: grab;
 }
+
 .link {
     border: 1px solid #ccc;
     background: #fffeff;
@@ -126,6 +127,7 @@ input[type="submit"].btn:hover {
     text-decoration: none;
     color: #000000;
 }
+
 .link:hover {
     color: #9e0006;
 }

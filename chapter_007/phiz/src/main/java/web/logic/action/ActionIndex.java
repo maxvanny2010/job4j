@@ -1,6 +1,6 @@
 package web.logic.action;
 
-import web.logic.action.utils.Utils;
+import web.logic.action.utils.actionutil.ActionUtil;
 import web.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -29,8 +29,8 @@ public class ActionIndex extends ActionAbs {
             dispatcher.forward(req, resp);
         } else {
             req.setAttribute("store", store);
-            req.setAttribute("hats", Utils.firstRow());
-            final String path = "WEB-INF/jsp/full.jsp";
+            req.setAttribute("hats", ActionUtil.firstRow());
+            final String path = "WEB-INF/jsp/index.jsp";
             final RequestDispatcher dispatcher = req.getRequestDispatcher(path);
             dispatcher.forward(req, resp);
         }

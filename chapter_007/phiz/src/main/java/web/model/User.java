@@ -49,6 +49,25 @@ public class User {
     }
 
     /**
+     * Constructor.
+     *
+     * @param aId    a id
+     * @param aTime  a create time
+     * @param aName  a name
+     * @param aLogin a login
+     * @param aEmail a email
+     */
+    public User(final int aId, final String aTime, final String aName,
+                final String aLogin, final String aEmail) {
+        this.id = aId;
+        this.name = aName;
+        this.email = aEmail;
+        this.login = aLogin;
+        this.createTime = aTime;
+
+    }
+
+    /**
      * Method to get.
      *
      * @return a date and a time

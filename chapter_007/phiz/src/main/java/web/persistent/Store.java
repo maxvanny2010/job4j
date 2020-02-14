@@ -1,44 +1,43 @@
 package web.persistent;
 
-import web.model.User;
-
 import java.util.List;
 
 /**
  * Store.
  *
+ * @param <T> type
  * @author Maxim Vanny
  * @version 5.0
  * @since 1/29/2020
  */
-public interface Store {
+public interface Store<T> {
     /**
      * Method to add.
      *
      * @param user a user
      */
-    void add(User user);
+    void add(T user);
 
     /**
      * Method to update.
      *
      * @param user a user.
      */
-    void update(User user);
+    void update(T user);
 
     /**
      * Method to delete.
      *
      * @param user a user
      */
-    void delete(User user);
+    void delete(T user);
 
     /**
      * Method to find all user from storage.
      *
      * @return users by list
      */
-    List<User> findAll();
+    List<T> findAll();
 
     /**
      * Method to find the user by id.
@@ -46,7 +45,7 @@ public interface Store {
      * @param id a id of user
      * @return a user or null
      */
-    User findById(int id);
+    T findById(int id);
 
     /**
      * Method to clear a store.

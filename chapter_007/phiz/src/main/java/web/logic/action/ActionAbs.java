@@ -1,8 +1,8 @@
 package web.logic.action;
 
 import web.model.User;
+import web.persistent.DbStore;
 import web.persistent.Store;
-import web.persistent.StoreMemory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,13 +17,13 @@ public abstract class ActionAbs implements Action {
     /**
      * field a map.
      */
-    private final Store store;
+    private final Store<User> store;
 
     /**
      * Constructor.
      */
     ActionAbs() {
-        this.store = StoreMemory.getInstance();
+        this.store = DbStore.getInstance();
     }
 
     /**
@@ -31,7 +31,7 @@ public abstract class ActionAbs implements Action {
      *
      * @return a store of memory
      */
-    public final Store getStore() {
+    public final Store<User> getStore() {
         return this.store;
     }
 

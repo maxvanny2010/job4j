@@ -7,7 +7,7 @@ package web.logic.exception;
  * @version 5.0
  * @since 2/1/2020
  */
-public class ActionIllegalException extends IllegalAccessException {
+public class ActionIllegalException extends StoreException {
     /**
      * Exception when to call not correct a action.
      *
