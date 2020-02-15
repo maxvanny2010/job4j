@@ -1,6 +1,7 @@
 package web.logic;
 
 import web.logic.action.Action;
+import web.logic.action.Action404Exception;
 import web.logic.action.ActionAdd;
 import web.logic.action.ActionAdded;
 import web.logic.action.ActionClearStore;
@@ -47,6 +48,7 @@ public final class LogicService implements Logic {
         this.map.put("view", new ActionView());
         this.map.put("clear", new ActionClearStore());
         this.map.put("exception", new ActionException());
+        this.map.put("404", new Action404Exception());
         this.map.put(null, new ActionIndex());
     }
 

@@ -11,12 +11,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="css/style.css" rel="stylesheet">
     <title>VIEW</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/fragments/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/fragments/header.jsp"/>
 <section>
     <jsp:useBean id="user" type="web.model.User" scope="request"/>
     <div class="table-top">

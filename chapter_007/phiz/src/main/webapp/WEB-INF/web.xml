@@ -57,8 +57,17 @@
         <servlet-name>UserClearServlet</servlet-name>
         <url-pattern>/clear</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>User404Servlet</servlet-name>
+        <servlet-class>web.present.User404Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>User404Servlet</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
     <error-page>
         <error-code>404</error-code>
-        <location>/404.html</location>
+        <location>/404</location>
     </error-page>
 </web-app>

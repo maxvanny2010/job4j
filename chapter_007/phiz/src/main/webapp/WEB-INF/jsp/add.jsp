@@ -16,7 +16,7 @@
     <title>ADD</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/fragments/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/fragments/header.jsp"/>
 <section>
     <div class="table-top">
         <div class="table-top-row">
