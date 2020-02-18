@@ -42,14 +42,4 @@ public class UserDeleteServlet extends HttpServlet {
             throws ServletException, IOException {
         this.logic.runAction("delete", req, resp);
     }
-
-    /**
-     * Method post.
-     *
-     * @param req  a request
-     * @param resp a response
-     */
-    protected final void doGet(final HttpServletRequest req,
-                               final HttpServletResponse resp) {
-    }
 }

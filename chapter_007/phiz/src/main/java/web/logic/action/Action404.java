@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Action404Exception.
+ * Action404.
  *
  * @author Maxim Vanny
  * @version 5.0
  * @since 2/15/2020
  */
-public class Action404Exception implements Action {
+public class Action404 extends ActionAbs {
     @Override
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)

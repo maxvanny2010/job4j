@@ -1,5 +1,5 @@
 /**
- * Logic, LogicService.
+ * DbStore, Store, StoreMemory.
  *
  * @author Maxim Vanny.
  * @version 5.0

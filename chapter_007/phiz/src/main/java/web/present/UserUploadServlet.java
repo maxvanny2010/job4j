@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * UserDeleteServlet.
+ * UserLoadServlet.
  *
  * @author Maxim Vanny
  * @version 5.0
- * @since 2/8/2020
+ * @since 2/15/2020
  */
-public class UserDeleteServlet extends HttpServlet {
+public class UserUploadServlet extends HttpServlet {
     /**
      * field a logic.
      */
@@ -35,21 +35,11 @@ public class UserDeleteServlet extends HttpServlet {
      * @param req  a request
      * @param resp a response
      * @throws ServletException servlet exception
-     * @throws IOException      oi exception
+     * @throws IOException      IO Exception
      */
     protected final void doPost(final HttpServletRequest req,
                                 final HttpServletResponse resp)
             throws ServletException, IOException {
-        this.logic.runAction("delete", req, resp);
-    }
-
-    /**
-     * Method post.
-     *
-     * @param req  a request
-     * @param resp a response
-     */
-    protected final void doGet(final HttpServletRequest req,
-                               final HttpServletResponse resp) {
+        this.logic.runAction("upload", req, resp);
     }
 }

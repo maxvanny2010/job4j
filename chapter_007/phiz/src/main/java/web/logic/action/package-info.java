@@ -1,5 +1,5 @@
 /**
- * Logic, LogicService.
+ * All files from package action start with Action.
  *
  * @author Maxim Vanny.
  * @version 5.0

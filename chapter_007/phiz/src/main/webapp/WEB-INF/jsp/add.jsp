@@ -30,26 +30,32 @@
             </div>
         </div>
         <div class="table-top-row">
-            <form action="<c:url value="/add"/>" method="POST">
+            <form action="<c:url value="/upload"/>" method="POST" enctype="multipart/form-data">
                 <div class="input-container">
                     <i class="icon">
                         <img alt="name" src="img/name.png" title="name"></i>
                     <label>
-                        <input class="input-field" name="name" placeholder="Name" required type="text">
+                        <input class="input-field" name="name" placeholder="Имя" required type="text">
                     </label>
                 </div>
                 <div class="input-container">
                     <i class="icon">
                         <img alt="login" src="img/login.png" title="login"></i>
                     <label>
-                        <input class="input-field" name="login" placeholder="Login" required type="text">
+                        <input class="input-field" name="login" placeholder="Логин" required type="text">
                     </label>
                 </div>
                 <div class="input-container">
                     <i class="icon">
                         <img alt="email" src="img/email.png" title="email"></i>
                     <label>
-                        <input class="input-field" name="email" placeholder="Email" required type="text">
+                        <input class="input-field" name="email" placeholder="Почта" required type="text">
+                    </label>
+                </div>
+                <div class="input-container">
+                    <i class="icon"></i>
+                    <label>
+                        <input name="file" type="file" accept="image/jpeg,image/png,image/bmp"/>
                     </label>
                 </div>
                 <div class="input-container">

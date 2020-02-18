@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * ActionUpdated.
+ * ActionEdited.
  *
  * @author Maxim Vanny
  * @version 5.0
@@ -20,6 +20,7 @@ public class ActionEdited extends ActionAbs {
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)
             throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         final String id = req.getParameter("id");
         final User user = this.getStore().findById(Integer.parseInt(id));
         final boolean check = ActionUtil.isParameters(req);

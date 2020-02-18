@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * UserViewServlet.
+ * UserUploadServlet.
  *
  * @author Maxim Vanny
  * @version 5.0
- * @since 2/8/2020
+ * @since 2/15/2020
  */
-public class UserViewServlet extends HttpServlet {
+public class UserLoadServlet extends HttpServlet {
     /**
      * field a logic.
      */
@@ -34,22 +34,13 @@ public class UserViewServlet extends HttpServlet {
      *
      * @param req  a request
      * @param resp a response
-     */
-    protected final void doPost(final HttpServletRequest req,
-                                final HttpServletResponse resp) {
-    }
-
-    /**
-     * Method post.
-     *
-     * @param req  a request
-     * @param resp a response
      * @throws ServletException servlet exception
      * @throws IOException      io exception
      */
     protected final void doGet(final HttpServletRequest req,
                                final HttpServletResponse resp)
             throws ServletException, IOException {
-        this.logic.runAction("view", req, resp);
+        this.logic.runAction("load", req, resp);
     }
+
 }

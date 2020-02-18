@@ -61,21 +61,21 @@
                 <jsp:useBean id="user" scope="request" type="web.model.User"/>
                 <input type="hidden" name="id" value="${user.id}"/>
                 <div class="input-container">
-                    <i class="icon"><img alt="name" src="<c:url value="img/name.png"/>"></i>
+                    <i class="icon"><img alt="name" src="img/name.png"></i>
                     <label>
                         <input class="input-field" name="name" placeholder="Name"
                                type="text" value="${user.name}"/>
                     </label>
                 </div>
                 <div class="input-container">
-                    <i class="icon"><img alt="login" src="<c:url value="img/login.png"/>"></i>
+                    <i class="icon"><img alt="login" src="img/login.png"></i>
                     <label>
                         <input class="input-field" name="login" placeholder="Login"
                                type="text" value="${user.login}"/>
                     </label>
                 </div>
                 <div class="input-container">
-                    <i class="icon"><img alt="email" src="<c:url value="img/email.png"/>"></i>
+                    <i class="icon"><img alt="email" src="img/email.png"></i>
                     <label>
                         <input class="input-field" name="email" placeholder="Email"
                                type="text" value="${user.email}"/>

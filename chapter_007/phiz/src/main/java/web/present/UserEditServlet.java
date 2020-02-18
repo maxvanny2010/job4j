@@ -40,7 +40,6 @@ public class UserEditServlet extends HttpServlet {
     protected final void doPost(final HttpServletRequest req,
                                 final HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         this.logic.runAction("edited", req, resp);
     }
 

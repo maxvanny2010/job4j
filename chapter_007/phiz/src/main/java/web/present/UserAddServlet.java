@@ -34,21 +34,6 @@ public class UserAddServlet extends HttpServlet {
      *
      * @param req  a request
      * @param resp a response
-     * @throws IOException      oi exception
-     * @throws ServletException servlet exception
-     */
-    protected final void doPost(final HttpServletRequest req,
-                                final HttpServletResponse resp)
-            throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        this.logic.runAction("added", req, resp);
-    }
-
-    /**
-     * Method post.
-     *
-     * @param req  a request
-     * @param resp a response
      * @throws ServletException servlet exception
      * @throws IOException      oi exception
      */

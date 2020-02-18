@@ -14,6 +14,6 @@ public class StoreExistException extends StoreException {
      * @param id a id
      */
     public StoreExistException(final int id) {
-        super("User" + id + "already exist");
+        super("User " + id + " already exist");
     }
 }

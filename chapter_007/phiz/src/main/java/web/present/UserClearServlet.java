@@ -34,16 +34,6 @@ public class UserClearServlet extends HttpServlet {
      *
      * @param req  a request
      * @param resp a response
-     */
-    protected final void doPost(final HttpServletRequest req,
-                                final HttpServletResponse resp) {
-    }
-
-    /**
-     * Method post.
-     *
-     * @param req  a request
-     * @param resp a response
      * @throws ServletException servlet exception
      * @throws IOException      oi exception
      */

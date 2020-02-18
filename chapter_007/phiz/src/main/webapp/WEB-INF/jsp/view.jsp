@@ -34,6 +34,10 @@
             <div class="table-top-row">${user.name}</div>
             <div class="table-top-row">${user.login}</div>
             <div class="table-top-row">${user.email}</div>
+            <div class="table-top-row">
+                <img width="30px" height="30px"
+                     src="data:image/jpeg;base64,${user.foto}" alt="foto"/>
+            </div>
             <div class="right">
                 <form action="<c:url value="/delete"/>" method="POST">
                     <input name="id" type="hidden" value="${user.id}"/>

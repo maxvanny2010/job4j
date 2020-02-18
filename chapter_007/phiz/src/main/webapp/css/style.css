@@ -39,15 +39,6 @@
     opacity: 1;
 }
 
-hr {
-    border: none;
-    background-color: red;
-    color: red; /* Цвет линии для IE6-7 */
-    height: 2px;
-    width: 750px;
-    align-content: center;
-}
-
 .table-top {
     display: table;
     width: 750px;
@@ -116,6 +107,8 @@ hr {
 
 input[type="submit"].btn:hover {
     cursor: grab;
+    border-width: 2px;
+    border-color: black;
 }
 
 .link {
@@ -130,4 +123,13 @@ input[type="submit"].btn:hover {
 
 .link:hover {
     color: #9e0006;
+}
+
+hr {
+    border: none;
+    background-color: red;
+    color: red; /* Цвет линии для IE6-7 */
+    height: 2px;
+    width: 750px;
+    align-content: center;
 }

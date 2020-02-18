@@ -57,7 +57,22 @@
         <servlet-name>UserClearServlet</servlet-name>
         <url-pattern>/clear</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>UserUploadServlet</servlet-name>
+        <servlet-class>web.present.UserUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserUploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserLoadServlet</servlet-name>
+        <servlet-class>web.present.UserLoadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserLoadServlet</servlet-name>
+        <url-pattern>/load</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>User404Servlet</servlet-name>
         <servlet-class>web.present.User404Servlet</servlet-class>

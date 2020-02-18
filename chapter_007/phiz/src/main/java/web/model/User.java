@@ -1,6 +1,7 @@
 package web.model;
 
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 /**
  * User.
@@ -32,6 +33,10 @@ public class User {
      * field email.
      */
     private String email;
+    /**
+     * field file.
+     */
+    private final byte[] image;
 
     /**
      * Constructor.
@@ -39,12 +44,15 @@ public class User {
      * @param aName  a name
      * @param aLogin a login
      * @param aEmail a email
+     * @param aImage a file by byte array
      */
-    public User(final String aName, final String aLogin, final String aEmail) {
+    public User(final String aName, final String aLogin, final String aEmail,
+                final byte[] aImage) {
         this.id = Atomic.ATOMIC_INTEGER.getAndIncrement();
         this.name = aName;
         this.login = aLogin;
         this.email = aEmail;
+        this.image = aImage;
         this.createTime = getTime();
     }
 
@@ -56,13 +64,15 @@ public class User {
      * @param aName  a name
      * @param aLogin a login
      * @param aEmail a email
+     * @param aImage a image
      */
     public User(final int aId, final String aTime, final String aName,
-                final String aLogin, final String aEmail) {
+                final String aLogin, final String aEmail, final byte[] aImage) {
         this.id = aId;
         this.name = aName;
         this.email = aEmail;
         this.login = aLogin;
+        this.image = aImage;
         this.createTime = aTime;
 
     }
@@ -149,6 +159,24 @@ public class User {
      **/
     public final void setEmail(final String aEmail) {
         this.email = aEmail;
+    }
+
+    /**
+     * Method to get.
+     *
+     * @return a image by a byte array
+     */
+    public final byte[] getImage() {
+        return this.image;
+    }
+
+    /**
+     * Method to get.
+     *
+     * @return a image by a byte array
+     */
+    public final String getFoto() {
+        return Base64.getEncoder().encodeToString(this.image);
     }
 
     @Override

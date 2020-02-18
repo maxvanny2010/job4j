@@ -69,14 +69,14 @@ public final class DbStore implements Store<User> {
     @Override
     public void add(final User user) {
         final String query = "INSERT INTO top("
-                + "time_secret, name_secret,login_secret, email_secret)"
-                + " VALUES (?, ?, ?, ?)";
+                + "time_secret, name_secret, login_secret, email_secret, "
+                + "byte_secret)" + " VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = SOURCE.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
             try {
                 conn.setAutoCommit(false);
-                this.setPst(user, pst);
-                pst.execute();
+                this.setPst(user, pst, "add");
+                pst.executeUpdate();
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
@@ -90,15 +90,13 @@ public final class DbStore implements Store<User> {
     @Override
     public void update(final User user) {
         final String query = "UPDATE top SET"
-                + " time_secret=?,name_secret=?, login_secret=?, email_secret=?"
-                + " WHERE id=?";
+                + " time_secret=?, name_secret=?, login_secret=?,"
+                + " email_secret=? WHERE id_secret=?";
         try (Connection conn = SOURCE.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
             try {
                 conn.setAutoCommit(false);
-                final int index = 5;
-                pst.setInt(index, user.getId());
-                this.setPst(user, pst);
+                this.setPst(user, pst, "update");
                 if (pst.executeUpdate() != 1) {
                     throw new StoreNotExistException(user.getId());
                 }
@@ -114,7 +112,7 @@ public final class DbStore implements Store<User> {
 
     @Override
     public void delete(final User user) {
-        final String query = "DELETE FROM top WHERE id=?";
+        final String query = "DELETE FROM top WHERE id_secret=?";
         try (Connection conn = SOURCE.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setInt(1, user.getId());
@@ -136,11 +134,13 @@ public final class DbStore implements Store<User> {
             final ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 users.add(new User(
-                        rs.getInt("id"),
+                        rs.getInt("id_secret"),
                         rs.getString("time_secret"),
                         rs.getString("name_secret"),
                         rs.getString("login_secret"),
-                        rs.getString("email_secret")));
+                        rs.getString("email_secret"),
+                        rs.getBytes("byte_secret"))
+                );
             }
         } catch (SQLException e) {
             throw new StoreException(e.getMessage());
@@ -150,8 +150,8 @@ public final class DbStore implements Store<User> {
 
     @Override
     public User findById(final int id) {
-        final String query = "SELECT time_secret,name_secret,login_secret,"
-                + "email_secret FROM top WHERE id=?";
+        final String query = "SELECT time_secret, name_secret, login_secret,"
+                + " email_secret, byte_secret FROM top WHERE id_secret=?";
         User user;
         try (Connection conn = SOURCE.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
@@ -164,7 +164,8 @@ public final class DbStore implements Store<User> {
                     rs.getString("time_secret"),
                     rs.getString("name_secret"),
                     rs.getString("login_secret"),
-                    rs.getString("email_secret")
+                    rs.getString("email_secret"),
+                    rs.getBytes("byte_secret")
             );
         } catch (SQLException e) {
             throw new StoreException(e.getMessage());
@@ -188,17 +189,30 @@ public final class DbStore implements Store<User> {
      *
      * @param user a user
      * @param pst  a prepare statement
+     * @param key  a key for choose a act
      * @throws SQLException slq exception
      */
-    private void setPst(final User user, final PreparedStatement pst)
+    private void setPst(final User user, final PreparedStatement pst,
+                        final String key)
             throws SQLException {
         final int one = 1;
-        pst.setString(one, user.getCreateTime());
         final int two = 2;
+        final int thr = 3;
+        final int fou = 4;
+        final int fif = 5;
+        pst.setString(one, user.getCreateTime());
         pst.setString(two, user.getName());
-        final int three = 3;
-        pst.setString(three, user.getLogin());
-        final int fourth = 4;
-        pst.setString(fourth, user.getEmail());
+        pst.setString(thr, user.getLogin());
+        pst.setString(fou, user.getEmail());
+        switch (key) {
+            case "add":
+                pst.setBytes(fif, user.getImage());
+                break;
+            case "update":
+                pst.setInt(fif, user.getId());
+                break;
+            default:
+                break;
+        }
     }
 }

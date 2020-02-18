@@ -39,7 +39,7 @@ public final class JdbcUtil {
         final var size = 1024;
         final var buffer = new byte[size];
         int length;
-        try (var is = Objects.requireNonNull(getResource(schema))) {
+        try (var is = Objects.requireNonNull(JdbcUtil.getResource(schema))) {
             while ((length = is.read(buffer)) != -1) {
                 bos.write(buffer, 0, length);
             }
@@ -82,13 +82,12 @@ public final class JdbcUtil {
      * @return properties from a file
      */
     public static Properties getProperties(final String file) {
-        try (InputStream is = getResource(file)) {
+        try (InputStream is = JdbcUtil.getResource(file)) {
             Properties props = new Properties();
             props.load(Objects.requireNonNull(is));
             return props;
         } catch (Exception e) {
-            throw new IllegalStateException(
-                    "Invalid config file " + file);
+            throw new StoreException("Invalid config file: " + file);
         }
     }
 }

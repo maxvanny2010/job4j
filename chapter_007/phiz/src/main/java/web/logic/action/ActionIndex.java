@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Empty.
+ * ActionEmpty.
  *
  * @author Maxim Vanny
  * @version 5.0

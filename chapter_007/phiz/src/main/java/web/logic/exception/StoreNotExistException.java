@@ -14,6 +14,6 @@ public class StoreNotExistException extends StoreException {
      * @param id a id
      */
     public StoreNotExistException(final int id) {
-        super("User" + id + "not exist");
+        super("User " + id + " not exist");
     }
 }

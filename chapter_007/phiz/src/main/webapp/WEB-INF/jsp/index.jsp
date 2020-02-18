@@ -44,7 +44,11 @@
             <div class="table-top-row">
                 <div class="table-top-cell">
                     <div class="center">
-                        <c:out value="${user.id}"/>
+                        <a href="<c:url value="/load?id=${user.id}"/>">
+                            <img width="30px" height="30px"
+                                 title="Нажмите для скачивания ${user.id}.png"
+                                 src="data:image/jpeg;base64,${user.foto}" alt="foto"/>
+                        </a>
                     </div>
                 </div>
                 <div class="table-top-cell">
