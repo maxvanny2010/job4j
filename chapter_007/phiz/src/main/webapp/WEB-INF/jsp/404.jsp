@@ -27,16 +27,26 @@
     </div>
 </div>
 <hr>
-<div class="table-top">
-    <div class="table-top-row">
-        <div class="table-top-cell">
-            <img alt="" src="img/404.png">
+<section>
+    <div class="table-top">
+        <div class="table-top-row">
+            <div class="table-top-cell">
+                <img alt="" src="img/404.png">
+            </div>
+            <div class="table-top-cell-center">
+                <p><b>Осознать ошибку и
+                    <a href="<c:url value="/444"/>">Вернуться</a>
+                </b>
+                </p>
+            </div>
         </div>
-        <div class="table-top-cell-center">
-            <p><b>Осознать свою ошибку и
-                <a href="<c:url value="/index"/>"> Вернуться</a> ещё не поздно</b></p>
+        <div class="table-top-row">
+            <div class="table-top-cell">
+                <jsp:include page="/WEB-INF/jsp/fragments/footer.jsp"/>
+            </div>
         </div>
     </div>
-</div>
+    <hr>
+</section>
 </body>
 </html>

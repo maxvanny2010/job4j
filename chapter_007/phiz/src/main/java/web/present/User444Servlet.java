@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * UserServlet.
+ * ${User444Servlet}.
  *
  * @author Maxim Vanny
  * @version 5.0
- * @since 1/29/2020
+ * @since 2/23/2020
  */
-public class UserIndexServlet extends HttpServlet {
+public class User444Servlet extends HttpServlet {
     /**
      * field a logic.
      */
@@ -29,17 +29,10 @@ public class UserIndexServlet extends HttpServlet {
         this.logic = LogicService.getInstance();
     }
 
-    /**
-     * Method post.
-     *
-     * @param req  a request
-     * @param resp a response
-     * @throws ServletException servlet exception
-     * @throws IOException      oi exception
-     */
-    protected final void doGet(final HttpServletRequest req,
-                               final HttpServletResponse resp)
+    @Override
+    public final void doGet(final HttpServletRequest req,
+                            final HttpServletResponse resp)
             throws ServletException, IOException {
-        this.logic.runAction(null, req, resp);
+        this.logic.runAction("444", req, resp);
     }
 }

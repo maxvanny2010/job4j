@@ -1,19 +1,19 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Maxim Vanny
-  Date: 2/11/2020
-  Time: 12:56 PM
+  Date: 2/20/2020
+  Time: 10:27 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="img/favicon.png" rel="shortcut icon" type="image/png">
     <link href="css/style.css" rel="stylesheet">
-    <title>ADD</title>
+    <title>Authentication</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/fragments/headerGate.jsp"/>
@@ -21,33 +21,22 @@
     <div class="table-top">
         <div class="table-top-row">
             <div class="center">
-                <p><b>Добавление в список программиста перешедшего на сторону Java.</b></p>
+                <p><b>Авторизация.</b></p>
             </div>
         </div>
         <div class="table-top-row">
-            <div class="right">
-                <a class="link" href="<c:url value="/gate"/>">Главная</a>
-            </div>
-        </div>
-        <div class="table-top-row">
-            <form action="<c:url value="/upload"/>" method="POST" enctype="multipart/form-data">
+            <form action="<c:url value="/login"/>" method="POST">
                 <div class="input-container">
-                    <i class="icon">
-                        <img alt="name" src="img/name.png" title="name"></i>
-                    <label>
-                        <input class="input-field" name="name" placeholder="Имя" required type="text">
-                    </label>
+                    <i class="icon"></i>
+                    <label for="role"></label>
+                    <select id="role" name="role">
+                        <option value="admin">admin</option>
+                        <option value="user" selected>user</option>
+                    </select>
                 </div>
                 <div class="input-container">
                     <i class="icon">
-                        <img alt="email" src="img/email.png" title="email"></i>
-                    <label>
-                        <input class="input-field" name="email" placeholder="Почта" required type="text">
-                    </label>
-                </div>
-                <div class="input-container">
-                    <i class="icon">
-                        <img alt="login" src="img/login.png" title="login"></i>
+                        <img alt="login" src="img/favicon.png" title="login"></i>
                     <label>
                         <input class="input-field" name="login" placeholder="Логин" required type="text">
                     </label>
@@ -61,13 +50,15 @@
                 </div>
                 <div class="input-container">
                     <i class="icon"></i>
-                    <label>
-                        <input name="file" type="file" accept="image/jpeg,image/png,image/bmp"/>
-                    </label>
+                    <button class="btn" type="submit"><b>Войти</b></button>
                 </div>
                 <div class="input-container">
-                    <i class="icon"></i>
-                    <button class="btn" type="submit"><b>Сохранить</b></button>
+                    <i class="icon">
+                        <img alt="Регистрация" src="img/name20.jpg" title="Регистрация">
+                    </i>
+                    <label>
+                        <a href="<c:url value="/add"/>">Регистрация</a>
+                    </label>
                 </div>
                 <div class="input-container">
                     <i class="icon"></i>
@@ -78,8 +69,8 @@
                 <div class="input-container">
                     <i class="icon"></i>
                     <label>
-                      <span style="color:red">
-                            <c:out value="${sessionScope.infoUpload}"/>
+                        <span style="color:red">
+                            <c:out value="${sessionScope.infoGate}"/>
                         </span>
                     </label>
                 </div>
@@ -89,6 +80,4 @@
 </section>
 </body>
 </html>
-
-
 

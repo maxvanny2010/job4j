@@ -4,7 +4,9 @@ import web.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * ActionDelete.
@@ -18,8 +20,19 @@ public class ActionDelete extends ActionAbs {
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)
             throws IOException {
-        final User user = this.getUserIdByRequest(req);
+        final HttpSession session = req.getSession(false);
+        final String id = req.getParameter("id");
+        this.userToSetInSession(id, session, resp);
+        final User user = (User) session.getAttribute("user");
         this.getStore().delete(user);
-        resp.sendRedirect("/index");
+        final String role = (String) session.getAttribute("role");
+        if (Objects.equals(role, "user")) {
+            session.removeAttribute("role");
+            session.removeAttribute("user");
+            this.getKeeper().clear();
+            resp.sendRedirect("/gate");
+            return;
+        }
+        resp.sendRedirect("/list");
     }
 }

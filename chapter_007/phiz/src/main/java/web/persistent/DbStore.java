@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 /**
@@ -69,8 +70,9 @@ public final class DbStore implements Store<User> {
     @Override
     public void add(final User user) {
         final String query = "INSERT INTO top("
-                + "time_secret, name_secret, login_secret, email_secret, "
-                + "byte_secret)" + " VALUES (?, ?, ?, ?, ?)";
+                + "name_secret, email_secret, login_secret, pass_secret, "
+                + "time_secret, byte_secret) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = SOURCE.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
             try {
@@ -89,9 +91,9 @@ public final class DbStore implements Store<User> {
 
     @Override
     public void update(final User user) {
-        final String query = "UPDATE top SET"
-                + " time_secret=?, name_secret=?, login_secret=?,"
-                + " email_secret=? WHERE id_secret=?";
+        final String query = "UPDATE top SET "
+                + "name_secret=?,  email_secret=?, login_secret=? "
+                + "WHERE id_secret=?";
         try (Connection conn = SOURCE.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
             try {
@@ -111,6 +113,110 @@ public final class DbStore implements Store<User> {
     }
 
     @Override
+    public Optional<User> findById(final int id) {
+        final String query = "SELECT "
+                + "id_secret, time_secret, name_secret, login_secret, "
+                + "email_secret, pass_secret, byte_secret "
+                + "FROM top WHERE id_secret=?";
+        User user;
+        try (Connection conn = SOURCE.getConnection();
+             PreparedStatement pst = conn.prepareStatement(query)) {
+            pst.setInt(1, id);
+            final ResultSet rs = pst.executeQuery();
+            if (!rs.next()) {
+                return Optional.empty();
+            }
+            user = createUser(rs);
+        } catch (SQLException e) {
+            throw new StoreException(e.getMessage());
+        }
+        return Optional.of(user);
+    }
+
+    @Override
+    public Optional<User> findUserBy(final String login,
+                                     final String password) {
+        final String query = "SELECT "
+                + "id_secret, time_secret, name_secret, email_secret, "
+                + "login_secret, pass_secret, byte_secret "
+                + "FROM top WHERE login_secret=? AND pass_secret=?";
+        User user;
+        try (Connection conn = SOURCE.getConnection();
+             PreparedStatement pst = conn.prepareStatement(query)) {
+            pst.setString(1, login);
+            pst.setString(2, password);
+            final ResultSet rs = pst.executeQuery();
+            if (!rs.next()) {
+                return Optional.empty();
+            }
+            user = new User(
+                    rs.getInt("id_secret"),
+                    rs.getString("time_secret"),
+                    rs.getString("name_secret"),
+                    rs.getString("email_secret"),
+                    rs.getString("login_secret"),
+                    rs.getString("pass_secret"),
+                    rs.getBytes("byte_secret"));
+        } catch (SQLException e) {
+            throw new StoreException(e.getMessage());
+        }
+        return Optional.of(user);
+    }
+
+    @Override
+    public int findIdBy(final String login,
+                        final String password) {
+        final String query = "SELECT id_secret FROM top"
+                + " WHERE login_secret=? AND pass_secret=?";
+        int id;
+        try (Connection conn = SOURCE.getConnection();
+             PreparedStatement pst = conn.prepareStatement(query)) {
+            pst.setString(1, login);
+            pst.setString(2, password);
+            final ResultSet rs = pst.executeQuery();
+            if (!rs.next()) {
+                return -1;
+            }
+            id = rs.getInt("id_secret");
+        } catch (SQLException e) {
+            throw new StoreException(e.getMessage());
+        }
+        return id;
+    }
+
+    @Override
+    public List<User> findAll() {
+        final ArrayList<User> users = new ArrayList<>();
+        final String query = "SELECT * FROM top";
+        try (Connection conn = SOURCE.getConnection();
+             PreparedStatement pst = conn.prepareStatement(query)) {
+            final ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                users.add(createUser(rs));
+            }
+        } catch (SQLException e) {
+            throw new StoreException(e.getMessage());
+        }
+        return users;
+    }
+
+    @Override
+    public boolean isLogin(final String login) {
+        final String q = "SELECT login_secret FROM top WHERE login_secret=?";
+        try (Connection conn = SOURCE.getConnection();
+             PreparedStatement pst = conn.prepareStatement(q)) {
+            pst.setString(1, login);
+            final ResultSet rs = pst.executeQuery();
+            if (!rs.next()) {
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new StoreException(e.getMessage());
+        }
+        return true;
+    }
+
+    @Override
     public void delete(final User user) {
         final String query = "DELETE FROM top WHERE id_secret=?";
         try (Connection conn = SOURCE.getConnection();
@@ -126,54 +232,6 @@ public final class DbStore implements Store<User> {
     }
 
     @Override
-    public List<User> findAll() {
-        final ArrayList<User> users = new ArrayList<>();
-        final String query = "SELECT * FROM top";
-        try (Connection conn = SOURCE.getConnection();
-             PreparedStatement pst = conn.prepareStatement(query)) {
-            final ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                users.add(new User(
-                        rs.getInt("id_secret"),
-                        rs.getString("time_secret"),
-                        rs.getString("name_secret"),
-                        rs.getString("login_secret"),
-                        rs.getString("email_secret"),
-                        rs.getBytes("byte_secret"))
-                );
-            }
-        } catch (SQLException e) {
-            throw new StoreException(e.getMessage());
-        }
-        return users;
-    }
-
-    @Override
-    public User findById(final int id) {
-        final String query = "SELECT time_secret, name_secret, login_secret,"
-                + " email_secret, byte_secret FROM top WHERE id_secret=?";
-        User user;
-        try (Connection conn = SOURCE.getConnection();
-             PreparedStatement pst = conn.prepareStatement(query)) {
-            pst.setInt(1, id);
-            final ResultSet rs = pst.executeQuery();
-            if (!rs.next()) {
-                throw new StoreNotExistException(id);
-            }
-            user = new User(id,
-                    rs.getString("time_secret"),
-                    rs.getString("name_secret"),
-                    rs.getString("login_secret"),
-                    rs.getString("email_secret"),
-                    rs.getBytes("byte_secret")
-            );
-        } catch (SQLException e) {
-            throw new StoreException(e.getMessage());
-        }
-        return user;
-    }
-
-    @Override
     public void clearStore() {
         final String query = "DELETE FROM top";
         try (Connection conn = SOURCE.getConnection();
@@ -182,6 +240,25 @@ public final class DbStore implements Store<User> {
         } catch (SQLException e) {
             throw new StoreException(e.getMessage());
         }
+    }
+
+    /**
+     * Method to create user by result set.
+     *
+     * @param rs a result set.
+     * @return user or null
+     *
+     * @throws SQLException sql exception
+     */
+    private User createUser(final ResultSet rs) throws SQLException {
+        return new User(
+                rs.getInt("id_secret"),
+                rs.getString("time_secret"),
+                rs.getString("name_secret"),
+                rs.getString("email_secret"),
+                rs.getString("login_secret"),
+                rs.getString("pass_secret"),
+                rs.getBytes("byte_secret"));
     }
 
     /**
@@ -200,16 +277,18 @@ public final class DbStore implements Store<User> {
         final int thr = 3;
         final int fou = 4;
         final int fif = 5;
-        pst.setString(one, user.getCreateTime());
-        pst.setString(two, user.getName());
+        final int six = 6;
+        pst.setString(one, user.getName());
+        pst.setString(two, user.getEmail());
         pst.setString(thr, user.getLogin());
-        pst.setString(fou, user.getEmail());
         switch (key) {
             case "add":
-                pst.setBytes(fif, user.getImage());
+                pst.setString(fou, user.getPassword());
+                pst.setString(fif, user.getCreateTime());
+                pst.setBytes(six, user.getImage());
                 break;
             case "update":
-                pst.setInt(fif, user.getId());
+                pst.setInt(fou, user.getId());
                 break;
             default:
                 break;

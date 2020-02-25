@@ -2,14 +2,18 @@ package web.logic;
 
 import web.logic.action.Action;
 import web.logic.action.Action404;
+import web.logic.action.Action444;
 import web.logic.action.ActionAdd;
 import web.logic.action.ActionClearStore;
 import web.logic.action.ActionDelete;
 import web.logic.action.ActionEdit;
 import web.logic.action.ActionEdited;
 import web.logic.action.ActionException;
-import web.logic.action.ActionIndex;
+import web.logic.action.ActionGate;
+import web.logic.action.ActionList;
 import web.logic.action.ActionLoad;
+import web.logic.action.ActionLogOut;
+import web.logic.action.ActionLogin;
 import web.logic.action.ActionUpload;
 import web.logic.action.ActionView;
 
@@ -41,17 +45,21 @@ public final class LogicService implements Logic {
      * Constructor.
      */
     private LogicService() {
+        this.map.put("gate", new ActionGate());
+        this.map.put("login", new ActionLogin());
+        this.map.put("logout", new ActionLogOut());
         this.map.put("add", new ActionAdd());
         this.map.put("upload", new ActionUpload());
+        this.map.put("load", new ActionLoad());
         this.map.put("edit", new ActionEdit());
         this.map.put("edited", new ActionEdited());
-        this.map.put("delete", new ActionDelete());
         this.map.put("view", new ActionView());
+        this.map.put("delete", new ActionDelete());
         this.map.put("clear", new ActionClearStore());
-        this.map.put("load", new ActionLoad());
         this.map.put("exception", new ActionException());
         this.map.put("404", new Action404());
-        this.map.put(null, new ActionIndex());
+        this.map.put("444", new Action444());
+        this.map.put(null, new ActionList());
     }
 
     /**

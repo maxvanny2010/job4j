@@ -133,3 +133,15 @@ hr {
     width: 750px;
     align-content: center;
 }
+
+#red input::-webkit-input-placeholder.red { /* Edge */
+    color: red;
+}
+
+#red input::-ms-input-placeholder.red { /* Internet Explorer 10-11 */
+    color: red;
+}
+
+#red input::placeholder.red {
+    color: red;
+}

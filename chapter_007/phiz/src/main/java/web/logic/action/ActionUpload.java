@@ -9,11 +9,13 @@ import web.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static web.logic.action.utils.actionutil.ActionUtil.getBytes;
 import static web.logic.action.utils.actionutil.ActionUtil.getPath;
@@ -32,33 +34,59 @@ public class ActionUpload extends ActionAbs {
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)
             throws IOException {
-        byte[] image = new byte[0];
+        final HttpSession session = req.getSession(false);
         final Map<String, String> fields = new HashMap<>();
         if (ServletFileUpload.isMultipartContent(req)) {
-            final DiskFileItemFactory factory = new DiskFileItemFactory();
-            final ServletFileUpload upload = new ServletFileUpload(factory);
-            try {
-                final List<FileItem> items = upload.parseRequest(req);
-                for (FileItem item : items) {
-                    final InputStream stream = item.getInputStream();
-                    if (item.isFormField()) {
-                        this.getFormField(fields, item, stream);
-                    }
-                    if (!item.isFormField()) {
-                        image = this.getFormFile(req, item, stream);
-                    }
-                }
-            } catch (Exception e) {
-                throw new StoreException(e.getMessage());
-            }
-
+            final byte[] image = uploadDataForm(req, fields);
             final String name = fields.get("name");
-            final String login = fields.get("login");
             final String email = fields.get("email");
-            final User user = new User(name, login, email, image);
+            final String login = fields.get("login");
+            final String password = fields.get("password");
+            final boolean isLogin = this.getStore().isLogin(login);
+            if (isLogin) {
+                System.out.println("Login is present");
+                session.setAttribute("infoUpload", "Логин занят.");
+                resp.sendRedirect("/add");
+                return;
+            }
+            final User user = new User(name, email, login, password, image);
             this.getStore().add(user);
+            final String role = (String) session.getAttribute("role");
+            if (Objects.equals(role, "admin")) {
+                final int id = this.getStore().findIdBy(login, password);
+                this.getKeeper().add(id);
+            }
         }
-        resp.sendRedirect("/index");
+        resp.sendRedirect("/gate");
+        session.setAttribute("infoUpload", " ");
+    }
+
+    /**
+     * Method to upload data from form and set it to map and byte array.
+     *
+     * @param req    a request
+     * @param fields a fields from form
+     * @return image by byte array
+     */
+    private byte[] uploadDataForm(final HttpServletRequest req,
+                                  final Map<String, String> fields) {
+        final DiskFileItemFactory factory = new DiskFileItemFactory();
+        final ServletFileUpload upload = new ServletFileUpload(factory);
+        try {
+            final List<FileItem> items = upload.parseRequest(req);
+            for (FileItem item : items) {
+                final InputStream stream = item.getInputStream();
+                if (item.isFormField()) {
+                    this.getFormField(fields, item, stream);
+                }
+                if (!item.isFormField()) {
+                    return this.getFormFile(req, item, stream);
+                }
+            }
+        } catch (Exception e) {
+            throw new StoreException(e.getMessage());
+        }
+        return new byte[0];
     }
 
     /**

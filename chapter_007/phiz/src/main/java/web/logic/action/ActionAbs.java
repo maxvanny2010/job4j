@@ -5,6 +5,12 @@ import web.persistent.DbStore;
 import web.persistent.Store;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * ActionAbs.
@@ -15,15 +21,19 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class ActionAbs implements Action {
     /**
+     * field a keeper for id users from bd.
+     */
+    private static final Set<Integer> KEEPER = new HashSet<>();
+    /**
      * field a map.
      */
-    private final Store<User> store;
+    private static Store<User> store;
 
     /**
      * Constructor.
      */
     ActionAbs() {
-        this.store = DbStore.getInstance();
+        store = DbStore.getInstance();
     }
 
     /**
@@ -32,24 +42,55 @@ public abstract class ActionAbs implements Action {
      * @return a store of memory
      */
     public final Store<User> getStore() {
-        return this.store;
+        return store;
+    }
+
+    /**
+     * Method to get.
+     *
+     * @return a keeper for id users from bd
+     */
+    public final Set<Integer> getKeeper() {
+        return KEEPER;
     }
 
     /**
      * Method to prepare and get.
      *
-     * @param req a request
-     * @return a user by id
-     *
-     * @throws IllegalArgumentException IllegalArgumentException
+     * @param resp    a response
+     * @param session a session
+     * @param id      a id
+     * @throws IOException IOException
      */
-    protected final User getUserIdByRequest(final HttpServletRequest req) {
-        final String idUser = req.getParameter("id");
-        final int id = Integer.parseInt(idUser);
-        final User user = this.getStore().findById(id);
-        if (user == null) {
-            throw new IllegalArgumentException("user hasn't in store");
+    protected final void userToSetInSession(final String id,
+                                            final HttpSession session,
+                                            final HttpServletResponse resp)
+            throws IOException {
+        if (id != null) {
+            final int parseInt = Integer.parseInt(id);
+            final Optional<User> user = this.getStore().findById(parseInt);
+            user.ifPresent(value -> session.setAttribute("user", value));
+        } else {
+            resp.sendRedirect("/404");
         }
-        return user;
+    }
+
+    /**
+     * Method to get user and to set it to a request.
+     *
+     * @param id  a id
+     * @param req a request
+     */
+    protected final void setUserInRequest(final String id,
+                                          final HttpServletRequest req) {
+        final int parseInt = Integer.parseInt(id);
+        final Optional<User> users = this.getStore().findById(parseInt);
+        final User user = users.orElseThrow();
+        final boolean is = this.getKeeper().contains(user.getId());
+        if (is) {
+            req.setAttribute("user", user);
+        } else {
+            throw new RuntimeException();
+        }
     }
 }

@@ -1,7 +1,5 @@
 package web.logic.action;
 
-import web.model.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +17,15 @@ public class ActionView extends ActionAbs {
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)
             throws ServletException, IOException {
-        final User user = this.getUserIdByRequest(req);
-        req.setAttribute("user", user);
+        try {
+            final String id = req.getParameter("id");
+            this.setUserInRequest(id, req);
+        } catch (RuntimeException e) {
+            System.out.println("Access is define");
+            resp.sendRedirect("/404");
+            return;
+        }
         final String path = "/WEB-INF/jsp/view.jsp";
-        req.getServletContext().getRequestDispatcher(path).forward(req, resp);
+        req.getRequestDispatcher(path).forward(req, resp);
     }
 }

@@ -2,6 +2,7 @@ package web.model;
 
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.StringJoiner;
 
 /**
  * User.
@@ -12,7 +13,6 @@ import java.util.Base64;
  */
 
 public class User {
-
     /**
      * field id.
      */
@@ -21,6 +21,14 @@ public class User {
      * field create date.
      */
     private final String createTime;
+    /**
+     * field file.
+     */
+    private final byte[] image;
+    /**
+     * field password.
+     */
+    private final String password;
     /**
      * field name.
      */
@@ -33,48 +41,57 @@ public class User {
      * field email.
      */
     private String email;
-    /**
-     * field file.
-     */
-    private final byte[] image;
 
     /**
      * Constructor.
      *
-     * @param aName  a name
-     * @param aLogin a login
-     * @param aEmail a email
-     * @param aImage a file by byte array
+     * @param aName     a name
+     * @param aLogin    a login
+     * @param aEmail    a email
+     * @param aPassword a password
+     * @param aImage    a file by byte array
      */
-    public User(final String aName, final String aLogin, final String aEmail,
-                final byte[] aImage) {
+    public User(final String aName, final String aEmail, final String aLogin,
+                final String aPassword, final byte[] aImage) {
         this.id = Atomic.ATOMIC_INTEGER.getAndIncrement();
         this.name = aName;
         this.login = aLogin;
         this.email = aEmail;
         this.image = aImage;
+        this.password = aPassword;
         this.createTime = getTime();
     }
 
     /**
      * Constructor.
      *
-     * @param aId    a id
-     * @param aTime  a create time
-     * @param aName  a name
-     * @param aLogin a login
-     * @param aEmail a email
-     * @param aImage a image
+     * @param aId       a id
+     * @param aTime     a create time
+     * @param aName     a name
+     * @param aLogin    a login
+     * @param aEmail    a email
+     * @param aPassword a password
+     * @param aImage    a image
      */
     public User(final int aId, final String aTime, final String aName,
-                final String aLogin, final String aEmail, final byte[] aImage) {
+                final String aEmail, final String aLogin,
+                final String aPassword, final byte[] aImage) {
         this.id = aId;
         this.name = aName;
         this.email = aEmail;
         this.login = aLogin;
         this.image = aImage;
+        this.password = aPassword;
         this.createTime = aTime;
+    }
 
+    /**
+     * Method to get.
+     *
+     * @return a password
+     */
+    public final String getPassword() {
+        return this.password;
     }
 
     /**
@@ -179,9 +196,20 @@ public class User {
         return Base64.getEncoder().encodeToString(this.image);
     }
 
-    @Override
+    /**
+     * Method to string.
+     *
+     * @return a object by string
+     */
     public final String toString() {
-        return String.format("id=%d createTime=%s name=%s login=%s email=%s",
-                this.id, this.createTime, this.name, this.login, this.email);
+        return new StringJoiner(", ",
+                User.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("createTime='" + createTime + "'")
+                .add("name='" + name + "'")
+                .add("email='" + email + "'")
+                .add("login='" + login + "'")
+                .add("password='" + password + "'")
+                .toString();
     }
 }

@@ -98,6 +98,9 @@
             </a>
         </div>
         <div>
+            <jsp:include page="/WEB-INF/jsp/fragments/footer.jsp"/>
+        </div>
+        <div>
             <a href="<c:url value="/clear"/>">
                 <img src="img/clear.png" alt="trash" title="УДАЛИТЬ ВСЕ ДАННЫЕ">
             </a>

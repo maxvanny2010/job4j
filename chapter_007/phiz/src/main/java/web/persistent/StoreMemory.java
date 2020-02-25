@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static web.model.Atomic.ATOMIC_INTEGER;
@@ -68,8 +69,33 @@ public final class StoreMemory implements Store<User> {
     }
 
     @Override
-    public User findById(final int id) {
-        return this.storage.getOrDefault(id, null);
+    public Optional<User> findById(final int id) {
+        return Optional.ofNullable(
+                this.storage.getOrDefault(id, null));
+    }
+
+    @Override
+    public boolean isLogin(final String login) {
+        return this.storage.values().stream()
+                .anyMatch(u -> u.getLogin().equals(login));
+    }
+
+    @Override
+    public Optional<User> findUserBy(final String login,
+                                     final String password) {
+        return this.storage.values().stream()
+                .filter(u -> u.getLogin().equals(login))
+                .filter(u -> u.getPassword().equals(password))
+                .findFirst();
+    }
+
+    @Override
+    public int findIdBy(final String login, final String password) {
+        return this.storage.values().stream()
+                .filter(u -> u.getLogin().equals(login))
+                .filter(u -> u.getPassword().equals(password))
+                .mapToInt(User::getId)
+                .findFirst().orElse(-1);
     }
 
     @Override

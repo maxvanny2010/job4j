@@ -1,8 +1,8 @@
 /**
- * User, Atomic, Role.
+ * RolesListFilter, RolesFilter.
  *
  * @author Maxim Vanny.
  * @version 5.0
  * @since 0.1
  */
-package web.model;
+package web.filters;

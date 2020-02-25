@@ -15,9 +15,6 @@
                 <img src="img/arms.png" alt="arms">
             </div>
             <div class="table-top-cell-center">
-                <form action="<c:url value="/logout"/>" method="POST" title="Выйти">
-                    <input class="del" type="submit" value="Выйти">
-                </form>
                 <p><b>TOP SECRET.</b></p>
                 <p>Headquarters the Microsoft.</p>
             </div>

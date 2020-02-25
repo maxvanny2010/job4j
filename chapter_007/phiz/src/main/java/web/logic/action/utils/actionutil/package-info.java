@@ -1,5 +1,5 @@
 /**
- * ActionUtil.
+ * ActionUtil, PropUtil.
  *
  * @author Maxim Vanny.
  * @version 5.0

@@ -28,7 +28,7 @@
             </div>
             <div class="right">
                 <p>
-                    <a class="link" href="<c:url value="/index"/>"> Назад к списку </a>
+                    <a class="link" href="<c:url value="/list"/>"> Назад к списку </a>
                 </p>
             </div>
             <div class="table-top-row">${user.name}</div>
@@ -38,10 +38,13 @@
                 <img width="30px" height="30px"
                      src="data:image/jpeg;base64,${user.foto}" alt="foto"/>
             </div>
+            <div class="table-top-row">
+                <jsp:include page="/WEB-INF/jsp/fragments/footer.jsp"/>
+            </div>
             <div class="right">
                 <form action="<c:url value="/delete"/>" method="POST">
                     <input name="id" type="hidden" value="${user.id}"/>
-                    <input class="del" type="submit" value="delete<c:out value="${user.name}"/>"/>
+                    <input class="del" type="submit" value="Delete <c:out value="${user.name}"/>"/>
                 </form>
             </div>
         </div>

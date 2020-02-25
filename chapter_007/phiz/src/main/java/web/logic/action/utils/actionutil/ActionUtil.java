@@ -25,26 +25,12 @@ public final class ActionUtil {
     }
 
     /**
-     * Method checks the state of parameters from request.
-     *
-     * @param req a request
-     * @return result
-     */
-    public static boolean isParameters(final HttpServletRequest req) {
-        return req.getParameterMap()
-                .values()
-                .stream()
-                .flatMap(Arrays::stream)
-                .allMatch(v -> v.length() != 0);
-    }
-
-    /**
      * Method to get.
      *
      * @return the first row a table of user store
      */
     public static List<String> firstRow() {
-        return Arrays.asList("load", "создан", "имя", "логин", "email",
+        return Arrays.asList("фото", "создан", "имя", "логин", "почта",
                 "редактировать", "удалить");
     }
 

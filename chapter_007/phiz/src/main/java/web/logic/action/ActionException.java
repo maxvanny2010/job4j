@@ -1,9 +1,8 @@
 package web.logic.action;
 
-import web.logic.exception.ActionIllegalException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * ActionException.
@@ -15,11 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ActionException extends ActionAbs {
     @Override
     public final void execute(final HttpServletRequest req,
-                              final HttpServletResponse resp) {
-        try {
-            throw new ActionIllegalException("access not defined");
-        } catch (ActionIllegalException e) {
-            e.printStackTrace();
-        }
+                              final HttpServletResponse resp)
+            throws IOException {
+        resp.sendRedirect("/404");
     }
 }

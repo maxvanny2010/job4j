@@ -4,18 +4,33 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/jsp/login.jsp</welcome-file>
+    </welcome-file-list>
     <servlet>
-        <servlet-name>UserIndexServlet</servlet-name>
-        <servlet-class>web.present.UserIndexServlet</servlet-class>
-        <init-param>
-            <param-name>debug</param-name>
-            <param-value>true</param-value>
-        </init-param>
+        <servlet-name>UserGateServlet</servlet-name>
+        <servlet-class>web.present.UserLoginGateServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UserIndexServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <servlet-name>UserGateServlet</servlet-name>
+        <url-pattern>/gate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <servlet-class>web.present.UserLoginGateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserListServlet</servlet-name>
+        <servlet-class>web.present.UserListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserListServlet</servlet-name>
+        <url-pattern>/list</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>UserAddServlet</servlet-name>
@@ -72,6 +87,22 @@
     <servlet-mapping>
         <servlet-name>UserLoadServlet</servlet-name>
         <url-pattern>/load</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserLogOutServlet</servlet-name>
+        <servlet-class>web.present.UserLogOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserLogOutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>User444Servlet</servlet-name>
+        <servlet-class>web.present.User444Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>User444Servlet</servlet-name>
+        <url-pattern>/444</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>User404Servlet</servlet-name>

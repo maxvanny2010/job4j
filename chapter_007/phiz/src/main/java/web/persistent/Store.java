@@ -1,6 +1,7 @@
 package web.persistent;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Store.
@@ -45,7 +46,33 @@ public interface Store<T> {
      * @param id a id of user
      * @return a user or null
      */
-    T findById(int id);
+    Optional<T> findById(int id);
+
+    /**
+     * Method to get.
+     *
+     * @param login    a login user
+     * @param password a password user
+     * @return credential
+     */
+    Optional<T> findUserBy(String login, String password);
+
+    /**
+     * Method to get.
+     *
+     * @param login    a login user
+     * @param password a password user
+     * @return id
+     */
+    int findIdBy(String login, String password);
+
+    /**
+     * Method to check.
+     *
+     * @param login a login user
+     * @return a result
+     */
+    boolean isLogin(String login);
 
     /**
      * Method to clear a store.

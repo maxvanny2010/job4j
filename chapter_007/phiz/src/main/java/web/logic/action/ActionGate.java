@@ -7,28 +7,21 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * ActionEdit.
+ * ActionTry.
  *
  * @author Maxim Vanny
  * @version 5.0
- * @since 1/30/2020
+ * @since 2/20/2020
  */
-public class ActionEdit extends ActionAbs {
+public class ActionGate extends ActionAbs {
     @Override
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)
             throws ServletException, IOException {
-        try {
-            final String id = req.getParameter("id");
-            this.setUserInRequest(id, req);
-        } catch (RuntimeException e) {
-            System.out.println("Access is define");
-            resp.sendRedirect("/404");
-            return;
-        }
         final HttpSession session = req.getSession(false);
-        session.setAttribute("infoEdit", " ");
-        final String path = "WEB-INF/jsp/edit.jsp";
-        req.getRequestDispatcher(path).forward(req, resp);
+        session.setAttribute("infoUpload", " ");
+        req.getRequestDispatcher("/WEB-INF/jsp/login.jsp")
+                .forward(req, resp);
+        session.setAttribute("infoGate", " ");
     }
 }
