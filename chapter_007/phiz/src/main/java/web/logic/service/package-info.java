@@ -5,4 +5,4 @@
  * @version 5.0
  * @since 0.1
  */
-package web.logic;
+package web.logic.service;

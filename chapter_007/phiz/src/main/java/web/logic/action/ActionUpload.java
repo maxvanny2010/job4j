@@ -42,7 +42,7 @@ public class ActionUpload extends ActionAbs {
             final String email = fields.get("email");
             final String login = fields.get("login");
             final String password = fields.get("password");
-            final boolean isLogin = this.getStore().isLogin(login);
+            final boolean isLogin = ActionAbs.getStore().isLogin(login);
             if (isLogin) {
                 System.out.println("Login is present");
                 session.setAttribute("infoUpload", "Логин занят.");
@@ -50,11 +50,11 @@ public class ActionUpload extends ActionAbs {
                 return;
             }
             final User user = new User(name, email, login, password, image);
-            this.getStore().add(user);
+            ActionAbs.getStore().add(user);
             final String role = (String) session.getAttribute("role");
             if (Objects.equals(role, "admin")) {
-                final int id = this.getStore().findIdBy(login, password);
-                this.getKeeper().add(id);
+                final int id = ActionAbs.getStore().findIdBy(login, password);
+                ActionAbs.getKeeper().add(id);
             }
         }
         resp.sendRedirect("/gate");

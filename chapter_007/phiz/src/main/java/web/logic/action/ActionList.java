@@ -32,12 +32,13 @@ public class ActionList extends ActionAbs {
         List<User> store = new ArrayList<>();
         if (Objects.equals(role, "user")) {
             final User user = (User) session.getAttribute("user");
-            this.getKeeper().add(user.getId());
+            ActionAbs.getKeeper().add(user.getId());
             store = Collections.singletonList(user);
         }
         if (Objects.equals(role, "admin")) {
-            store = this.getStore().findAll();
-            store.stream().mapToInt(User::getId).forEach(this.getKeeper()::add);
+            store = ActionAbs.getStore().findAll();
+            store.stream().mapToInt(User::getId)
+                    .forEach(ActionAbs.getKeeper()::add);
         }
         req.setAttribute("store", store);
         req.setAttribute("hats", ActionUtil.firstRow());

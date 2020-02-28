@@ -27,13 +27,12 @@ public abstract class ActionAbs implements Action {
     /**
      * field a map.
      */
-    private static Store<User> store;
+    private static final Store<User> STORE = DbStore.getInstance();
 
     /**
      * Constructor.
      */
     ActionAbs() {
-        store = DbStore.getInstance();
     }
 
     /**
@@ -41,8 +40,8 @@ public abstract class ActionAbs implements Action {
      *
      * @return a store of memory
      */
-    public final Store<User> getStore() {
-        return store;
+    public static Store<User> getStore() {
+        return STORE;
     }
 
     /**
@@ -50,7 +49,7 @@ public abstract class ActionAbs implements Action {
      *
      * @return a keeper for id users from bd
      */
-    public final Set<Integer> getKeeper() {
+    public static Set<Integer> getKeeper() {
         return KEEPER;
     }
 
@@ -68,7 +67,7 @@ public abstract class ActionAbs implements Action {
             throws IOException {
         if (id != null) {
             final int parseInt = Integer.parseInt(id);
-            final Optional<User> user = this.getStore().findById(parseInt);
+            final Optional<User> user = getStore().findById(parseInt);
             user.ifPresent(value -> session.setAttribute("user", value));
         } else {
             resp.sendRedirect("/404");
@@ -84,9 +83,9 @@ public abstract class ActionAbs implements Action {
     protected final void setUserInRequest(final String id,
                                           final HttpServletRequest req) {
         final int parseInt = Integer.parseInt(id);
-        final Optional<User> users = this.getStore().findById(parseInt);
+        final Optional<User> users = getStore().findById(parseInt);
         final User user = users.orElseThrow();
-        final boolean is = this.getKeeper().contains(user.getId());
+        final boolean is = getKeeper().contains(user.getId());
         if (is) {
             req.setAttribute("user", user);
         } else {

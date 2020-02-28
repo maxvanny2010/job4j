@@ -1,6 +1,6 @@
 package web.model;
 
-import web.logic.action.ActionLogin;
+import web.logic.action.ActionAbs;
 import web.logic.action.utils.actionutil.PropUtil;
 
 import javax.servlet.http.HttpSession;
@@ -41,7 +41,7 @@ public enum Role {
         @Override
         public void apply(final String login, final String password,
                           final HttpSession session) {
-            final Optional<User> users = new ActionLogin().getStore()
+            final Optional<User> users = ActionAbs.getStore()
                     .findUserBy(login, password);
             if (users.isPresent()) {
                 final User user = users.get();

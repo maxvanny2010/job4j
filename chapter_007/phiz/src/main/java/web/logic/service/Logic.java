@@ -1,4 +1,4 @@
-package web.logic;
+package web.logic.service;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

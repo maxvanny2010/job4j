@@ -16,7 +16,7 @@ public class ActionClearStore extends ActionAbs {
     public final void execute(final HttpServletRequest req,
                               final HttpServletResponse resp)
             throws IOException {
-        this.getStore().clearStore();
+        ActionAbs.getStore().clearStore();
         resp.sendRedirect("/list");
     }
 }

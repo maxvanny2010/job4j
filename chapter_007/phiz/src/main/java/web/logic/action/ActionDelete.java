@@ -24,12 +24,12 @@ public class ActionDelete extends ActionAbs {
         final String id = req.getParameter("id");
         this.userToSetInSession(id, session, resp);
         final User user = (User) session.getAttribute("user");
-        this.getStore().delete(user);
+        ActionAbs.getStore().delete(user);
         final String role = (String) session.getAttribute("role");
         if (Objects.equals(role, "user")) {
             session.removeAttribute("role");
             session.removeAttribute("user");
-            this.getKeeper().clear();
+            ActionAbs.getKeeper().clear();
             resp.sendRedirect("/gate");
             return;
         }

@@ -1,9 +1,8 @@
 package web.present;
 
-import web.logic.Logic;
-import web.logic.LogicService;
+import web.logic.service.Logic;
+import web.logic.service.LogicService;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +23,7 @@ public class User444Servlet extends HttpServlet {
     private Logic logic;
 
     @Override
-    public final void init(final ServletConfig config) throws ServletException {
-        super.init(config);
+    public final void init() {
         this.logic = LogicService.getInstance();
     }
 

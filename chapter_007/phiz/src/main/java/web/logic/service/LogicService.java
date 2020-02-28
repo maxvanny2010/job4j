@@ -1,4 +1,4 @@
-package web.logic;
+package web.logic.service;
 
 import web.logic.action.Action;
 import web.logic.action.Action404;
@@ -44,7 +44,7 @@ public final class LogicService implements Logic {
     /**
      * Constructor.
      */
-    private LogicService() {
+    public LogicService() {
         this.map.put("gate", new ActionGate());
         this.map.put("login", new ActionLogin());
         this.map.put("logout", new ActionLogOut());

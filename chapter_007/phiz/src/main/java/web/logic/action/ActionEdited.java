@@ -27,7 +27,7 @@ public class ActionEdited extends ActionAbs {
         final String login = req.getParameter("login");
         this.userToSetInSession(id, session, resp);
         final User user = (User) session.getAttribute("user");
-        final boolean isLogin = this.getStore().isLogin(login);
+        final boolean isLogin = ActionAbs.getStore().isLogin(login);
         final boolean isLoginEq = Objects.equals(login, user.getLogin());
         if (isLogin && !isLoginEq) {
             session.setAttribute("infoEdit", "Логин занят.");
@@ -41,7 +41,7 @@ public class ActionEdited extends ActionAbs {
         user.setName(name);
         user.setEmail(email);
         user.setLogin(login);
-        this.getStore().update(user);
+        ActionAbs.getStore().update(user);
         resp.sendRedirect("/list");
     }
 }
