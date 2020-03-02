@@ -15,6 +15,7 @@
         <module>crud</module>
         <module>face</module>
         <module>phiz</module>
+        <module>boots</module>
     </modules>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-testng -->
