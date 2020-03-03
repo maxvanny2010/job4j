@@ -3,34 +3,61 @@
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          rel="stylesheet">
+    <script>
+        function validate() {
+            let data = ['name', 'email', 'password'];
+            let info = '';
+            let i = 0;
+            for (; i < data.length; i++) {
+                let val = $.trim($('#' + data[i]).val());
+                if (val === '') {
+                    info += data[i] + '\n';
+                }
+            }
+            let radio = this.document.querySelectorAll('input[type=radio]');
+            if (radio[0].checked === radio[1].checked) {
+                info += 'gender';
+            }
+            if (info !== '') {
+                alert('Empty fields: \n' + info.toLocaleUpperCase());
+            }
+            return false;
+        }
+    </script>
 </head>
 <body>
 <h4 class="text-center">Fill forms</h4>
 <div class="container">
     <div class="float-left" style="width: 300px;">
-        <form action="/index" method="post"
-              enctype="application/x-www-form-urlencoded">
+        <form action="/index" enctype="application/x-www-form-urlencoded"
+              method="post">
+            <div class="form-group">
+                <label class="sr-only" for="name">Name</label>
+                <input class="form-control" id="name" name="email" placeholder="Name" type="text">
+            </div>
             <div class="form-group">
                 <label class="sr-only" for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                <input class="form-control" id="email" name="email" placeholder="Email" type="text">
             </div>
             <div class="form-group">
-                <label class="sr-only" for="pass">Password</label>
-                <input type="text" class="form-control" id="pass" name="password" placeholder="Password">
+                <label class="sr-only" for="password">Password</label>
+                <input class="form-control" id="password" name="password" placeholder="Password" type="text">
             </div>
             <div class="form-group">
-                <label class="sr-only" for="state">State</label>
-                <select id="state" class="form-control" name="state">
-                    <option selected>State...</option>
-                    <option>female</option>
-                    <option>male</option>
-                </select>
+                <label class="sr-only" for="gender">Gender</label>
+                <div class="col-md-6" id="gender">
+                    <label class="radio-inline"><input name="gender" type="radio" value="M">Male</label>
+                    <label class="radio-inline"><input name="gender" type="radio" value="F">Female</label>
+                </div>
             </div>
-            <button style="background-color:#DC3545;border: black"
-                    type="submit" class="btn">Sign in
+            <button class="btn"
+                    onclick="return validate();" style="background-color:#DC3545;border: black"
+                    type="button">
+                Sign in
             </button>
         </form>
     </div>
@@ -54,11 +81,11 @@
         </tbody>
     </table>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+<script crossorigin="anonymous"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script crossorigin="anonymous"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 </body>
 </html>

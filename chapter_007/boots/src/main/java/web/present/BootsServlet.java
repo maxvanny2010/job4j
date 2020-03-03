@@ -48,9 +48,10 @@ public class BootsServlet extends HttpServlet {
                             final HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("users", this.users);
-        req.getRequestDispatcher("WEB-INF/jsp/index.jsp")
+        req.getRequestDispatcher("/boot.html")
                 .forward(req, resp);
     }
+
     /**
      * User.
      *
@@ -58,7 +59,7 @@ public class BootsServlet extends HttpServlet {
      * @version 5.0
      * @since 3/1/2020
      */
-   public static class User {
+    public static class User {
         /**
          * field a email.
          */
