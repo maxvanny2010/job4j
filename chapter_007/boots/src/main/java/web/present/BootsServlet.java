@@ -1,13 +1,10 @@
 package web.present;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -18,37 +15,20 @@ import java.util.StringJoiner;
  * @since 3/1/2020
  */
 public class BootsServlet extends HttpServlet {
-    /**
-     * field a list.
-     */
-    private List<User> users;
-
-    @Override
-    public final void init(final ServletConfig config)
-            throws ServletException {
-        super.init(config);
-        this.users = new ArrayList<>();
-    }
 
     @Override
     public final void doPost(final HttpServletRequest req,
                              final HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         req.setCharacterEncoding("UTF-8");
-        final String email = req.getParameter("email");
-        final String password = req.getParameter("password");
-        final String state = req.getParameter("state");
-        final User user = new User(email, password, state);
-        this.users.add(user);
-        this.doGet(req, resp);
     }
 
     @Override
     public final void doGet(final HttpServletRequest req,
                             final HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("users", this.users);
-        req.getRequestDispatcher("/boot.html")
+        req.setCharacterEncoding("UTF-8");
+        req.getRequestDispatcher("/ajax.html")
                 .forward(req, resp);
     }
 
@@ -59,32 +39,77 @@ public class BootsServlet extends HttpServlet {
      * @version 5.0
      * @since 3/1/2020
      */
+    @SuppressWarnings("unused")
     public static class User {
+        /**
+         * field a email.
+         */
+        private final String name;
         /**
          * field a email.
          */
         private final String email;
         /**
-         * field a password.
+         * field a email.
          */
-        private final String password;
+        private final String country;
+        /**
+         * field a email.
+         */
+        private final String city;
         /**
          * field a state.
          */
-        private final String state;
+        private final String gender;
+        /**
+         * field a password.
+         */
+        private final String password;
 
         /**
          * Constructor.
          *
+         * @param aName     a name
          * @param aEmail    a email
+         * @param aCountry  a country
+         * @param aCity     a city
          * @param aPassword a password
-         * @param aState    a state
+         * @param aGender   a state
          */
-        User(final String aEmail, final String aPassword,
-             final String aState) {
+        User(final String aName, final String aEmail,
+             final String aCountry, final String aCity,
+             final String aGender, final String aPassword) {
+            this.name = aName;
             this.email = aEmail;
+            this.country = aCountry;
+            this.city = aCity;
+            this.gender = aGender;
             this.password = aPassword;
-            this.state = aState;
+        }
+
+        /**
+         * Constructor.
+         *
+         * @param aName   a name
+         * @param aGender a gender
+         */
+        public User(final String aName, final String aGender) {
+            this.name = aName;
+            this.gender = aGender;
+            this.email = null;
+            this.country = null;
+            this.city = null;
+            this.password = null;
+
+        }
+
+        /**
+         * Method to get.
+         *
+         * @return a name
+         */
+        public final String getName() {
+            return this.name;
         }
 
         /**
@@ -99,10 +124,19 @@ public class BootsServlet extends HttpServlet {
         /**
          * Method to get.
          *
-         * @return a password
+         * @return a country
          */
-        public final String getPassword() {
-            return this.password;
+        public final String getCountry() {
+            return this.country;
+        }
+
+        /**
+         * Method to get.
+         *
+         * @return a city
+         */
+        public final String getCity() {
+            return this.city;
         }
 
         /**
@@ -110,18 +144,31 @@ public class BootsServlet extends HttpServlet {
          *
          * @return a state
          */
-        public final String getState() {
-            return this.state;
+        public final String getGender() {
+            return this.gender;
+        }
+
+        /**
+         * Method to get.
+         *
+         * @return a password
+         */
+        public final String getPassword() {
+            return this.password;
         }
 
         @Override
         public final String toString() {
             return new StringJoiner(", ",
                     User.class.getSimpleName() + "[", "]")
+                    .add("name='" + name + "'")
                     .add("email='" + email + "'")
+                    .add("country='" + country + "'")
+                    .add("city='" + city + "'")
+                    .add("gender='" + gender + "'")
                     .add("password='" + password + "'")
-                    .add("state='" + state + "'")
                     .toString();
         }
     }
+
 }

@@ -61,7 +61,7 @@
             <tr>
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.password}"/></td>
-                <td><c:out value="${user.state}"/></td>
+                <td><c:out value="${user.gender}"/></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function sentUser() {
+            if ($('#password').val() !== $('#confPassword').val()) {
+                alert('Password don\'t mach');
+                return;
+            }
+            const user = {
+                "name": $('#name').val(),
+                "email": $('#email').val(),
+                "county": $('#county').val(),
+                "gender": $("input[name='gender']:checked").val(),
+                "city": $('#city').val()
+            };
+            let data = escape('name=' + user.name + '\ngender=' + user.gender);
+            $.ajax({
+                url: 'http://localhost:8080/index',
+                type: 'GET',
+                data: data,
+                dataType: 'text'
+            }).done(function () {
+                alert('A user created for: ' + user.name);
+                $('#ajax_form').trigger('reset');
+            }).fail(function (err) {
+                alert(err.responseText);
+            });
+        }
+    </script>
+</head>
+<body>
+<h4 class="text-center">Fill forms</h4>
+<div class="container">
+    <div class="float-left" style="width: 300px;">
+        <form action="/index" enctype="application/x-www-form-urlencoded" id="ajax_form"
+              method="post">
+            <div class="form-group">
+                <label class="sr-only" for="name">Name</label>
+                <input class="form-control" id="name" name="email" placeholder="Name" required type="text">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="email">Email</label>
+                <input class="form-control" id="email" name="email" placeholder="Email" required type="text">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="county">County</label>
+                <input class="form-control" id="county" name="country" placeholder="County" required type="text">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="city">City</label>
+                <input class="form-control" id="city" name="city" placeholder="City" required type="text">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="password">Password</label>
+                <input class="form-control" id="password" name="password" placeholder="Password" required type="text">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="confPassword">Password</label>
+                <input class="form-control" id="confPassword" name="confPassword" placeholder="Password" required
+                       type="text">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="gender">Gender</label>
+                <div class="col-md-6" id="gender">
+                    <label class="radio-inline"><input name="gender" type="radio" value="M">Male</label>
+                    <label class="radio-inline"><input name="gender" type="radio" value="F">Female</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn" onclick="sentUser()" style="background-color:#DC3545;border: black" type="button">
+                    Sign in
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+<script crossorigin="anonymous"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
+</html>
