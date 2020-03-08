@@ -57,7 +57,7 @@
         <tbody class="p-1 text-center bg-light">
         <jsp:useBean id="users" type="java.util.List" scope="request"/>
         <c:forEach var="user" items="${users}">
-            <jsp:useBean id="user" type="web.present.BootsServlet.User"/>
+            <jsp:useBean id="user" type="web.model.User"/>
             <tr>
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.password}"/></td>
