@@ -16,6 +16,7 @@
         <module>face</module>
         <module>phiz</module>
         <module>boots</module>
+        <module>secret</module>
     </modules>
 
     <dependencies>
