@@ -1,0 +1,10 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.todo.models.Task" table="todo">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="created" column="create_date"/>
+        <property name="desc" column="description"/>
+        <property name="done" column="done"/>
+    </class>
+</hibernate-mapping>
