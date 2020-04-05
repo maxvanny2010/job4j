@@ -12,6 +12,7 @@ before_install:
   - psql -c 'create database tracker;' -U postgres
   - psql -c 'create database vacancy;' -U postgres
   - psql -c 'create database secret;' -U postgres
+  - psql -c 'create database engine;' -U postgres
 
 # Статистика по JaCoCo
 # Используется сервис https://codecov.io/

@@ -1,0 +1,8 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.driver.models.Engine" table="engine">
+        <id name="id" column="id_engine">
+            <generator class="identity"/>
+        </id>
+        <property name="volume" column="volume" length="255" not-null="true"/>
+    </class>
+</hibernate-mapping>

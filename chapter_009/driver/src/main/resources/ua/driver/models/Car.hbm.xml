@@ -1,0 +1,21 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.driver.models.Car" table="car">
+        <id name="id" column="id_car">
+            <generator class="identity"/>
+        </id>
+        <property name="brand" column="brand" length="255" not-null="true"/>
+        <property name="model" column="model" length="255" not-null="true"/>
+        <many-to-one name="engine" class="ua.driver.models.Engine" lazy="false" fetch="select" column="engine_id"
+                     not-null="true"
+                     cascade="all"/>
+        <set name="drivers" table="owner"
+             fetch="select" lazy="true" cascade="all">
+            <key>
+                <column name="car_id" not-null="true"/>
+            </key>
+            <many-to-many entity-name="ua.driver.models.Driver">
+                <column name="driver_id"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
