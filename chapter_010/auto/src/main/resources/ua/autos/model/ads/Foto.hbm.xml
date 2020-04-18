@@ -1,0 +1,10 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.autos.model.ads.Foto" table="foto">
+        <id name="id" column="id_foto">
+            <generator class="identity"/>
+        </id>
+        <property name="values" column="values" not-null="true"/>
+        <many-to-one name="ads" class="ua.autos.model.ads.Ads"
+                     column="ads_id" not-null="false"/>
+    </class>
+</hibernate-mapping>
