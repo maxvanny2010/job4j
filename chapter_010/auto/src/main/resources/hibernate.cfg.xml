@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <!-- a SessionFactory instance listed as /jndi/name -->
+    <session-factory>
+        <!-- properties -->
+        <property name="connection.url">jdbc:postgresql://localhost:5432/autos</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">password</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+        <property name="show_sql">false</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.connection.CharSet">utf8</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.connection.useUnicode">true</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <!-- c3p0 connection pool -->
+        <property name="connection.autoReconnect">true</property>
+        <property name="connection.autoReconnectForPools">true</property>
+        <property name="connection.is-connection-validation-required">true</property>
+        <property name="hibernate.c3p0.acquire_increment">5000</property>
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">30000</property>
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <property name="hibernate.c3p0.idle_test_period">5000</property>
+        <!-- mapping files -->
+        <mapping resource="ua/autos/model/ads/Ads.hbm.xml"/>
+        <mapping resource="ua/autos/model/ads/Foto.hbm.xml"/>
+
+        <mapping resource="ua/autos/model/auto/Auto.hbm.xml"/>
+        <mapping resource="ua/autos/model/auto/Brands.hbm.xml"/>
+        <mapping resource="ua/autos/model/auto/Colors.hbm.xml"/>
+        <mapping resource="ua/autos/model/auto/Models.hbm.xml"/>
+        <mapping resource="ua/autos/model/auto/Engines.hbm.xml"/>
+        <mapping resource="ua/autos/model/auto/Years.hbm.xml"/>
+
+        <mapping resource="ua/autos/model/user/User.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
