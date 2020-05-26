@@ -89,6 +89,8 @@ function getEnter(answer) {
     } else if (role === 'admin' || role === 'user') {
         $('#visitor').html(enter);
         $('#register').html(`<span style="color: white;">Регистрация</span>`);
+        $('#btU').attr('disabled', 'disabled');
+        $('#btA').attr('disabled', 'disabled');
     }
 }
 

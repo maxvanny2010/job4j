@@ -32,11 +32,6 @@ public class ActionGetAds extends ActionAbs {
             throws IOException {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession(false);
-        if (Objects.equals(session, null)) {
-            session = req.getSession();
-            session.setAttribute("role", "unknown");
-            session.setAttribute("user", new User("unknown"));
-        }
         final User user = (User) session.getAttribute("user");
         final String role = (String) session.getAttribute("role");
         final Map<String, Object> answers = new HashMap<>();

@@ -3,24 +3,21 @@ let user = null;
 let get64 = null;
 let name = null;
 $(document).ready(function () {
-    let $ads = $('#ads');
-    $('#visitor').html(`<div class="d-flex justify-content-end" style="color: #4285f4; padding-right: 10px">
-<button class="btn btn-link" type="button" onclick="setOutCabinet()" id="btnOutCabinet">выйти</button></div>`);
-
     user = onLoad();
-
     switch (user.role) {
         case "admin":
             getUsersByAdmin();
             break;
         case "user":
-            getAdsByUser()
+            getAdsByUser();
             $('#searches').append(linkAdd);
             break;
         default:
-            noData($ads);
+            document.location.href = "/auto";
             break;
     }
+    $('#visitor').html(`<div class="d-flex justify-content-end" style="color: #4285f4; padding-right: 10px">
+<button class="btn btn-link" type="button" onclick="setOutCabinet()" id="btnOutCabinet">выйти</button></div>`);
 });
 
 function getUsersByAdmin() {
@@ -28,7 +25,10 @@ function getUsersByAdmin() {
         tasks = JSON.parse(data);
         console.log(tasks.list);
         let $ads = $('#ads');
-        if (tasks.list.length === 0) {
+        if (tasks.size === '0') {
+            document.location.href = "/auto";
+            return;
+        } else if (tasks.list.length === 0) {
             noData($ads);
         } else {
             let $head = $('#headBase');
@@ -119,14 +119,13 @@ function getAdsByUser() {
         tasks = JSON.parse(data);
         console.log(tasks);
         if (tasks.size === '0') {
-            noData($('#ads'));
+            document.location.href = "/auto";
         } else if (tasks.list["ads"].length === 0) {
             noData($('#ads'));
         } else {
             viewAds(tasks);
         }
     }
-
     const json = {
         "action": "cabinetByRole",
         "role": user.role,
@@ -268,8 +267,16 @@ function onLoad() {
         role: 'null',
         name: 'null'
     }
-    User.role = window.location.href.split("?")[1].split("=")[0];
-    User.name = window.location.href.split("?")[1].split("=")[1];
+    let split1 = window.location.href.split("?")[1];
+    if (split1 === undefined) {
+        return User;
+    }
+    User.role = split1.split("=")[0];
+    User.name = split1.split("=")[1];
+    if (User.role === undefined || User.name === undefined) {
+        User.role = 'null';
+        User.name = 'null';
+    }
     return User;
 }
 

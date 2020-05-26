@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 import static ua.autos.logic.action.utils.actionutil.ActionUtil.setOut;
@@ -42,11 +41,6 @@ public class ActionViewAds extends ActionAbs {
     private Map<String, Object> getJSON(final String id,
                                         final HttpServletRequest req) {
         HttpSession session = req.getSession(false);
-        if (Objects.equals(session, null)) {
-            session = req.getSession();
-            session.setAttribute("role", "unknown");
-            session.setAttribute("user", new User("unknown"));
-        }
         final User user = (User) session.getAttribute("user");
         final Map<String, Object> answers = new HashMap<>();
         answers.put("role", user);

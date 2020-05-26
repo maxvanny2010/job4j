@@ -10,19 +10,26 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ${NAME}.
+ * AutoFilter.
  *
  * @author Maxim Vanny
  * @version 5.0
  * @since 4/28/2020
  */
-@WebFilter("/auto")
+@WebFilter("/*")
 public class AutoFilter implements Filter {
+    /**
+     * field a paths.
+     */
+    private final String[] pathsUser = {"registration"};
+
     @Override
     public final void init(final FilterConfig config) {
     }
@@ -33,6 +40,7 @@ public class AutoFilter implements Filter {
                                final FilterChain chain)
             throws ServletException, IOException {
         final HttpServletRequest request = (HttpServletRequest) req;
+        final HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession(false);
         if (Objects.equals(session, null)) {
             session = request.getSession(true);
@@ -42,10 +50,30 @@ public class AutoFilter implements Filter {
             session.setAttribute("role", "unknown");
             session.setAttribute("user", new User("unknown"));
         }
-        chain.doFilter(req, resp);
+        final boolean isUser = Objects.equals(role, "user");
+        final boolean isAdmin = Objects.equals(role, "admin");
+        if ((isAdmin || isUser)
+                && this.isAccess(request, this.pathsUser)) {
+            response.sendRedirect("/auto");
+        } else {
+            chain.doFilter(req, resp);
+        }
     }
 
     @Override
     public final void destroy() {
+    }
+
+    /**
+     * Method to get.
+     *
+     * @param request a request
+     * @param paths   a poll of define paths
+     * @return is repeated path for authorized user
+     */
+    private boolean isAccess(final HttpServletRequest request,
+                             final String[] paths) {
+        final String requestURL = request.getServletPath();
+        return Arrays.stream(paths).anyMatch(requestURL::contains);
     }
 }
