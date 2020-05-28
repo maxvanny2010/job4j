@@ -13,6 +13,7 @@ before_install:
   - psql -c 'create database secret;' -U postgres
   - psql -c 'create database engine;' -U postgres
   - psql -c 'create database autos;' -U postgres
+  - psql -c 'create database antonino;' -U postgres
 
 # Статистика по JaCoCo
 # сервис https://codecov.io/

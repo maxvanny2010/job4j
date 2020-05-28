@@ -1,0 +1,20 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.nino.model.ads.Ads" table="ads">
+        <id name="id" column="id_ads">
+            <generator class="identity"/>
+        </id>
+        <property name="status" column="status" length="10" not-null="true"/>
+        <set name="foto" table="foto" inverse="true"
+             lazy="false" fetch="select" cascade="all">
+            <key>
+                <column name="ads_id" not-null="true"/>
+            </key>
+            <one-to-many class="ua.nino.model.ads.Foto"/>
+        </set>
+        <many-to-one name="user" class="ua.nino.model.user.User"
+                     column="user_id" not-null="false" lazy="false" cascade="none"/>
+        <many-to-one name="auto" class="ua.nino.model.auto.Auto"
+                     column="auto_id" unique="true" lazy="false" not-null="false"
+                     cascade="all"/>
+    </class>
+</hibernate-mapping>

@@ -5,7 +5,7 @@
          version="4.0">
     <servlet>
         <servlet-name>AutoServlet</servlet-name>
-        <servlet-class>ua.autos.present.AutoServlet</servlet-class>
+        <servlet-class>ua.nino.present.AutoServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -14,7 +14,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>ua.autos.present.ControllerServlet</servlet-class>
+        <servlet-class>ua.nino.present.ControllerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>PRegistrationServlet</servlet-name>
-        <servlet-class>ua.autos.present.PRegistrationServlet</servlet-class>
+        <servlet-class>ua.nino.present.PRegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PRegistrationServlet</servlet-name>
@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>PViewServlet</servlet-name>
-        <servlet-class>ua.autos.present.PViewServlet</servlet-class>
+        <servlet-class>ua.nino.present.PViewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PViewServlet</servlet-name>
@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>PCabinetServlet</servlet-name>
-        <servlet-class>ua.autos.present.PCabinetServlet</servlet-class>
+        <servlet-class>ua.nino.present.PCabinetServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PCabinetServlet</servlet-name>

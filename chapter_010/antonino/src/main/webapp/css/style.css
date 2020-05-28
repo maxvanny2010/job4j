@@ -1,0 +1,79 @@
+table,
+thead,
+tr,
+tbody,
+th,
+td {
+    text-align: center !important;
+}
+
+.table td {
+    text-align: center !important;
+}
+
+hr {
+    border: none !important;
+    background-color: #4285f4 !important;
+    color: #4285f4 !important; /* Цвет линии для IE6-7 */
+    height: 2px !important;
+    width: 1105px !important;
+    align-content: center !important;
+    margin-top: 0 !important;
+}
+
+.icon::after {
+    position: absolute !important;
+    color: #4285f4 !important;
+}
+
+td {
+    padding-bottom: 10px !important;
+}
+
+.i250115 {
+    width: 250px !important;
+    height: 115px !important;
+}
+
+.wrapper {
+    position: absolute !important;
+    display: block !important;
+    min-width: 1000px !important;
+    min-height: 1000px !important;
+}
+
+select {
+    width: 130px !important;
+    height: 40px !important;
+    border-radius: 0 !important;
+}
+
+.center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view {
+    color: black !important;
+    font-size: smaller;
+}
+
+/*noinspection ALL*/
+div.ui-datepicker {
+    font-size: smaller !important;
+}
+
+/*noinspection ALL,CssUnusedSymbol*/
+div.ui-widget {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: smaller !important;
+}
+
+div.ui-widget input,
+div.ui-widget select,
+div.ui-widget textarea,
+div.ui-widget button {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: smaller !important;
+}
