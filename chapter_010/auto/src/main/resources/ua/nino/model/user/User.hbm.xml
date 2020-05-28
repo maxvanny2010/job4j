@@ -1,0 +1,19 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.nino.model.user.User" table="users">
+        <id name="id" column="id_user">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name" length="255" not-null="true"/>
+        <property name="password" column="password" length="255" not-null="true"/>
+        <property name="login" column="login" length="255" not-null="true"/>
+        <property name="email" column="email" length="255" not-null="true"/>
+        <property name="phone" column="phone" length="255" not-null="true"/>
+        <set name="ads" table="ads" inverse="true"
+             lazy="false" fetch="select" cascade="all">
+            <key>
+                <column name="user_id" not-null="false"/>
+            </key>
+            <one-to-many class="ua.nino.model.ads.Ads"/>
+        </set>
+    </class>
+</hibernate-mapping>

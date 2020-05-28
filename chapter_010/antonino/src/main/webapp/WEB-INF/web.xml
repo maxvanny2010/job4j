@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>AutoServlet</servlet-name>
+        <servlet-class>ua.nino.present.AutoServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoServlet</servlet-name>
+        <url-pattern>/antonino</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>ua.nino.present.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PRegistrationServlet</servlet-name>
+        <servlet-class>ua.nino.present.PRegistrationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PRegistrationServlet</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PViewServlet</servlet-name>
+        <servlet-class>ua.nino.present.PViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PViewServlet</servlet-name>
+        <url-pattern>/view</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PCabinetServlet</servlet-name>
+        <servlet-class>ua.nino.present.PCabinetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PCabinetServlet</servlet-name>
+        <url-pattern>/cabinet</url-pattern>
+    </servlet-mapping>
+</web-app>
