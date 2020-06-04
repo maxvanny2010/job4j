@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>springDI</module>
+        <module>accident</module>
     </modules>
     <dependencies>
         <dependency>
