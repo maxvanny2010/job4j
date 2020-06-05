@@ -15,6 +15,7 @@
         <module>springDI</module>
         <module>accident</module>
         <module>jdbc</module>
+        <module>axe</module>
     </modules>
     <dependencies>
         <dependency>
