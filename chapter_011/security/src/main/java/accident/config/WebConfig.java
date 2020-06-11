@@ -3,7 +3,6 @@ package accident.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -17,9 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @ComponentScan("accident")
-@Import({SecurityConfig.class})
 public class WebConfig {
-//здесь добавил импорт без него не запускалось
     /**
      * Constructor.
      */

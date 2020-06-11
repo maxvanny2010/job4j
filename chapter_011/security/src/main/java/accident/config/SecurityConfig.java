@@ -1,6 +1,5 @@
 package accident.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,39 +19,27 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
- /*   private final PasswordEncoder passwordEncoder;
 
-    public SecurityConfig(final PasswordEncoder aPasswordEncoder) {
-        this.passwordEncoder = aPasswordEncoder;
-    }*/
-//добавил вот этот метод
-    @Autowired
-    public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    protected final void configure(final AuthenticationManagerBuilder auth)
+            throws Exception {
         final PasswordEncoder passwordEncoder = this.passwordEncoder();
         auth.inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder)
                 .withUser("user")
-                .password(passwordEncoder.encode("123"))
+                .password(passwordEncoder.encode("123456"))
                 .roles("USER")
                 .and()
                 .withUser("admin")
-                .password(passwordEncoder.encode("123"))
+                .password(passwordEncoder.encode("123456"))
                 .roles("USER", "ADMIN");
     }
-  /*  @Override
-    protected void configure(final AuthenticationManagerBuilder auth)
-            throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(this.passwordEncoder)
-                .withUser("user")
-                .password(this.passwordEncoder.encode("123"))
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password(this.passwordEncoder.encode("123"))
-                .roles("USER", "ADMIN");
-    }*/
 
+    /**
+     * Method to get.
+     *
+     * @return encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -68,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/login")
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()

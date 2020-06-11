@@ -38,10 +38,10 @@
             </table>
             <%--   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
         </form>
-    </div
-    <form name='logout' action="<c:url value="/logout"/>" method='POST'>
-        <input name="logout" type="submit" value="logout"/>
-    </form>
+        <form name='logout' action="<c:url value="/logout"/>" method='POST'>
+            <input name="logout" type="submit" value="logout"/>
+        </form>
+    </div>
 </div>
 </body>
 </html>

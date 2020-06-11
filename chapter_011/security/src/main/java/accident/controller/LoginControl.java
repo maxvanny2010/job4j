@@ -23,25 +23,42 @@ import java.util.Objects;
  */
 @Controller
 public class LoginControl {
-    @GetMapping({"/login", "/"})
-    public String loginPage(
-            @RequestParam(value = "error", required = false) final String error,
-            @RequestParam(value = "logout", required = false) final String logout,
+    /**
+     * Method handler a login page.
+     *
+     * @param error  a error
+     * @param logout a logout
+     * @param model  a model
+     * @return login page
+     */
+    @GetMapping("/login")
+    public final String loginPage(
+            @RequestParam(
+                    value = "error", required = false) final String error,
+            @RequestParam(
+                    value = "logout", required = false) final String logout,
             final Model model) {
         String errorMessage = null;
         if (error != null) {
-            errorMessage = "incorrect";
+            errorMessage = "is incorrect";
         }
         if (logout != null) {
-            errorMessage = "success";
+            errorMessage = "logout is success";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login";
     }
-//в этот метод вообще не заходит . форма с кнопкой есть линк на /logout
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logoutPage(final HttpServletRequest req,
-                             final HttpServletResponse resp) {
+
+    /**
+     * Method handler form logout.
+     *
+     * @param req  request
+     * @param resp response
+     * @return path for redirect
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public final String logoutPage(final HttpServletRequest req,
+                                   final HttpServletResponse resp) {
         final Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         if (Objects.nonNull(auth)) {

@@ -27,7 +27,5 @@ public class WebInit implements WebApplicationInitializer {
         registration.setLoadOnStartup(1);
         registration.addMapping("/login");
         registration.addMapping("/logout");
-        registration.addMapping("/");
-        //добавил пути и сонфиг класс
     }
 }
