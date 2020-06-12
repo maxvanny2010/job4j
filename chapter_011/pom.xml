@@ -21,6 +21,7 @@
         <module>sd</module>
         <module>security</module>
         <module>auth</module>
+        <module>reg</module>
     </modules>
     <properties>
         <spring.version>5.2.6.RELEASE</spring.version>

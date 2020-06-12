@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id_users serial primary key,
+    username varchar(50)  NOT NULL,
+    password varchar(100) NOT NULL,
+    enabled  boolean default true,
+    unique (username, password)
+);
+CREATE TABLE IF NOT EXISTS user_role
+(
+    users_id int4,
+    roles    varchar(50)
+);
+alter table if exists user_role
+    add constraint user_role_user_fk
+        foreign key (users_id) references users;
+insert into users(id_users, username, password, enabled)
+values ('1', '1', '123456', true),
+       ('2', '2', '123456', true);
+insert into user_role(users_id, roles)
+values ('1', 'USER'),
+       ('2', 'USER');
