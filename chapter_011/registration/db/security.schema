@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS authorities
+(
+    id        serial primary key,
+    authority varchar(50) not null unique
+);
+insert into authorities(authority)
+values ('ROLE_USER'),
+       ('ROLE_ADMIN');
+CREATE TABLE IF NOT EXISTS users
+(
+    id           serial primary key,
+    username     varchar(50)  NOT NULL,
+    password     varchar(100) NOT NULL,
+    enabled      boolean default true,
+    authority_id int4         not null
+        references authorities (id)
+);
+insert into users(username, password, authority_id)
+values ('admin', '$2a$10$xgd7DC3.fpquD6blnjPBUuGmICZ2dEIblENDO6EnVY.sum0y2b8Wi',
+        (select id from authorities where authority = 'ROLE_ADMIN')),
+       ('1', '$2a$10$xgd7DC3.fpquD6blnjPBUuGmICZ2dEIblENDO6EnVY.sum0y2b8Wi',
+        (select id from authorities where authority = 'ROLE_USER')),
+       ('2', '$2a$10$xgd7DC3.fpquD6blnjPBUuGmICZ2dEIblENDO6EnVY.sum0y2b8Wi',
+        (select id from authorities where authority = 'ROLE_USER'));

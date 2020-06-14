@@ -22,6 +22,7 @@
         <module>security</module>
         <module>auth</module>
         <module>reg</module>
+        <module>registration</module>
     </modules>
     <properties>
         <spring.version>5.2.6.RELEASE</spring.version>
