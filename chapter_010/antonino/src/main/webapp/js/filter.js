@@ -24,7 +24,7 @@ function showAds(tasks) {
     let list = tasks.list;
     let $ads = $('#ads');
     $ads.html('');
-    console.log(list);
+    //console.log(list);
     if (list.length === 0) {
         $ads.html(`<div class="center"><span style="color: red">нет данных</span></div>`);
         return;
@@ -84,7 +84,7 @@ function getBrand(input) {
         ['4', "lexus"]
     ]);
     let message = map.get(val);
-    console.log(message);
+    //console.log(message);
     const json = {
         "action": "model",
         "filter": message
@@ -97,12 +97,12 @@ function getBrand(input) {
         }
         let tasks = JSON.parse(data);
         let set = tasks.set.sort((a, b) => a.id - b.id);
-        console.log(set);
+        //console.log(set);
         $model.attr('disabled', false);
         $model.html('<option value="">модель</option>');
         for (let i = 0; i < set.length; i++) {
             $model.append('<option value="' + set[i].id + '">' + set[i].values + '</option>');
-            console.log(i + ' : ' + set[i].id + ' : ' + set[i].values);
+            //console.log(i + ' : ' + set[i].id + ' : ' + set[i].values);
         }
     }
     $.ajax({

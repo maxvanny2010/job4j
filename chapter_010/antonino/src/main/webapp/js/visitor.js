@@ -71,7 +71,7 @@ function Cabinet(input) {
     let name = input.id;
     if (name === 'admin') {
         document.location.href = "/cabinet?admin=" + name;
-    } else if (name.substring(0, 4) === 'user') {
+    } else if (name.length > 0 && name !== 'admin') {
         document.location.href = "/cabinet?user=" + name;
     } else {
         document.location.href = "/antonino";

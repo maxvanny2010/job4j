@@ -31,7 +31,7 @@ $(document).ready(function () {
             $search.trigger('reset');
             $bt0.attr('disabled', 'disabled');
             let ads = JSON.parse(data);
-            console.log(ads);
+            /*console.log(ads);*/
             $ads.html('');
             if (ads.list.length === 0) {
                 $ads.html(`<div class="center" style="color: red;">Нет данных</div>`);
@@ -47,7 +47,7 @@ $(document).ready(function () {
             "year": $('body #year :selected').val(),
             "color": $('body #color :selected').val()
         };
-        console.log(json);
+        /*console.log(json);*/
         $.ajax({
             url: 'http://localhost:8080/controller',
             type: 'POST',
@@ -61,7 +61,7 @@ $(document).ready(function () {
 
 function resetSearch(input) {
     let checked = input.checked;
-    console.log(checked);
+    //console.log(checked);
     if (checked) {
         window.location.reload();
     }
@@ -103,9 +103,9 @@ function setCalendar() {
 }
 
 function getRange() {
-    success = function (data) {
+    let success = function (data) {
         let ads = JSON.parse(data);
-        console.log(ads);
+        /*console.log(ads);*/
         showAds(ads);
     }
     const json = {
@@ -113,7 +113,7 @@ function getRange() {
         "start": $('#from').val(),
         "end": $('#to').val()
     }
-    console.log(json);
+    /*console.log(json);*/
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
@@ -147,7 +147,7 @@ function setEnter(log, pass) {
             getMaps().clear();
         }
         let answer = JSON.parse(data);
-        console.log(answer);
+        /*console.log(answer);*/
         getEnter(answer);
         $('#btU').attr('disabled', 'disabled');
         $('#btA').attr('disabled', 'disabled');
@@ -157,7 +157,7 @@ function setEnter(log, pass) {
         "login": log,
         "password": pass
     };
-    console.log(json);
+    /*console.log(json);*/
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
