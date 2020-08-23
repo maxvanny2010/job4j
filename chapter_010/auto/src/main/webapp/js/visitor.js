@@ -36,7 +36,7 @@ function checkDemand(input) {
         } else {
             $('#b2').attr('disabled', 'disabled');
         }
-        console.log(getMaps());
+        //console.log(getMaps());
     });
     $name.focus(function () {
         $('#logA').html('');
@@ -46,7 +46,7 @@ function checkDemand(input) {
 function setOut() {
     let success = function (data) {
         let tasks = JSON.parse(data);
-        console.log(tasks);
+        //console.log(tasks);
         if (tasks.name === "no") {
             $('#btU').attr('disabled', false);
             $('#btA').attr('disabled', false);
@@ -68,11 +68,15 @@ function setOut() {
 }
 
 function Cabinet(input) {
-    if (input.id === 'admin') {
-        document.location.href = "/cabinet?admin=" + input.id;
+    let name = input.id;
+    if (name === 'admin') {
+        document.location.href = "/cabinet?admin=" + name;
+    } else if (name.length > 0 && name !== 'admin') {
+        document.location.href = "/cabinet?user=" + name;
     } else {
-        document.location.href = "/cabinet?user=" + input.id;
+        document.location.href = "/antonino";
     }
+
 }
 
 function getEnter(answer) {
@@ -98,7 +102,7 @@ function setUser() {
     let success = function (data) {
         getMaps().clear();
         let answer = JSON.parse(data);
-        console.log(answer);
+        //console.log(answer);
         let selector = '#helper';
         if (answer.role === "unknown") {
             $(selector).html('<span style="color: red; margin-right: 5px;" id="logA">нет данных</span>');
@@ -114,7 +118,7 @@ function setUser() {
         "login": $('#log').val(),
         "password": $('#pass').val()
     };
-    console.log(json);
+    //console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',

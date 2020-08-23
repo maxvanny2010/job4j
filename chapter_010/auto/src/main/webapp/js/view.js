@@ -10,7 +10,7 @@ function onLoad() {
 function viewAds(id) {
     let success = function (data) {
         let user = JSON.parse(data);
-        console.log(user);
+        ////console.log(user);
         let foto = user["ads"]["foto"][0].values;
         if (foto === null) {
             foto = 'img/default.png';
@@ -36,7 +36,7 @@ function viewAds(id) {
         "action": "viewA",
         "id": id,
     };
-    console.log(json);
+    ////console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',

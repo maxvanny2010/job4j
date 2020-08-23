@@ -46,14 +46,14 @@ function checkUser(input) {
             getMap().delete(input.id);
         } else {
             getMap().set(input.id, get);
-            console.log(getMap());
+            ////console.log(getMap());
         }
         if (getMap().size >= 5) {
             $('#b1').attr('disabled', false);
         } else {
             $('#b1').attr('disabled', 'disabled');
         }
-        console.log(getMap());
+        ////console.log(getMap());
     });
     $name.focus(function () {
         $('#' + name + 'A').html('');
@@ -64,7 +64,7 @@ function addUser() {
     let success = function (data) {
         let tasks = JSON.parse(data);
         let selector = '#logD';
-        console.log(tasks);
+        ////console.log(tasks);
         if (tasks.name === "no") {
             $(selector).html('<span style="color: red;" id="logA">Логин занят</span>');
         } else {
@@ -84,7 +84,7 @@ function addUser() {
         "password": $('#password').val(),
         "phone": $('#phone').val()
     };
-    console.log(json);
+    ////console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',

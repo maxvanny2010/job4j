@@ -23,7 +23,7 @@ $(document).ready(function () {
 function getUsersByAdmin() {
     let success = function (data) {
         tasks = JSON.parse(data);
-        console.log(tasks.list);
+        //console.log(tasks.list);
         let $ads = $('#ads');
         if (tasks.size === '0') {
             document.location.href = "/auto";
@@ -61,7 +61,7 @@ function getUsersByAdmin() {
         "role": user.role,
         "name": user.name
     };
-    console.log(json);
+    //console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
@@ -86,7 +86,7 @@ function viewAdsByAdmin(input) {
                 <th style="text-align: center">фото</th><th>телефон</th><th>удалить</th></tr>`);
     let number = parseInt(input.id);
     let user = tasks.list.find(one => one.id === number);
-    console.log(user);
+    //console.log(user);
     // noinspection DuplicatedCode
     user["ads"].forEach(v => {
         let id = v.id;
@@ -117,7 +117,7 @@ function viewAdsByAdmin(input) {
 function getAdsByUser() {
     let success = function (data) {
         tasks = JSON.parse(data);
-        console.log(tasks);
+        //console.log(tasks);
         if (tasks.size === '0') {
             document.location.href = "/auto";
         } else if (tasks.list["ads"].length === 0) {
@@ -131,7 +131,7 @@ function getAdsByUser() {
         "role": user.role,
         "name": user.name
     };
-    console.log(json);
+    //console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
@@ -146,7 +146,7 @@ function deleteUserByAdmin(input) {
     let id = input.name;
     let success = function (data) {
         let tasks = JSON.parse(data);
-        console.log(tasks.name);
+        //console.log(tasks.name);
         if (tasks.name === 'ok') {
             delTask(id);
         }
@@ -157,7 +157,7 @@ function deleteUserByAdmin(input) {
         "role": input.id,
         "id": id
     };
-    console.log(json);
+    //console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
@@ -170,10 +170,10 @@ function deleteUserByAdmin(input) {
 
 function deleteAds(input) {
     let id = input.id.split('_')[1];
-    console.log(id);
+    //console.log(id);
     let success = function (data) {
         let tasks = JSON.parse(data);
-        console.log(tasks.name);
+        //console.log(tasks.name);
         if (tasks.name === 'ok') {
             delTask(id);
         }
@@ -185,7 +185,7 @@ function deleteAds(input) {
         "idU": input.name,
         "id": id
     };
-    console.log(json);
+    //console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
@@ -244,7 +244,7 @@ function viewAds(answer) {
 function setOutCabinet() {
     let success = function (data) {
         let tasks = JSON.parse(data);
-        console.log(tasks);
+        //console.log(tasks);
         if (tasks.name === "no") {
             document.location.href = '/auto';
         }
@@ -359,7 +359,7 @@ function editAds(input) {
     let success = function (data) {
         let user = JSON.parse(data);
         if (user["name"] !== "no") {
-            console.log(user["ads"]);
+            //console.log(user["ads"]);
             tasks = user["ads"];
             reload();
         }
@@ -371,7 +371,7 @@ function editAds(input) {
             "status": $('#statusE :selected').val()
         }
     ;
-    console.log(json);
+    //console.log(json);
     $.ajax({
         url: 'http://localhost:8080/controller',
         type: 'POST',
@@ -404,7 +404,7 @@ function encodeImageFileAsURL(element) {
         return;
     }
     let win = document["forms"][0]["file"]["files"][0];
-    console.log(document["forms"][0]["file"]["files"][0]);
+    //console.log(document["forms"][0]["file"]["files"][0]);
     if (win === undefined) {
         $('#bt5').attr('disabled', false);
         get64 = "";
@@ -459,7 +459,7 @@ function getBrands(input) {
         ['4', "lexus"]
     ]);
     let message = map.get(val);
-    console.log(message);
+    //console.log(message);
     const json = {
         "action": "model",
         "filter": message
@@ -472,12 +472,12 @@ function getBrands(input) {
         }
         let tasks = JSON.parse(data);
         let set = tasks.set.sort((a, b) => a.id - b.id);
-        console.log(set);
+        //console.log(set);
         $model.attr('disabled', false);
         $model.html('<option value="">модель</option>');
         for (let i = 0; i < set.length; i++) {
             $model.append('<option value="' + set[i].id + '">' + set[i].values + '</option>');
-            console.log(i + ' : ' + set[i].id + ' : ' + set[i].values);
+            //console.log(i + ' : ' + set[i].id + ' : ' + set[i].values);
         }
     }
     $.ajax({
@@ -512,7 +512,7 @@ function addedAds() {
     };
     let success = function (data) {
         let answer = JSON.parse(data);
-        console.log(answer);
+        //console.log(answer);
         if (answer["length"] !== 0) {
             tasks = answer;
             reload();
@@ -530,11 +530,11 @@ function addedAds() {
 }
 
 function getTmp(input) {
-    console.log(input.id + " to do");
+    //console.log(input.id + " to do");
 }
 
 function checkData(input) {
-    console.log(input.id + " to do");
+    //console.log(input.id + " to do");
 }
 
 const path = '/auto';

@@ -28,16 +28,16 @@
         <property name="hibernate.c3p0.max_statements">100</property>
         <property name="hibernate.c3p0.idle_test_period">5000</property>
         <!-- mapping files -->
-        <mapping resource="ua/autos/model/ads/Ads.hbm.xml"/>
-        <mapping resource="ua/autos/model/ads/Foto.hbm.xml"/>
+        <mapping resource="ua/nino/model/ads/Ads.hbm.xml"/>
+        <mapping resource="ua/nino/model/ads/Foto.hbm.xml"/>
 
-        <mapping resource="ua/autos/model/auto/Auto.hbm.xml"/>
-        <mapping resource="ua/autos/model/auto/Brands.hbm.xml"/>
-        <mapping resource="ua/autos/model/auto/Colors.hbm.xml"/>
-        <mapping resource="ua/autos/model/auto/Models.hbm.xml"/>
-        <mapping resource="ua/autos/model/auto/Engines.hbm.xml"/>
-        <mapping resource="ua/autos/model/auto/Years.hbm.xml"/>
+        <mapping resource="ua/nino/model/auto/Auto.hbm.xml"/>
+        <mapping resource="ua/nino/model/auto/Brands.hbm.xml"/>
+        <mapping resource="ua/nino/model/auto/Colors.hbm.xml"/>
+        <mapping resource="ua/nino/model/auto/Models.hbm.xml"/>
+        <mapping resource="ua/nino/model/auto/Engines.hbm.xml"/>
+        <mapping resource="ua/nino/model/auto/Years.hbm.xml"/>
 
-        <mapping resource="ua/autos/model/user/User.hbm.xml"/>
+        <mapping resource="ua/nino/model/user/User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
